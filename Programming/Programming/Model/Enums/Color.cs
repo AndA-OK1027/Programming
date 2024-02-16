@@ -13,6 +13,7 @@ namespace Programming
         Orange,
         Pink,
         Red,
-        Blue
+        Blue,
+        Black
     }
 }
