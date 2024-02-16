@@ -9,7 +9,7 @@ namespace Programming
         {
             InitializeComponent();
             //Изначально задается источник данных элемента ComboBox, где будут показываться времена года
-            SeasonsHandleComboBox.DataSource = Enum.GetValues(typeof(Season));
+            SeasonHandleComboBox.DataSource = Enum.GetValues(typeof(Season));
         }
         /// <summary>
         /// При выборе перечисления из предложенных, показывает все значения этого перечисления
@@ -45,7 +45,7 @@ namespace Programming
             }
         }
         /// <summary>
-        /// Выводит в TextBox индекс выбранного элемента перечислений
+        /// Выводит в TextBox индекс выбранного элемента перечислений (начиная с 0)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -91,7 +91,7 @@ namespace Programming
         private void SeasonHandleButton_Click(object sender, EventArgs e)
         {
             //выбранный элемент
-            var selected = SeasonsHandleComboBox.SelectedItem;
+            var selected = SeasonHandleComboBox.SelectedItem;
             switch (selected)
             {
                 case Season.Winter:
