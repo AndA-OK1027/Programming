@@ -10,7 +10,62 @@ namespace Programming
             InitializeComponent();
             //Изначально задается источник данных элемента ComboBox, где будут показываться времена года
             SeasonHandleComboBox.DataSource = Enum.GetValues(typeof(Season));
+
+            //Массив прямоугольников заполняется случайной длиной и шириной
+            Random rand = new Random();
+            for (int i = 0; i < 5; i++)
+            {
+                Rectangle rectangle = new Rectangle(rand.Next(1, 100) + rand.NextDouble(), rand.Next(1, 100) + rand.NextDouble(), "color");
+                _rectangles[i] = rectangle;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                Movie movie = new Movie("name", "genre", rand.Next(1, 500), 6, 1912);
+                _movies[i] = movie;
+            }
+
         }
+            
+        private Rectangle[] _rectangles = new Rectangle[5];
+
+        private Rectangle _currentRectangle;
+
+        private Movie[] _movies = new Movie[5];
+
+        private Movie _currentMovie;
+
+        /// <summary>
+        /// Возвращает индекс прямоугольника с наибольшей шириной.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
+        {
+            int indexMax = 0;
+            for (int i = 0; i < rectangles.Length; i++)
+            {
+                if (rectangles[i].Width > rectangles[indexMax].Width)
+                {
+                    indexMax = i;
+                }
+            }
+            return indexMax;
+        }
+
+        private int FindLongestMovie(Movie[] movies)
+        {
+            int indexMax = 0;
+            for (int i = 0; i < movies.Length; i++)
+            {
+                if (movies[i].Length > movies[indexMax].Length)
+                {
+                    indexMax = i;
+                }
+            }
+            return indexMax;
+        }
+
         /// <summary>
         /// При выборе перечисления из предложенных, показывает все значения этого перечисления
         /// </summary>
@@ -51,8 +106,10 @@ namespace Programming
         /// <param name="e"></param>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Выбранный индекс элемента ListBox
             var index = ValuesListBox.SelectedIndex;
 
+            //Выводится в TextBox
             IntValueTextBox.Text = index.ToString();
         }
 
@@ -113,5 +170,193 @@ namespace Programming
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FindRectangleButton_Click(object sender, EventArgs e)
+        {
+            RectanglesListBox.SelectedIndex = FindRectangleWithMaxWidth(_rectangles);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FindMovieButton_Click(object sender, EventArgs e)
+        {
+            MoviesListBox.SelectedIndex = FindLongestMovie(_movies);
+        }
+
+        /// <summary>
+        /// При выборе прямоугольника 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = RectanglesListBox.SelectedIndex;
+
+            if (index != -1)
+            {
+                _currentRectangle = _rectangles[index];
+
+                LengthTextBox.Text = _currentRectangle.Length.ToString();
+
+                WidthTextBox.Text = _currentRectangle.Width.ToString();
+
+                ColorTextBox.Text = _currentRectangle.Color;
+            }
+
+        }
+
+        /// <summary>
+        /// При выборе прямоугольника 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = MoviesListBox.SelectedIndex;
+
+            if (index != -1)
+            {
+                _currentMovie = _movies[index];
+
+                MovieNameTextBox.Text = _currentMovie.Name;
+
+                GenreTextBox.Text = _currentMovie.Genre;
+
+                MovieLengthTextBox.Text = _currentMovie.Length.ToString();
+
+                ReleaseYearTextBox.Text = _currentMovie.ReleaseYear.ToString();
+
+                RatingTextBox.Text = _currentMovie.Rating.ToString();
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Length = Convert.ToDouble(LengthTextBox.Text);
+                LengthTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+                
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentRectangle.Width = Convert.ToDouble(WidthTextBox.Text);
+                WidthTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentRectangle.Color = ColorTextBox.Text;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MovieNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentMovie.Name = MovieNameTextBox.Text;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentMovie.Genre = GenreTextBox.Text;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MovieLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentMovie.Length = Convert.ToInt32(MovieLengthTextBox.Text);
+                MovieLengthTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                MovieLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentMovie.ReleaseYear = Convert.ToInt32(ReleaseYearTextBox.Text);
+                ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                ReleaseYearTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentMovie.Rating = Convert.ToDouble(RatingTextBox.Text);
+                RatingTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
     }
 }

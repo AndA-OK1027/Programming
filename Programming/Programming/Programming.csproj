@@ -47,6 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Classes\Contact.cs" />
+    <Compile Include="Model\Classes\Flight.cs" />
+    <Compile Include="Model\Classes\Movie.cs" />
+    <Compile Include="Model\Classes\Rectangle.cs" />
+    <Compile Include="Model\Classes\Song.cs" />
+    <Compile Include="Model\Classes\Subject.cs" />
+    <Compile Include="Model\Classes\Time.cs" />
     <Compile Include="Model\Enums\Color.cs" />
     <Compile Include="Model\Enums\EducationForm.cs" />
     <Compile Include="Model\Enums\Genre.cs" />
