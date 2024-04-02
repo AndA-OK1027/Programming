@@ -53,6 +53,11 @@ namespace Programming
             return indexMax;
         }
 
+        /// <summary>
+        /// Возвращает индекс фильма с наибольшей длиной
+        /// </summary>
+        /// <param name="movies"></param>
+        /// <returns></returns>
         private int FindLongestMovie(Movie[] movies)
         {
             int indexMax = 0;
@@ -171,7 +176,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Кнопка 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -212,31 +217,6 @@ namespace Programming
 
         }
 
-        /// <summary>
-        /// При выборе прямоугольника 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MoviesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var index = MoviesListBox.SelectedIndex;
-
-            if (index != -1)
-            {
-                _currentMovie = _movies[index];
-
-                MovieNameTextBox.Text = _currentMovie.Name;
-
-                GenreTextBox.Text = _currentMovie.Genre;
-
-                MovieLengthTextBox.Text = _currentMovie.Length.ToString();
-
-                ReleaseYearTextBox.Text = _currentMovie.ReleaseYear.ToString();
-
-                RatingTextBox.Text = _currentMovie.Rating.ToString();
-            }
-
-        }
 
         /// <summary>
         /// 
@@ -342,7 +322,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// При смене текста в поле рейтинга меняет 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -356,6 +336,31 @@ namespace Programming
             catch
             {
                 RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// При смене индекса появляются значения выбранного объекта класса
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MoviesListBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            var index = MoviesListBox.SelectedIndex;
+
+            if (index != -1)
+            {
+                _currentMovie = _movies[index];
+
+                MovieNameTextBox.Text = _currentMovie.Name;
+
+                GenreTextBox.Text = _currentMovie.Genre;
+
+                MovieLengthTextBox.Text = _currentMovie.Length.ToString();
+
+                ReleaseYearTextBox.Text = _currentMovie.ReleaseYear.ToString();
+
+                RatingTextBox.Text = _currentMovie.Rating.ToString();
             }
         }
     }

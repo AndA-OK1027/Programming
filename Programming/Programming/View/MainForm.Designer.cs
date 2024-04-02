@@ -422,6 +422,7 @@ namespace Programming
             this.MoviesListBox.Name = "MoviesListBox";
             this.MoviesListBox.Size = new System.Drawing.Size(115, 160);
             this.MoviesListBox.TabIndex = 1;
+            this.MoviesListBox.SelectedIndexChanged += new System.EventHandler(this.MoviesListBox_SelectedIndexChanged_1);
             // 
             // RectanglesGroupBox
             // 

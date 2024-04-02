@@ -80,7 +80,7 @@ namespace Programming
             get { return releaseYear; }
             set
             {
-                if (value > 1900 || value <= DateTime.Today.Year)
+                if (value > 1900 || value <= 2024)
                 {
                     releaseYear = value;
                 }
