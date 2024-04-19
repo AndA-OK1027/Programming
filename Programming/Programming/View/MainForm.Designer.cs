@@ -71,6 +71,10 @@ namespace Programming
             this.WidthTextBox = new System.Windows.Forms.TextBox();
             this.LengthTextBox = new System.Windows.Forms.TextBox();
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
+            this.CenterCoordTextBox = new System.Windows.Forms.TextBox();
+            this.CenterCoordinatesLabel = new System.Windows.Forms.Label();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.IdLabel = new System.Windows.Forms.Label();
             this.MainTabControl.SuspendLayout();
             this.Enums.SuspendLayout();
             this.SeasonGroupBox.SuspendLayout();
@@ -327,7 +331,7 @@ namespace Programming
             // MovieRatingLabel
             // 
             this.MovieRatingLabel.AutoSize = true;
-            this.MovieRatingLabel.Location = new System.Drawing.Point(253, 14);
+            this.MovieRatingLabel.Location = new System.Drawing.Point(258, 14);
             this.MovieRatingLabel.Name = "MovieRatingLabel";
             this.MovieRatingLabel.Size = new System.Drawing.Size(38, 13);
             this.MovieRatingLabel.TabIndex = 11;
@@ -336,7 +340,7 @@ namespace Programming
             // ReleaseYearLabel
             // 
             this.ReleaseYearLabel.AutoSize = true;
-            this.ReleaseYearLabel.Location = new System.Drawing.Point(253, 53);
+            this.ReleaseYearLabel.Location = new System.Drawing.Point(258, 53);
             this.ReleaseYearLabel.Name = "ReleaseYearLabel";
             this.ReleaseYearLabel.Size = new System.Drawing.Size(71, 13);
             this.ReleaseYearLabel.TabIndex = 10;
@@ -344,7 +348,7 @@ namespace Programming
             // 
             // RatingTextBox
             // 
-            this.RatingTextBox.Location = new System.Drawing.Point(256, 30);
+            this.RatingTextBox.Location = new System.Drawing.Point(261, 30);
             this.RatingTextBox.Name = "RatingTextBox";
             this.RatingTextBox.Size = new System.Drawing.Size(100, 20);
             this.RatingTextBox.TabIndex = 6;
@@ -352,7 +356,7 @@ namespace Programming
             // 
             // ReleaseYearTextBox
             // 
-            this.ReleaseYearTextBox.Location = new System.Drawing.Point(256, 69);
+            this.ReleaseYearTextBox.Location = new System.Drawing.Point(261, 69);
             this.ReleaseYearTextBox.Name = "ReleaseYearTextBox";
             this.ReleaseYearTextBox.Size = new System.Drawing.Size(100, 20);
             this.ReleaseYearTextBox.TabIndex = 4;
@@ -426,6 +430,10 @@ namespace Programming
             // 
             // RectanglesGroupBox
             // 
+            this.RectanglesGroupBox.Controls.Add(this.IdLabel);
+            this.RectanglesGroupBox.Controls.Add(this.IdTextBox);
+            this.RectanglesGroupBox.Controls.Add(this.CenterCoordinatesLabel);
+            this.RectanglesGroupBox.Controls.Add(this.CenterCoordTextBox);
             this.RectanglesGroupBox.Controls.Add(this.ColorLabel);
             this.RectanglesGroupBox.Controls.Add(this.WidthLabel);
             this.RectanglesGroupBox.Controls.Add(this.FindRectangleButton);
@@ -517,6 +525,40 @@ namespace Programming
             this.RectanglesListBox.TabIndex = 0;
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
+            // CenterCoordTextBox
+            // 
+            this.CenterCoordTextBox.Location = new System.Drawing.Point(261, 35);
+            this.CenterCoordTextBox.Name = "CenterCoordTextBox";
+            this.CenterCoordTextBox.ReadOnly = true;
+            this.CenterCoordTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CenterCoordTextBox.TabIndex = 8;
+            // 
+            // CenterCoordinatesLabel
+            // 
+            this.CenterCoordinatesLabel.AutoSize = true;
+            this.CenterCoordinatesLabel.Location = new System.Drawing.Point(258, 19);
+            this.CenterCoordinatesLabel.Name = "CenterCoordinatesLabel";
+            this.CenterCoordinatesLabel.Size = new System.Drawing.Size(97, 13);
+            this.CenterCoordinatesLabel.TabIndex = 9;
+            this.CenterCoordinatesLabel.Text = "Center Coordinates";
+            // 
+            // IdTextBox
+            // 
+            this.IdTextBox.Location = new System.Drawing.Point(261, 74);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
+            this.IdTextBox.Size = new System.Drawing.Size(100, 20);
+            this.IdTextBox.TabIndex = 10;
+            // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(261, 58);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(16, 13);
+            this.IdLabel.TabIndex = 11;
+            this.IdLabel.Text = "Id";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +629,10 @@ namespace Programming
         private System.Windows.Forms.TextBox MovieLengthTextBox;
         private System.Windows.Forms.TextBox GenreTextBox;
         private System.Windows.Forms.TextBox MovieNameTextBox;
+        private System.Windows.Forms.Label CenterCoordinatesLabel;
+        private System.Windows.Forms.TextBox CenterCoordTextBox;
+        private System.Windows.Forms.Label IdLabel;
+        private System.Windows.Forms.TextBox IdTextBox;
     }
 }
 

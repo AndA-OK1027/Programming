@@ -42,14 +42,8 @@ namespace Programming
             get { return length; }
             set
             {
-                if (value > 0)
-                {
-                    length = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Длина фильма должна быть больше нуля");
-                }
+                Validator.AssertOnPositiveValue(value, nameof(Length));
+                length = value;
             }
         }
 
@@ -61,14 +55,8 @@ namespace Programming
             get { return rating; }
             set
             {
-                if (value > 0 || value < 10)
-                {
-                    rating = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Недопустимое значение рейтинга");
-                }
+                Validator.AssertValueInRange(value, 0, 10, nameof(Rating));
+                rating = value;
             }
         }
 
@@ -80,14 +68,8 @@ namespace Programming
             get { return releaseYear; }
             set
             {
-                if (value > 1900 || value <= 2024)
-                {
-                    releaseYear = value;
-                }
-                else
-                {
-                    throw new ArgumentException("Недопустимое значение года выпуска");
-                }
+                Validator.AssertValueInRange(value, 1900, DateTime.Today.Year, nameof(ReleaseYear));
+                releaseYear = value;
             }
         }
 

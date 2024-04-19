@@ -16,9 +16,16 @@ namespace Programming
         /// </summary>
         private double length;
         /// <summary>
-        /// Ширина
+        /// Ширина.
         /// </summary>
         private double width;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static int _allRectanglesCount;
+
+        private int _id;
 
         /// <summary>
         /// Возвращает и задает длину прямоугольника.
@@ -66,14 +73,32 @@ namespace Programming
         /// <summary>
         /// 
         /// </summary>
+        public Point2D Center { get; }
+
+        public static int AllRectanglesCount
+        {
+            get { return _allRectanglesCount;}
+        }
+
+        public int Id
+        {
+            get { return _id; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="length">Длина. Только положительные вещественные числа.</param>
         /// <param name="width">Ширина. Только положительные вещественные числа.</param>
         /// <param name="color">Цвет в виде строки.</param>
-        public Rectangle(double length, double width, string color)
+        public Rectangle(double length, double width, string color, Point2D center)
         {
             Color = color;
             Length = length;
             Width = width;
+            Center = center;
+            _allRectanglesCount++;
+            _id = _allRectanglesCount;
         }
 
         public Rectangle() { }

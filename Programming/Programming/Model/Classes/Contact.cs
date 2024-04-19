@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Programming
 {
@@ -16,48 +17,95 @@ namespace Programming
         /// </summary>
         private string phoneNumber;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public string FirstName { get; set; }
+        private string name;
+
+        private string surName;
 
         /// <summary>
         /// 
         /// </summary>
-        public string LastName { get; set; }
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                AssertStringContainsOnlyLetters(value, nameof(Name));
+                name = value;
+            }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Surname
+        {
+            get { return surName; }
+            set
+            {
+                AssertStringContainsOnlyLetters(value, nameof(Surname));
+                surName = value; 
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public string PhoneNumber
         {
             get { return phoneNumber; }
             set 
             {
-                for (int i = 0; i < value.Length; i++)
-                {
-                    if (char.IsDigit(value[i]) || value.Length == 11)
-                    {
-                        phoneNumber = value;
-                    }
-                    else
-                    {
-                        throw new ArgumentException("Ввод номера некорректный");
-                    }
-                }
+                AssertStringContainsOnlyNumbers(value, nameof(PhoneNumber));
+                phoneNumber = value;
             }
 
         }
         /// <summary>
         /// Создает экземпляр класса Контакт
         /// </summary>
-        /// <param name="firstName">Имя ...</param>
-        /// <param name="lastName">Фамилия ...</param>
-        /// <param name="phoneNumber">Номер телефона. Должен состоять только из цифр и быть длиной 11 символов.</param>
-        public Contact(string firstName, string lastName, string phoneNumber)
+        /// <param name="name">Имя, может состоять только из букв</param>
+        /// <param name="surName">Фамилия, может состоять только из букв</param>
+        /// <param name="phoneNumber">Номер телефона. Должен состоять только из цифр.</param>
+        public Contact(string surName, string name, string phoneNumber)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            Name = name;
+            Surname = surName;
             PhoneNumber = phoneNumber;
         }
 
         public Contact() { }
+
+        /// <summary>
+        /// Проверяет, стостоит ли строка только из букв.
+        /// </summary>
+        /// <param name="value">Проверяемая строка.</param>
+        /// <returns>Возвращает true, если строка состоит из букв.
+        ///И false, если есть хотя бы одна не буква.</returns>
+        private void AssertStringContainsOnlyLetters(string value, string propertyName)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsLetter(value[i]))
+                {
+                    throw new ArgumentException($"{propertyName} must contain letters only");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Проверяет, стостоит ли строка только из цифр.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="propertyName"></param>
+        private void AssertStringContainsOnlyNumbers(string value, string propertyName)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsDigit(value[i]))
+                {
+                    throw new ArgumentException($"{propertyName} must contain numbers only");
+                }
+            }
+        }
     }
 }

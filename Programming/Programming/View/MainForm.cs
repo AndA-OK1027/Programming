@@ -13,15 +13,18 @@ namespace Programming
 
             //Массив прямоугольников заполняется случайной длиной и шириной
             Random rand = new Random();
+
+            //Point2D center = new Point2D(rand.Next(-255, 255), rand.Next(-255, 255));
             for (int i = 0; i < 5; i++)
             {
-                Rectangle rectangle = new Rectangle(rand.Next(1, 100) + rand.NextDouble(), rand.Next(1, 100) + rand.NextDouble(), "color");
+                Point2D center = new Point2D(rand.Next(-255, 255), rand.Next(-255, 255));
+                Rectangle rectangle = new Rectangle(rand.Next(1, 100) + rand.NextDouble(), rand.Next(1, 100) + rand.NextDouble(), "color", center);
                 _rectangles[i] = rectangle;
             }
 
             for (int i = 0; i < 5; i++)
             {
-                Movie movie = new Movie("name", "genre", rand.Next(1, 500), 6, 1912);
+                Movie movie = new Movie("name", "genre", rand.Next(1, 500), 6, 1925);
                 _movies[i] = movie;
             }
 
@@ -213,6 +216,10 @@ namespace Programming
                 WidthTextBox.Text = _currentRectangle.Width.ToString();
 
                 ColorTextBox.Text = _currentRectangle.Color;
+
+                CenterCoordTextBox.Text = "(" + _currentRectangle.Center.X.ToString() + " ; " + _currentRectangle.Center.Y.ToString() + ")";
+
+                IdTextBox.Text = _currentRectangle.Id.ToString();
             }
 
         }
