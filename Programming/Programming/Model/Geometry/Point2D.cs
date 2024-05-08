@@ -14,12 +14,12 @@ namespace Programming
         /// <summary>
         /// 
         /// </summary>
-        public int X { get; private set; }
+        public int X { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Y { get; private set; }
+        public int Y { get; set; }
 
         /// <summary>
         /// 

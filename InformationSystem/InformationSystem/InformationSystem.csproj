@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D1086C17-722C-47A4-85FA-079683E0DA10}</ProjectGuid>
+    <ProjectGuid>{1EE832E3-AF02-4C68-ADFA-93FC55319368}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Programming</RootNamespace>
-    <AssemblyName>Programming</AssemblyName>
+    <RootNamespace>InformationSystem</RootNamespace>
+    <AssemblyName>InformationSystem</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,43 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Geometry\CollisionManager.cs" />
-    <Compile Include="Model\Classes\Contact.cs" />
-    <Compile Include="Model\Classes\Flight.cs" />
-    <Compile Include="Model\Classes\Movie.cs" />
-    <Compile Include="Model\Geometry\Point2D.cs" />
-    <Compile Include="Model\Geometry\Rectangle.cs" />
-    <Compile Include="View\Panels\RectangleCollisionControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Panels\RectangleCollisionControl.Designer.cs">
-      <DependentUpon>RectangleCollisionControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Geometry\Ring.cs" />
-    <Compile Include="Model\Classes\Song.cs" />
-    <Compile Include="Model\Classes\Subject.cs" />
-    <Compile Include="Model\Classes\Time.cs" />
-    <Compile Include="Model\Enums\Color.cs" />
-    <Compile Include="Model\Enums\EducationForm.cs" />
-    <Compile Include="Model\Enums\Genre.cs" />
-    <Compile Include="Model\Enums\Manufacturers.cs" />
-    <Compile Include="Model\Enums\Season.cs" />
-    <Compile Include="Model\Enums\Weekday.cs" />
-    <Compile Include="Model\Classes\Validator.cs" />
-    <Compile Include="View\MainForm.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Geometry\RectangleFactory.cs" />
-    <EmbeddedResource Include="View\Panels\RectangleCollisionControl.resx">
-      <DependentUpon>RectangleCollisionControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,7 +65,6 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -108,6 +79,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

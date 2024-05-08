@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming
 {
+    /// <summary>
+    /// 
+    /// </summary>
     class Validator
     {
         public static void AssertOnPositiveValue(int value, string propertyName)

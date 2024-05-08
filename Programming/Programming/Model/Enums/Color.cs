@@ -14,6 +14,5 @@ namespace Programming
         Pink,
         Red,
         Blue,
-        Black
     }
 }

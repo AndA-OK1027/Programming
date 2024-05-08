@@ -14,34 +14,37 @@ namespace Programming
         /// <summary>
         /// Длина.
         /// </summary>
-        private double length;
+        private int height;
         /// <summary>
         /// Ширина.
         /// </summary>
-        private double width;
+        private int width;
 
         /// <summary>
-        /// 
+        /// Статическое поле, подчитывающее все существующие прямоугольники.
         /// </summary>
         private static int _allRectanglesCount;
 
-        private int _id;
+        /// <summary>
+        ///  Уникальный идентификатор для всех объектов данного класса.
+        /// </summary>
+        private readonly int _id;
 
         /// <summary>
         /// Возвращает и задает длину прямоугольника.
         /// </summary>
-        public double Length
+        public int Height
         {
-            get { return length; }
+            get { return height; }
             set
             {
                 if (value > 0)
                 {
-                    length = value;
+                    height = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Длина должна быть больше нуля");
+                    throw new ArgumentException("Expects a positive value.");
                 }
             }
         }
@@ -49,7 +52,7 @@ namespace Programming
         /// <summary>
         /// Возвращает и задает ширину прямогугольника.
         /// </summary>
-        public double Width
+        public int Width
         {
             get { return width; }
             set
@@ -60,7 +63,7 @@ namespace Programming
                 }
                 else
                 {
-                    throw new ArgumentException("Ширина должна быть больше нуля");
+                    throw new ArgumentException("Expects a positive value.");
                 }
             }
         }
@@ -71,36 +74,46 @@ namespace Programming
         public string Color { get; set; }
 
         /// <summary>
-        /// 
+        /// Возвращает координаты x и y центра прямоугльника.
         /// </summary>
         public Point2D Center { get; }
 
+        /// <summary>
+        /// Возвращает количество всех прямоугольников.
+        /// </summary>
         public static int AllRectanglesCount
         {
             get { return _allRectanglesCount;}
         }
 
+        /// <summary>
+        /// Возвращает id прямоугольника.
+        /// </summary>
         public int Id
         {
             get { return _id; }
         }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Rectangle">.
         /// </summary>
-        /// <param name="length">Длина. Только положительные вещественные числа.</param>
+        /// <param name="height">Длина. Только положительные вещественные числа.</param>
         /// <param name="width">Ширина. Только положительные вещественные числа.</param>
         /// <param name="color">Цвет в виде строки.</param>
-        public Rectangle(double length, double width, string color, Point2D center)
+        /// <param name="center">Координаты центра типа точки в двумерном пространстве.</param>
+        public Rectangle(int height, int width, string color, Point2D center)
         {
             Color = color;
-            Length = length;
+            Height = height;
             Width = width;
             Center = center;
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Rectangle">, без параметров.
+        /// </summary>
         public Rectangle() { }
     }
 }

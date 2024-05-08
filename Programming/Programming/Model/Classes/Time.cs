@@ -7,26 +7,26 @@ using System.Threading.Tasks;
 namespace Programming
 {
     /// <summary>
-    /// Время в часах, минутах и секундах.
+    /// Хранит информацию о времени в часах, минутах и секундах.
     /// </summary>
     class Time
     {
         /// <summary>
-        /// Час от 0 до 23
+        /// Час от 0 до 23.
         /// </summary>
         private int hour;
         /// <summary>
-        /// Минута от 0 до 60
+        /// Минута от 0 до 60.
         /// </summary>
         private int minute;
         /// <summary>
-        /// Секунда от 0 до 60
+        /// Секунда от 0 до 60.
         /// </summary>
         private int second;
         
 
         /// <summary>
-        /// Возвращает и задает час
+        /// Возвращает и задает час.
         /// </summary>
         public int Hour
         {
@@ -45,7 +45,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает минуты.
         /// </summary>
         public int Minute
         {
@@ -64,7 +64,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задает секунды.
         /// </summary>
         public int Second
         {
@@ -83,11 +83,11 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Time">.
         /// </summary>
-        /// <param name="hour"></param>
-        /// <param name="minute"></param>
-        /// <param name="second"></param>
+        /// <param name="hour">Час.</param>
+        /// <param name="minute">Минуты.</param>
+        /// <param name="second">Секунды.</param>
         public Time(int hour, int minute, int second)
         {
             Hour = hour;
@@ -95,6 +95,9 @@ namespace Programming
             Second = second;
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Time"> без параметров.
+        /// </summary>
         public Time() { }
     }
 }

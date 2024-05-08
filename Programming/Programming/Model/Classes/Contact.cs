@@ -22,7 +22,7 @@ namespace Programming
         private string surName;
 
         /// <summary>
-        /// 
+        /// Имя, может состоять только из букв
         /// </summary>
         public string Name
         {
@@ -35,7 +35,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Фамилия, может состоять только из букв
         /// </summary>
         public string Surname
         {
@@ -48,7 +48,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Номер, может состоять только из цифр
         /// </summary>
         public string PhoneNumber
         {
@@ -61,7 +61,7 @@ namespace Programming
 
         }
         /// <summary>
-        /// Создает экземпляр класса Контакт
+        /// Создает экземпляр класса <see cref="Contact"/>.
         /// </summary>
         /// <param name="name">Имя, может состоять только из букв</param>
         /// <param name="surName">Фамилия, может состоять только из букв</param>
@@ -73,6 +73,9 @@ namespace Programming
             PhoneNumber = phoneNumber;
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Contact"/> без параметров.
+        /// </summary>
         public Contact() { }
 
         /// <summary>

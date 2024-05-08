@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Programming.Model.Classes
+namespace Programming
 {
     /// <summary>
     /// Хранит данные о песне в плеере: название, автор, длина.

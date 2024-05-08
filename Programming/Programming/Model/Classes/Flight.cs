@@ -47,11 +47,11 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Flight"/>.
         /// </summary>
-        /// <param name="departurePoint"></param>
-        /// <param name="destination"></param>
-        /// <param name="flightTime"></param>
+        /// <param name="departurePoint">Пункт отправки.</param>
+        /// <param name="destination">Пункт назначения.</param>
+        /// <param name="flightTime">Время полета в минутах, только положительные числа</param>
         public Flight(string departurePoint, string destination, int flightTime)
         {
             DeparturePoint = departurePoint;
@@ -60,7 +60,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Создает экземпляр класса <see cref="Flight"/> без параметров.
         /// </summary>
         public Flight() { }
     }
