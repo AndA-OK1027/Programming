@@ -35,7 +35,7 @@ namespace Programming
             set
             {
                 Validator.AssertOnPositiveValue(value, nameof(Score));
-                
+                score = value;
             }
         }
 

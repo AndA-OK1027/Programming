@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 namespace Programming
 {
     /// <summary>
-    /// 
+    /// Хранит информацию о методах валидации данных.
     /// </summary>
     class Validator
     {
+        /// <summary>
+        /// Проверяет, является ли целочисленное значение положительным числом.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="propertyName">Название свойства, в котором осуществляется проверка.</param>
         public static void AssertOnPositiveValue(int value, string propertyName)
         {   
             if (value < 0)
@@ -19,6 +24,11 @@ namespace Programming
             }
         }
 
+        /// <summary>
+        /// Проверяет, является ли вещественное значение положительным числом.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="propertyName">Название свойства, в котором осуществляется проверка.</param>
         public static void AssertOnPositiveValue(double value, string propertyName)
         {
             if (value < 0)
@@ -27,6 +37,13 @@ namespace Programming
             }
         }
 
+        /// <summary>
+        /// Проверяет, находится ли целочисленное значение в заданном диапазоне.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="min">Минимальная граница.</param>
+        /// <param name="max">Максимальная граница.</param>
+        /// <param name="propertyName">Название свойства, в котором осуществляется проверка.</param>
         public static void AssertValueInRange(int value, int min, int max, string propertyName)
         {
             if (value > max || value < min)
@@ -35,6 +52,13 @@ namespace Programming
             }
         }
 
+        /// <summary>
+        /// Проверяет, находится ли вещественное значение в заданном диапазоне.
+        /// </summary>
+        /// <param name="value">Проверяемое значение.</param>
+        /// <param name="min">Минимальная граница.</param>
+        /// <param name="max">Максимальная граница.</param>
+        /// <param name="propertyName">Название свойства, в котором осуществляется проверка.</param>
         public static void AssertValueInRange(double value, double min, double max, string propertyName)
         {
             if (value > max || value < min)

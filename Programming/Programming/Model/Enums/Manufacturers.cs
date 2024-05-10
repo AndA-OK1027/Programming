@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming
 {
+    /// <summary>
+    /// Хранит информацию о производителях смартфонов.
+    /// </summary>
     public enum Manufacturers
     {
         Samsung,

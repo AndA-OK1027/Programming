@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming
 {
+    /// <summary>
+    /// Хранит информацию о возможных формах обучения.
+    /// </summary>
     public enum EducationForm
     {
         Fulltime,

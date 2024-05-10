@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Programming
 {
     /// <summary>
-    /// 
+    /// Хранит информацию о фильме: название, жанр, рейтинг, год выпуска, продолжительность.
     /// </summary>
     class Movie
     {
@@ -74,13 +74,13 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Создает объект класса <see cref="Movie">.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="genre"></param>
-        /// <param name="length"></param>
-        /// <param name="rating"></param>
-        /// <param name="releaseYear"></param>
+        /// <param name="name">Название, любая строка.</param>
+        /// <param name="genre">Жанр, любая строка.</param>
+        /// <param name="length">Длина, только положительные числа.</param>
+        /// <param name="rating">Рейтинг, вещественные числа от 0 до 10.</param>
+        /// <param name="releaseYear">Год выпуска от 1900 до текущего года.</param>
         public Movie(string name, string genre, int length, double rating, int releaseYear)
         {
             Name = name;
@@ -90,6 +90,9 @@ namespace Programming
             ReleaseYear = releaseYear;
         }
 
+        /// <summary>
+        /// Создает объект класса <see cref="Movie">, без параметров.
+        /// </summary>
         public Movie() { }
     }
 }

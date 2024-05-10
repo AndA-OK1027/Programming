@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming
 {
+    /// <summary>
+    /// Хранит информацию о цветах.
+    /// </summary>
     public enum Color
     {
         Green,

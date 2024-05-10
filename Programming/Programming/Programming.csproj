@@ -47,12 +47,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Classes\AppColors.cs" />
     <Compile Include="Model\Geometry\CollisionManager.cs" />
     <Compile Include="Model\Classes\Contact.cs" />
     <Compile Include="Model\Classes\Flight.cs" />
     <Compile Include="Model\Classes\Movie.cs" />
     <Compile Include="Model\Geometry\Point2D.cs" />
     <Compile Include="Model\Geometry\Rectangle.cs" />
+    <Compile Include="View\Panels\AllEnumerationsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\AllEnumerationsControl.Designer.cs">
+      <DependentUpon>AllEnumerationsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\MoviesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\MoviesControl.Designer.cs">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Panels\RectangleCollisionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +92,30 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Geometry\RectangleFactory.cs" />
+    <Compile Include="View\Panels\RectanglesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\RectanglesControl.Designer.cs">
+      <DependentUpon>RectanglesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\WeekdayParsingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\WeekdayParsingControl.Designer.cs">
+      <DependentUpon>WeekdayParsingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Panels\SeasonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Panels\SeasonsControl.Designer.cs">
+      <DependentUpon>SeasonsControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\Panels\AllEnumerationsControl.resx">
+      <DependentUpon>AllEnumerationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panels\MoviesControl.resx">
+      <DependentUpon>MoviesControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Panels\RectangleCollisionControl.resx">
       <DependentUpon>RectangleCollisionControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -95,6 +132,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="View\Panels\RectanglesControl.resx">
+      <DependentUpon>RectanglesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panels\SeasonsControl.resx">
+      <DependentUpon>SeasonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Panels\WeekdayParsingControl.resx">
+      <DependentUpon>WeekdayParsingControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Programming
 {
+    /// <summary>
+    /// Хранит информацию о жанрах фильмов.
+    /// </summary>
     public enum Genre
     {
         Comedy,

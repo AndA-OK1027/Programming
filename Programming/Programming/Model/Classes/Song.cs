@@ -27,7 +27,7 @@ namespace Programming
         public string AuthorName { get; set; }
 
         /// <summary>
-        /// 
+        /// Задает и возвращает продолжительность песни в минутах, только положительные числа.
         /// </summary>
         public int SongLength
         {
@@ -46,11 +46,11 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Создает объект класса <see cref="Song">.
         /// </summary>
-        /// <param name="songName"></param>
-        /// <param name="authorName"></param>
-        /// <param name="songLength"></param>
+        /// <param name="songName">Название песни, любая строка.</param>
+        /// <param name="authorName">Имя автора, любая строка.</param>
+        /// <param name="songLength">Продолжительность песни в минутах, только положительные числа.</param>
         public Song(string songName, string authorName, int songLength)
         {
             SongName = songName;
@@ -59,7 +59,7 @@ namespace Programming
         }
 
         /// <summary>
-        /// 
+        /// Создает объект класса <see cref="Song">, без параметров.
         /// </summary>
         public Song() { }
     }
