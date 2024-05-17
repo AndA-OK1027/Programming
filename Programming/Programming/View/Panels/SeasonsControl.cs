@@ -16,6 +16,20 @@ namespace Programming
     public partial class SeasonsControl : UserControl
     {
         /// <summary>
+        /// Обработка события нажатия кнопки на элементе управления.
+        /// </summary>
+        public event EventHandler ButtonClicked;
+
+        /// <summary>
+        /// Показывает нажата ли кнопка.
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnButtonClicked(EventArgs e)
+        {
+            ButtonClicked?.Invoke(this, e);
+        }
+
+        /// <summary>
         /// Инициализирует компоненты элемента управления.
         /// </summary>
         public SeasonsControl()
@@ -35,6 +49,15 @@ namespace Programming
         }
 
         /// <summary>
+        /// Истинна - если в списке выбрана весна.
+        /// </summary>
+        public bool isSpring;
+        /// <summary>
+        /// Истинна - если в списке выбрана осень.
+        /// </summary>
+        public bool isFall;
+
+        /// <summary>
         /// Производит различные действия, в зависимости от выбранного объекта в ComboBox.
         /// </summary>
         /// <param name="sender"></param>
@@ -48,16 +71,14 @@ namespace Programming
                 case Season.Winter:
                     MessageBox.Show("Холодно");
                     break;
-                case Season.Spring:
-                    this.BackColor = System.Drawing.Color.FromArgb(147, 222, 140);
-                    break;
                 case Season.Summer:
                     MessageBox.Show("Тепло");
                     break;
-                case Season.Fall:
-                    this.BackColor = System.Drawing.Color.FromArgb(242, 178, 39);
-                    break;
             }
+            if (selected.Equals(Season.Fall)) {  isFall = true; }
+            if (selected.Equals(Season.Spring)) { isSpring = true; }
+
+            OnButtonClicked(EventArgs.Empty);
         }
     }
 }

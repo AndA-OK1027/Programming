@@ -33,12 +33,12 @@ namespace Programming
             this.Rectangle = new System.Windows.Forms.TabPage();
             this.RectangleCollisionControl1 = new Programming.RectangleCollisionControl();
             this.Enums = new System.Windows.Forms.TabPage();
+            this.seasonsControl1 = new Programming.SeasonsControl();
             this.weekdayParsingControl1 = new Programming.WeekdayParsingControl();
             this.allEnumerationsControl1 = new Programming.AllEnumerationsControl();
             this.Classes = new System.Windows.Forms.TabPage();
             this.rectanglesControl1 = new Programming.RectanglesControl();
             this.moviesControl1 = new Programming.MoviesControl();
-            this.seasonsControl1 = new Programming.SeasonsControl();
             this.MainTabControl.SuspendLayout();
             this.Rectangle.SuspendLayout();
             this.Enums.SuspendLayout();
@@ -89,6 +89,14 @@ namespace Programming
             this.Enums.TabIndex = 0;
             this.Enums.Text = "Enums";
             // 
+            // seasonsControl1
+            // 
+            this.seasonsControl1.Location = new System.Drawing.Point(273, 258);
+            this.seasonsControl1.Name = "seasonsControl1";
+            this.seasonsControl1.Size = new System.Drawing.Size(225, 78);
+            this.seasonsControl1.TabIndex = 3;
+            this.seasonsControl1.ButtonClicked += new System.EventHandler(this.seasonsControl1_ButtonClicked);
+            // 
             // weekdayParsingControl1
             // 
             this.weekdayParsingControl1.Location = new System.Drawing.Point(8, 258);
@@ -128,13 +136,6 @@ namespace Programming
             this.moviesControl1.Name = "moviesControl1";
             this.moviesControl1.Size = new System.Drawing.Size(346, 168);
             this.moviesControl1.TabIndex = 0;
-            // 
-            // seasonsControl1
-            // 
-            this.seasonsControl1.Location = new System.Drawing.Point(273, 258);
-            this.seasonsControl1.Name = "seasonsControl1";
-            this.seasonsControl1.Size = new System.Drawing.Size(225, 78);
-            this.seasonsControl1.TabIndex = 3;
             // 
             // MainForm
             // 

@@ -16,5 +16,16 @@ namespace Programming
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// При нажатии кнопки в пользовательском элементе управления меняет цвет главного окна при определенных условиях.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void seasonsControl1_ButtonClicked(object sender, EventArgs e)
+        {
+            if (seasonsControl1.isSpring) { Enums.BackColor = System.Drawing.Color.FromArgb(147, 222, 140); }
+            if (seasonsControl1.isFall) { Enums.BackColor = System.Drawing.Color.FromArgb(242, 178, 39); }
+        }
     }
 }
