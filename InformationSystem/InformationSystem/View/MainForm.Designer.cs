@@ -29,6 +29,7 @@ namespace InformationSystem
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MoviesListBox = new System.Windows.Forms.ListBox();
             this.SelectedMovieGroupBox = new System.Windows.Forms.GroupBox();
             this.GenreComboBox = new System.Windows.Forms.ComboBox();
@@ -41,9 +42,9 @@ namespace InformationSystem
             this.ReleaseYearTextBox = new System.Windows.Forms.TextBox();
             this.RatingTextBox = new System.Windows.Forms.TextBox();
             this.MovieNameTextBox = new System.Windows.Forms.TextBox();
-            this.AddButton = new System.Windows.Forms.Button();
-            this.EditButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
+            this.EditButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
             this.SelectedMovieGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,7 +58,7 @@ namespace InformationSystem
             this.MoviesListBox.ItemHeight = 21;
             this.MoviesListBox.Location = new System.Drawing.Point(12, 12);
             this.MoviesListBox.Name = "MoviesListBox";
-            this.MoviesListBox.Size = new System.Drawing.Size(271, 466);
+            this.MoviesListBox.Size = new System.Drawing.Size(271, 508);
             this.MoviesListBox.TabIndex = 0;
             this.MoviesListBox.SelectedIndexChanged += new System.EventHandler(this.MoviesListBox_SelectedIndexChanged);
             // 
@@ -80,7 +81,7 @@ namespace InformationSystem
             this.SelectedMovieGroupBox.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SelectedMovieGroupBox.Location = new System.Drawing.Point(300, 12);
             this.SelectedMovieGroupBox.Name = "SelectedMovieGroupBox";
-            this.SelectedMovieGroupBox.Size = new System.Drawing.Size(366, 198);
+            this.SelectedMovieGroupBox.Size = new System.Drawing.Size(366, 173);
             this.SelectedMovieGroupBox.TabIndex = 1;
             this.SelectedMovieGroupBox.TabStop = false;
             this.SelectedMovieGroupBox.Text = "Selected movie";
@@ -176,34 +177,6 @@ namespace InformationSystem
             this.MovieNameTextBox.TabIndex = 3;
             this.MovieNameTextBox.TextChanged += new System.EventHandler(this.MovieNameTextBox_TextChanged);
             // 
-            // AddButton
-            // 
-            this.AddButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddButton.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddButton.Location = new System.Drawing.Point(12, 493);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(58, 60);
-            this.AddButton.TabIndex = 2;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
-            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
-            // 
-            // EditButton
-            // 
-            this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditButton.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.EditButton.Location = new System.Drawing.Point(76, 493);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(58, 60);
-            this.EditButton.TabIndex = 3;
-            this.EditButton.Text = "Edit";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
-            // 
             // RemoveButton
             // 
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -215,13 +188,46 @@ namespace InformationSystem
             this.RemoveButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.RemoveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RemoveButton.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RemoveButton.Location = new System.Drawing.Point(140, 493);
+            this.RemoveButton.Location = new System.Drawing.Point(369, 198);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(58, 60);
+            this.RemoveButton.Size = new System.Drawing.Size(63, 42);
             this.RemoveButton.TabIndex = 4;
             this.RemoveButton.Text = "Remove";
             this.RemoveButton.UseVisualStyleBackColor = false;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            // 
+            // EditButton
+            // 
+            this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.EditButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EditButton.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.EditButton.Location = new System.Drawing.Point(438, 198);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(63, 42);
+            this.EditButton.TabIndex = 3;
+            this.EditButton.Text = "Edit";
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            // 
+            // AddButton
+            // 
+            this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AddButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AddButton.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AddButton.Location = new System.Drawing.Point(300, 198);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(63, 42);
+            this.AddButton.TabIndex = 2;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // MainForm
             // 
@@ -229,15 +235,17 @@ namespace InformationSystem
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(678, 565);
+            this.ClientSize = new System.Drawing.Size(678, 525);
             this.Controls.Add(this.RemoveButton);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.SelectedMovieGroupBox);
             this.Controls.Add(this.MoviesListBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "MoviesApp";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.SelectedMovieGroupBox.ResumeLayout(false);
             this.SelectedMovieGroupBox.PerformLayout();

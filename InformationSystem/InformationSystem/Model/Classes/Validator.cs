@@ -67,6 +67,13 @@ namespace InformationSystem
             }
         }
 
+        /// <summary>
+        /// Проверяет длину строки на допустимую длину.
+        /// </summary>
+        /// <param name="value">Проверяемая строка. </param>
+        /// <param name="min">Минимальная длинаю </param>
+        /// <param name="max">Максимальная длина. </param>
+        /// <param name="propertyName">Название свойства, в котором осуществляется проверка.</param>
         public static void AssertStringLength(string value, int min, int max, string propertyName)
         {
             if (value.Length > max || value.Length < min)

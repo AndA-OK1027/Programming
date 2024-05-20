@@ -37,7 +37,7 @@ namespace InformationSystem
             get { return name; }
             set
             {
-
+                Validator.AssertStringLength(value, 1, 100, nameof(Name));
                 name = value;
             }
         }
@@ -48,7 +48,7 @@ namespace InformationSystem
         public Genre Genre { get; set; }
 
         /// <summary>
-        /// Возвращает и задает время фильма в минутах.
+        /// Возвращает и задает время фильма в минутах, до 300.
         /// </summary>
         public int Length
         {
@@ -61,7 +61,7 @@ namespace InformationSystem
         }
 
         /// <summary>
-        /// Возвращает и задает рейтинг фильма от 0.0 до 10.0
+        /// Возвращает и задает рейтинг фильма от 0.0 до 10.0.
         /// </summary>
         public double Rating
         {
