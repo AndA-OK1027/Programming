@@ -30,11 +30,10 @@ namespace Programming
         /// <param name="e"></param>
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
-            //Rectangle rectangle = RectangleFactory.Randomize();
+            Rectangle rectangle = RectangleFactory.Randomize();
 
-            int x = 
 
-            Rectangle rectangle = new Rectangle();
+            //Rectangle rectangle = new Rectangle();
             _rectangles.Add(rectangle);
             CollisionRectanglesListBox.Items.Add($"{rectangle.Id}:(X={rectangle.Center.X}, Y={rectangle.Center.Y}, W={rectangle.Width}, H={rectangle.Height})");
             //CollisionRectanglesListBox.Items.Add(rectangle);
