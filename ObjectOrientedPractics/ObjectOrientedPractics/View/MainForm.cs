@@ -47,12 +47,12 @@ namespace ObjectOrientedPractics
             InfoTextBox.Text = String.Empty;
         }
 
-        private void DisplayItemInfo()
+        private void DisplayItemInfo(Item item)
         {
-            IdTextBox.Text = _currentItem.Id.ToString();
-            CostTextBox.Text = _currentItem.Cost.ToString();
-            NameTextBox.Text = _currentItem.Name;
-            InfoTextBox.Text = _currentItem.Info;
+            IdTextBox.Text = item.Id.ToString();
+            CostTextBox.Text = item.Cost.ToString();
+            NameTextBox.Text = item.Name;
+            InfoTextBox.Text = item.Info;
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics
             if (index != 1)
             {
                 _currentItem = _items[index];
-                DisplayItemInfo();
+                DisplayItemInfo(_currentItem);
             }
             else
             {
@@ -72,42 +72,54 @@ namespace ObjectOrientedPractics
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (ItemsListBox.SelectedIndex != 1)
             {
-                _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
-                CostTextBox.BackColor = System.Drawing.Color.White;
+                try
+                {
+                    _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
+                    CostTextBox.BackColor = System.Drawing.Color.White;
+                }
+                catch
+                {
+                    CostTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
-            catch
-            {
-                CostTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
+            
             
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (ItemsListBox.SelectedIndex != 1)
             {
-                _currentItem.Name = NameTextBox.Text;
-                NameTextBox.BackColor = System.Drawing.Color.White;
+                try
+                {
+                    _currentItem.Name = NameTextBox.Text;
+                    NameTextBox.BackColor = System.Drawing.Color.White;
+                }
+                catch
+                {
+                    NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
-            catch
-            {
-                NameTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
+            
         }
 
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (ItemsListBox.SelectedIndex != 1)
             {
-                _currentItem.Info = InfoTextBox.Text;
-                InfoTextBox.BackColor = System.Drawing.Color.White;
+                try
+                {
+                    _currentItem.Info = InfoTextBox.Text;
+                    InfoTextBox.BackColor = System.Drawing.Color.White;
+                }
+                catch
+                {
+                    InfoTextBox.BackColor = System.Drawing.Color.LightPink;
+                }
             }
-            catch
-            {
-                InfoTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
+            
         }
 
 
