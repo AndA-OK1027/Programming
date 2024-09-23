@@ -15,6 +15,102 @@ namespace ObjectOrientedPractics
         public MainForm()
         {
             InitializeComponent();
+
         }
+
+        private List<Item> _items = new List<Item>();
+        private Item _currentItem;
+
+        private void AddItemButton_Click(object sender, EventArgs e)
+        {
+            Item item = new Item("f", "f", 1);
+            _items.Add(item);
+            ItemsListBox.Items.Add($"{item.Name}");
+        }
+
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            var index = ItemsListBox.SelectedIndex;
+            if (index != 1)
+            {
+                var deleted = _items[index];
+                ItemsListBox.Items.Remove(ItemsListBox.SelectedItem);
+                _items.Remove(deleted);
+            }
+        }
+
+        private void ClearTextBoxes()
+        {
+            IdTextBox.Text = String.Empty;
+            CostTextBox.Text = String.Empty;
+            NameTextBox.Text = String.Empty;
+            InfoTextBox.Text = String.Empty;
+        }
+
+        private void DisplayItemInfo()
+        {
+            IdTextBox.Text = _currentItem.Id.ToString();
+            CostTextBox.Text = _currentItem.Cost.ToString();
+            NameTextBox.Text = _currentItem.Name;
+            InfoTextBox.Text = _currentItem.Info;
+        }
+
+        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = ItemsListBox.SelectedIndex;
+
+            if (index != 1)
+            {
+                _currentItem = _items[index];
+                DisplayItemInfo();
+            }
+            else
+            {
+                ClearTextBoxes();
+            }
+        }
+
+        private void CostTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
+                CostTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                CostTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            
+        }
+
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Name = NameTextBox.Text;
+                NameTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void InfoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentItem.Info = InfoTextBox.Text;
+                InfoTextBox.BackColor = System.Drawing.Color.White;
+            }
+            catch
+            {
+                InfoTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+
     }
 }
+
