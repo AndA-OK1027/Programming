@@ -1,5 +1,5 @@
 ﻿
-namespace ObjectOrientedPractics.View.Tabs
+namespace ObjectOrientedPractics
 {
     partial class UsersTab
     {
@@ -116,8 +116,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // FullNameTextBox
             // 
-            this.FullNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.FullNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FullNameTextBox.Location = new System.Drawing.Point(321, 75);
             this.FullNameTextBox.MinimumSize = new System.Drawing.Size(265, 20);
@@ -157,8 +157,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // AddressTextBox
             // 
-            this.AddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.AddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.AddressTextBox.Location = new System.Drawing.Point(321, 106);
             this.AddressTextBox.MaximumSize = new System.Drawing.Size(956, 80);

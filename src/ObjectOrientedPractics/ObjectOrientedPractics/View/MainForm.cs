@@ -21,10 +21,14 @@ namespace ObjectOrientedPractics
         private List<Item> _items = new List<Item>();
         private Item _currentItem;
 
+        /// <summary>
+        /// Добавляет объект в список..
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddItemButton_Click(object sender, EventArgs e)
         {
-            Item item = new Item("f", "f", 1);
-            _items.Add(item);
+            Item item = new Item(_currentItem.Name, _currentItem.Info, _currentItem.Cost);
             ItemsListBox.Items.Add($"{item.Name}");
         }
 
@@ -36,6 +40,10 @@ namespace ObjectOrientedPractics
                 var deleted = _items[index];
                 ItemsListBox.Items.Remove(ItemsListBox.SelectedItem);
                 _items.Remove(deleted);
+            }
+            else 
+            {
+                ClearTextBoxes(); 
             }
         }
 
@@ -59,7 +67,7 @@ namespace ObjectOrientedPractics
         {
             var index = ItemsListBox.SelectedIndex;
 
-            if (index != 1)
+            if (index != -1)
             {
                 _currentItem = _items[index];
                 DisplayItemInfo(_currentItem);
@@ -72,7 +80,7 @@ namespace ObjectOrientedPractics
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex != 1)
+            if (ItemsListBox.SelectedIndex != -1)
             {
                 try
                 {
@@ -84,13 +92,11 @@ namespace ObjectOrientedPractics
                     CostTextBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
-            
-            
         }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex != 1)
+            if (ItemsListBox.SelectedIndex != -1)
             {
                 try
                 {
@@ -102,12 +108,12 @@ namespace ObjectOrientedPractics
                     NameTextBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
-            
+
         }
 
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex != 1)
+            if (ItemsListBox.SelectedIndex != -1)
             {
                 try
                 {
@@ -119,7 +125,7 @@ namespace ObjectOrientedPractics
                     InfoTextBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
-            
+
         }
 
 

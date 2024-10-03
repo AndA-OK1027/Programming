@@ -26,7 +26,7 @@ namespace ObjectOrientedPractics
         }
 
         /// <summary>
-        /// Возвращает количество все товаров.
+        /// Возвращает количество всеx товаров.
         /// </summary>
         public static int ItemsCount
         {
@@ -65,10 +65,10 @@ namespace ObjectOrientedPractics
         public double Cost
         {
             get { return _cost; }
-            set 
+            set
             {
                 ValueValidator.AssertDoubleValue(value, 0, 100000, nameof(Cost));
-                _cost = Cost; 
+                _cost = Cost;
             }
         }
 

@@ -1,5 +1,5 @@
 ﻿
-namespace ObjectOrientedPractics.View.Tabs
+namespace ObjectOrientedPractics
 {
     partial class ItemsTab
     {
@@ -108,8 +108,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(240, 132);
             this.NameTextBox.MaximumSize = new System.Drawing.Size(956, 80);
@@ -122,8 +122,8 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // InfoTextBox
             // 
-            this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoTextBox.Location = new System.Drawing.Point(240, 246);
             this.InfoTextBox.MaximumSize = new System.Drawing.Size(956, 335);

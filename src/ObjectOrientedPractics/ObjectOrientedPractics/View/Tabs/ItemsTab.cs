@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ObjectOrientedPractics.View.Tabs
+namespace ObjectOrientedPractics
 {
     public partial class ItemsTab : UserControl
     {
@@ -30,7 +24,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             var index = ItemsListBox.SelectedIndex;
-            if(index != 1)
+            if (index != 1)
             {
                 var deleted = _items[index];
                 ItemsListBox.Items.Remove(ItemsListBox.SelectedItem);
