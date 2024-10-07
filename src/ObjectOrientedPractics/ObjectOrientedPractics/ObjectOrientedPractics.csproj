@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Services\IDGenerator.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Services\ValueValidator.cs" />
     <Compile Include="View\MainForm.cs">

@@ -43,6 +43,7 @@ namespace ObjectOrientedPractics
             this.CostLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.InfoLabel = new System.Windows.Forms.Label();
+            this.EditButton = new System.Windows.Forms.Button();
             this.ButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,7 @@ namespace ObjectOrientedPractics
             // 
             this.AddItemButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AddItemButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddItemButton.Location = new System.Drawing.Point(30, 11);
+            this.AddItemButton.Location = new System.Drawing.Point(4, 11);
             this.AddItemButton.Name = "AddItemButton";
             this.AddItemButton.Size = new System.Drawing.Size(76, 50);
             this.AddItemButton.TabIndex = 1;
@@ -72,7 +73,7 @@ namespace ObjectOrientedPractics
             // 
             this.RemoveItemButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RemoveItemButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RemoveItemButton.Location = new System.Drawing.Point(124, 11);
+            this.RemoveItemButton.Location = new System.Drawing.Point(152, 11);
             this.RemoveItemButton.Name = "RemoveItemButton";
             this.RemoveItemButton.Size = new System.Drawing.Size(76, 50);
             this.RemoveItemButton.TabIndex = 2;
@@ -83,6 +84,7 @@ namespace ObjectOrientedPractics
             // ButtonsPanel
             // 
             this.ButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonsPanel.Controls.Add(this.EditButton);
             this.ButtonsPanel.Controls.Add(this.RemoveItemButton);
             this.ButtonsPanel.Controls.Add(this.AddItemButton);
             this.ButtonsPanel.Location = new System.Drawing.Point(3, 428);
@@ -108,8 +110,8 @@ namespace ObjectOrientedPractics
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NameTextBox.Location = new System.Drawing.Point(240, 132);
             this.NameTextBox.MaximumSize = new System.Drawing.Size(956, 80);
@@ -122,8 +124,8 @@ namespace ObjectOrientedPractics
             // 
             // InfoTextBox
             // 
-            this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.InfoTextBox.Location = new System.Drawing.Point(240, 246);
             this.InfoTextBox.MaximumSize = new System.Drawing.Size(956, 335);
@@ -160,7 +162,7 @@ namespace ObjectOrientedPractics
             this.IDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.IDLabel.Location = new System.Drawing.Point(240, 40);
             this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(25, 16);
+            this.IDLabel.Size = new System.Drawing.Size(24, 16);
             this.IDLabel.TabIndex = 10;
             this.IDLabel.Text = "Id: ";
             // 
@@ -170,7 +172,7 @@ namespace ObjectOrientedPractics
             this.CostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CostLabel.Location = new System.Drawing.Point(240, 68);
             this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(41, 16);
+            this.CostLabel.Size = new System.Drawing.Size(40, 16);
             this.CostLabel.TabIndex = 11;
             this.CostLabel.Text = "Cost: ";
             // 
@@ -180,7 +182,7 @@ namespace ObjectOrientedPractics
             this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.NameLabel.Location = new System.Drawing.Point(240, 113);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(51, 16);
+            this.NameLabel.Size = new System.Drawing.Size(50, 16);
             this.NameLabel.TabIndex = 12;
             this.NameLabel.Text = "Name: ";
             // 
@@ -190,9 +192,21 @@ namespace ObjectOrientedPractics
             this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.InfoLabel.Location = new System.Drawing.Point(240, 227);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(82, 16);
+            this.InfoLabel.Size = new System.Drawing.Size(81, 16);
             this.InfoLabel.TabIndex = 13;
             this.InfoLabel.Text = "Description: ";
+            // 
+            // EditButton
+            // 
+            this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EditButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.EditButton.Location = new System.Drawing.Point(86, 11);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new System.Drawing.Size(60, 50);
+            this.EditButton.TabIndex = 3;
+            this.EditButton.Text = "Edit";
+            this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // ItemsTab
             // 
@@ -235,5 +249,6 @@ namespace ObjectOrientedPractics
         private System.Windows.Forms.Label CostLabel;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label InfoLabel;
+        private System.Windows.Forms.Button EditButton;
     }
 }

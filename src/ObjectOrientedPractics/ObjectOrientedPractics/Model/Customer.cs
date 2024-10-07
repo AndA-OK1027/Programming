@@ -32,7 +32,7 @@ namespace ObjectOrientedPractics
             set
             {
                 ValueValidator.AssertStringLength(value, 200, nameof(Fullname));
-                _fullname = Fullname;
+                _fullname = value;
             }
         }
 
@@ -45,7 +45,7 @@ namespace ObjectOrientedPractics
             set
             {
                 ValueValidator.AssertStringLength(value, 500, nameof(Address));
-                _address = Address;
+                _address = value;
             }
         }
 
@@ -58,6 +58,7 @@ namespace ObjectOrientedPractics
         {
             Fullname = fullname;
             Address = address;
+            _id = IDGenerator.GetNextID();
         }
     }
 }

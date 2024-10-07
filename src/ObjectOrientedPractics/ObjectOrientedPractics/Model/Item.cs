@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,26 +12,14 @@ namespace ObjectOrientedPractics
     /// </summary>
     class Item
     {
-        private static int _itemsCount;
         private readonly int _id;
         private string _name;
         private string _info;
         private double _cost;
 
-        /// <summary>
-        /// Возвращает уникальный идентификатор товара.
-        /// </summary>
         public int Id
         {
             get { return _id; }
-        }
-
-        /// <summary>
-        /// Возвращает количество всеx товаров.
-        /// </summary>
-        public static int ItemsCount
-        {
-            get { return _itemsCount; }
         }
 
         /// <summary>
@@ -42,7 +31,7 @@ namespace ObjectOrientedPractics
             set
             {
                 ValueValidator.AssertStringLength(value, 200, nameof(Info));
-                _name = Name;
+                _name = value;
             }
         }
 
@@ -55,7 +44,7 @@ namespace ObjectOrientedPractics
             set
             {
                 ValueValidator.AssertStringLength(value, 1000, nameof(Info));
-                _info = Info;
+                _info = value;
             }
         }
 
@@ -68,9 +57,11 @@ namespace ObjectOrientedPractics
             set
             {
                 ValueValidator.AssertDoubleValue(value, 0, 100000, nameof(Cost));
-                _cost = Cost;
+                _cost = value;
             }
         }
+
+
 
         /// <summary>
         /// Создает объект класса Товар
@@ -83,8 +74,9 @@ namespace ObjectOrientedPractics
             Name = name;
             Info = info;
             Cost = cost;
-            _itemsCount++;
-            _id = _itemsCount;
+            _id = IDGenerator.GetNextID();
         }
+
+        public Item() {}
     }
 }
