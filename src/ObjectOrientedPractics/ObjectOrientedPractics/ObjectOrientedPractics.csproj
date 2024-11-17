@@ -46,8 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Customer.cs" />
-    <Compile Include="Services\IDGenerator.cs" />
+    <Compile Include="Model\ItemCategory.cs" />
+    <Compile Include="Model\Store.cs" />
     <Compile Include="Model\Item.cs" />
     <Compile Include="Services\ValueValidator.cs" />
     <Compile Include="View\MainForm.cs">
@@ -58,6 +60,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Tabs\Controls\AddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Tabs\Controls\AddressControl.Designer.cs">
+      <DependentUpon>AddressControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Tabs\ItemsTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +90,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\Tabs\Controls\AddressControl.resx">
+      <DependentUpon>AddressControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Tabs\ItemsTab.resx">
       <DependentUpon>ItemsTab.cs</DependentUpon>
     </EmbeddedResource>

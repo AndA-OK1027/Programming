@@ -43,7 +43,8 @@ namespace ObjectOrientedPractics
             this.CostLabel = new System.Windows.Forms.Label();
             this.NameLabel = new System.Windows.Forms.Label();
             this.InfoLabel = new System.Windows.Forms.Label();
-            this.EditButton = new System.Windows.Forms.Button();
+            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.CategoryLabel = new System.Windows.Forms.Label();
             this.ButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@ namespace ObjectOrientedPractics
             this.AddItemButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AddItemButton.Location = new System.Drawing.Point(4, 11);
             this.AddItemButton.Name = "AddItemButton";
-            this.AddItemButton.Size = new System.Drawing.Size(76, 50);
+            this.AddItemButton.Size = new System.Drawing.Size(97, 50);
             this.AddItemButton.TabIndex = 1;
             this.AddItemButton.Text = "Add";
             this.AddItemButton.UseVisualStyleBackColor = true;
@@ -73,9 +74,9 @@ namespace ObjectOrientedPractics
             // 
             this.RemoveItemButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RemoveItemButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RemoveItemButton.Location = new System.Drawing.Point(152, 11);
+            this.RemoveItemButton.Location = new System.Drawing.Point(131, 11);
             this.RemoveItemButton.Name = "RemoveItemButton";
-            this.RemoveItemButton.Size = new System.Drawing.Size(76, 50);
+            this.RemoveItemButton.Size = new System.Drawing.Size(97, 50);
             this.RemoveItemButton.TabIndex = 2;
             this.RemoveItemButton.Text = "Remove";
             this.RemoveItemButton.UseVisualStyleBackColor = true;
@@ -84,7 +85,6 @@ namespace ObjectOrientedPractics
             // ButtonsPanel
             // 
             this.ButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonsPanel.Controls.Add(this.EditButton);
             this.ButtonsPanel.Controls.Add(this.RemoveItemButton);
             this.ButtonsPanel.Controls.Add(this.AddItemButton);
             this.ButtonsPanel.Location = new System.Drawing.Point(3, 428);
@@ -94,7 +94,7 @@ namespace ObjectOrientedPractics
             // 
             // IdTextBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(287, 40);
+            this.IdTextBox.Location = new System.Drawing.Point(304, 36);
             this.IdTextBox.Name = "IdTextBox";
             this.IdTextBox.ReadOnly = true;
             this.IdTextBox.Size = new System.Drawing.Size(138, 20);
@@ -102,11 +102,12 @@ namespace ObjectOrientedPractics
             // 
             // CostTextBox
             // 
-            this.CostTextBox.Location = new System.Drawing.Point(287, 68);
+            this.CostTextBox.Location = new System.Drawing.Point(304, 62);
             this.CostTextBox.Name = "CostTextBox";
             this.CostTextBox.Size = new System.Drawing.Size(138, 20);
             this.CostTextBox.TabIndex = 5;
             this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
+            this.CostTextBox.Leave += new System.EventHandler(this.CostTextBox_Leave);
             // 
             // NameTextBox
             // 
@@ -121,6 +122,7 @@ namespace ObjectOrientedPractics
             this.NameTextBox.Size = new System.Drawing.Size(346, 80);
             this.NameTextBox.TabIndex = 6;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            this.NameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
             // 
             // InfoTextBox
             // 
@@ -135,6 +137,7 @@ namespace ObjectOrientedPractics
             this.InfoTextBox.Size = new System.Drawing.Size(346, 176);
             this.InfoTextBox.TabIndex = 7;
             this.InfoTextBox.TextChanged += new System.EventHandler(this.InfoTextBox_TextChanged);
+            this.InfoTextBox.Leave += new System.EventHandler(this.InfoTextBox_Leave);
             // 
             // SelectedItemLabel
             // 
@@ -160,7 +163,7 @@ namespace ObjectOrientedPractics
             // 
             this.IDLabel.AutoSize = true;
             this.IDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IDLabel.Location = new System.Drawing.Point(240, 40);
+            this.IDLabel.Location = new System.Drawing.Point(240, 36);
             this.IDLabel.Name = "IDLabel";
             this.IDLabel.Size = new System.Drawing.Size(24, 16);
             this.IDLabel.TabIndex = 10;
@@ -170,7 +173,7 @@ namespace ObjectOrientedPractics
             // 
             this.CostLabel.AutoSize = true;
             this.CostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostLabel.Location = new System.Drawing.Point(240, 68);
+            this.CostLabel.Location = new System.Drawing.Point(240, 62);
             this.CostLabel.Name = "CostLabel";
             this.CostLabel.Size = new System.Drawing.Size(40, 16);
             this.CostLabel.TabIndex = 11;
@@ -196,22 +199,32 @@ namespace ObjectOrientedPractics
             this.InfoLabel.TabIndex = 13;
             this.InfoLabel.Text = "Description: ";
             // 
-            // EditButton
+            // CategoryComboBox
             // 
-            this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.EditButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.EditButton.Location = new System.Drawing.Point(86, 11);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(60, 50);
-            this.EditButton.TabIndex = 3;
-            this.EditButton.Text = "Edit";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            this.CategoryComboBox.FormattingEnabled = true;
+            this.CategoryComboBox.Location = new System.Drawing.Point(321, 88);
+            this.CategoryComboBox.Name = "CategoryComboBox";
+            this.CategoryComboBox.Size = new System.Drawing.Size(121, 21);
+            this.CategoryComboBox.TabIndex = 14;
+            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
+            this.CategoryComboBox.Leave += new System.EventHandler(this.CategoryComboBox_Leave);
+            // 
+            // CategoryLabel
+            // 
+            this.CategoryLabel.AutoSize = true;
+            this.CategoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CategoryLabel.Location = new System.Drawing.Point(240, 88);
+            this.CategoryLabel.Name = "CategoryLabel";
+            this.CategoryLabel.Size = new System.Drawing.Size(65, 16);
+            this.CategoryLabel.TabIndex = 15;
+            this.CategoryLabel.Text = "Category:";
             // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CategoryLabel);
+            this.Controls.Add(this.CategoryComboBox);
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.CostLabel);
@@ -249,6 +262,7 @@ namespace ObjectOrientedPractics
         private System.Windows.Forms.Label CostLabel;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Label InfoLabel;
-        private System.Windows.Forms.Button EditButton;
+        private System.Windows.Forms.ComboBox CategoryComboBox;
+        private System.Windows.Forms.Label CategoryLabel;
     }
 }

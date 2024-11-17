@@ -9,11 +9,11 @@ namespace ObjectOrientedPractics
     /// <summary>
     /// Xранит информацию о покупателе.
     /// </summary>
-    class Customer
+    public class Customer
     {
+        private static int usersCount = 0;
         private readonly int _id;
         private string _fullname;
-        private string _address;
 
         /// <summary>
         /// Возвращает уникальный идентификатор товара.
@@ -39,26 +39,26 @@ namespace ObjectOrientedPractics
         /// <summary>
         /// Возвращает и задает Название товара.
         /// </summary>
-        public string Address
-        {
-            get { return _address; }
-            set
-            {
-                ValueValidator.AssertStringLength(value, 500, nameof(Address));
-                _address = value;
-            }
-        }
+        public Address Address { get; set; }
 
         /// <summary>
         /// Создает объект класса Пользователь.
         /// </summary>
         /// <param name="fullname">Полное имя пользователя, до 200 символов.</param>
         /// <param name="address">Адрес доставки, до 500 символов.</param>
-        public Customer(string fullname, string address)
+        public Customer(string fullname, Address address)
         {
+            ++usersCount;
             Fullname = fullname;
             Address = address;
-            _id = IDGenerator.GetNextID();
+            _id = usersCount;
         }
+
+        public Customer() 
+        {
+            Fullname = " ";
+            Address = new Address();
+        }
+
     }
 }

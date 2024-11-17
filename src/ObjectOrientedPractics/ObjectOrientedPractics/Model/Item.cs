@@ -10,8 +10,9 @@ namespace ObjectOrientedPractics
     /// <summary>
     /// Xранит информацию о товаре.
     /// </summary>
-    class Item
+    public class Item
     {
+        private static int _itemsCount = 0;
         private readonly int _id;
         private string _name;
         private string _info;
@@ -61,7 +62,10 @@ namespace ObjectOrientedPractics
             }
         }
 
-
+        /// <summary>
+        /// Возвращает и задает категорию товара, выбор из соответствующего перечисления.
+        /// </summary>
+        public ItemCategory Category { get; set; }
 
         /// <summary>
         /// Создает объект класса Товар
@@ -69,14 +73,18 @@ namespace ObjectOrientedPractics
         /// <param name="name">Название, до 200 символов.</param>
         /// <param name="info">Информация о товаре, до 1000 символов.</param>
         /// <param name="cost">Стоимость, до 100000.</param>
-        public Item(string name, string info, double cost)
+        /// <param name="category">Категория товара, перечисление ItemCategory.</param>
+
+        public Item(string name, string info, double cost, ItemCategory category)
         {
+            ++_itemsCount;
             Name = name;
             Info = info;
             Cost = cost;
-            _id = IDGenerator.GetNextID();
+            Category = category;
+            _id = _itemsCount;
         }
 
-        public Item() {}
+        public Item() { }
     }
 }

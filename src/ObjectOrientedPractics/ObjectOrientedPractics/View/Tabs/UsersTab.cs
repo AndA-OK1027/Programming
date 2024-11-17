@@ -14,23 +14,49 @@ namespace ObjectOrientedPractics
     {
         public UsersTab()
         {
+            _customers = new List<Customer>();
             InitializeComponent();
         }
 
-        private List<Customer> _customers = new List<Customer>();
-        private Customer _currentCustomer;
+        private List<Customer> _customers;
+        private Customer _currentCustomer = new Customer();
+
+        public List<Customer> Customers
+        {
+            get
+            {
+                return _customers;
+            }
+            set
+            {
+                _customers = value ?? new List<Customer>();
+                UpdateListBox();
+            }
+        }
 
         private void AddUserButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextBox.Text) ||
-                string.IsNullOrWhiteSpace(AddressTextBox.Text))
+            //if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+            //{
+            //    MessageBox.Show("3аполните все поля корректно.");
+            //    return;
+            //}
+            //Customer customer = new Customer(NameTextBox.Text, addressControl1.Address);
+            //_customers.Add(customer);
+            //CustomersListBox.Items.Add($"{customer.Fullname}");
+            try
             {
-                MessageBox.Show("3аполните все поля корректно.");
-                return;
+                Customer user = new Customer(
+                    NameTextBox.Text,
+                    addressControl1.CurrentAddress);
+
+                Customers.Add(user);
+                UpdateListBox();
             }
-            Customer customer = new Customer(NameTextBox.Text, AddressTextBox.Text);
-            _customers.Add(customer);
-            CustomersListBox.Items.Add($"{customer.Fullname}");
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void RemoveUserButton_Click(object sender, EventArgs e)
@@ -39,22 +65,11 @@ namespace ObjectOrientedPractics
             if (index != -1)
             {
                 var deleted = _customers[index];
-                _customers.Remove(deleted);
+                Customers.Remove(deleted);
                 CustomersListBox.Items.Remove(CustomersListBox.SelectedItem);
             }
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            var index = CustomersListBox.SelectedIndex;
-            if (index != -1)
-            {
-                _customers.RemoveAt(index);
-                _customers.Insert(index, _currentCustomer);
-                CustomersListBox.Items.RemoveAt(index);
-                CustomersListBox.Items.Insert(index, $"{_currentCustomer.Fullname}");
-            }
-        }
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -72,48 +87,51 @@ namespace ObjectOrientedPractics
             }
         }
 
-        private void AddressTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (CustomersListBox.SelectedIndex != -1)
-            {
-                try
-                {
-                    _currentCustomer.Address = AddressTextBox.Text;
-                    NameTextBox.BackColor = System.Drawing.Color.White;
-                }
-                catch
-                {
-                    NameTextBox.BackColor = System.Drawing.Color.LightPink;
-                }
-            }
-        }
-
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var index = CustomersListBox.SelectedIndex;
             if (index != -1)
             {
                 _currentCustomer = _customers[index];
-                DisplayItemInfo(_currentCustomer);
+                DisplayUserInfo(_currentCustomer);
             }
             else
             {
-                ClearTextBoxes();
+                IdTextBox.Text = string.Empty;
+                NameTextBox.Text = string.Empty;
             }
         }
 
-        private void ClearTextBoxes()
+        private void UpdateListBox()
         {
-            IdTextBox.Text = String.Empty;
-            AddressTextBox.Text = String.Empty;
-            NameTextBox.Text = String.Empty;
+            CustomersListBox.Items.Clear(); // Очищаем предыдущие элементы
+
+            foreach (var user in Customers)
+            {
+                CustomersListBox.Items.Add(user.Fullname); // Добавляем название каждого товара
+            }
         }
 
-        private void DisplayItemInfo(Customer user)
+
+        private void DisplayUserInfo(Customer user)
         {
             IdTextBox.Text = user.Id.ToString();
             NameTextBox.Text = user.Fullname;
-            AddressTextBox.Text = user.Address;
+            addressControl1.DisplayAddress(user.Address);
+        }
+
+        private void EditUser()
+        {
+            if (CustomersListBox.SelectedIndex != -1) 
+            {
+                Customers[CustomersListBox.SelectedIndex] = _currentCustomer;
+                CustomersListBox.Items[CustomersListBox.SelectedIndex] = _currentCustomer.Fullname;
+            }
+        }
+
+        private void NameTextBox_Leave(object sender, EventArgs e)
+        {
+            EditUser();
         }
     }
 }

@@ -39,9 +39,8 @@ namespace ObjectOrientedPractics
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IDLabel = new System.Windows.Forms.Label();
             this.FullNameLabel = new System.Windows.Forms.Label();
-            this.AddressLabel = new System.Windows.Forms.Label();
-            this.AddressTextBox = new System.Windows.Forms.TextBox();
-            this.EditButton = new System.Windows.Forms.Button();
+            this.FormAddressControl = new ObjectOrientedPractics.AddressControl();
+            this.addressControl1 = new ObjectOrientedPractics.AddressControl();
             this.ButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +57,6 @@ namespace ObjectOrientedPractics
             // ButtonsPanel
             // 
             this.ButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonsPanel.Controls.Add(this.EditButton);
             this.ButtonsPanel.Controls.Add(this.RemoveUserButton);
             this.ButtonsPanel.Controls.Add(this.AddUserButton);
             this.ButtonsPanel.Location = new System.Drawing.Point(3, 428);
@@ -70,9 +68,9 @@ namespace ObjectOrientedPractics
             // 
             this.RemoveUserButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.RemoveUserButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RemoveUserButton.Location = new System.Drawing.Point(152, 11);
+            this.RemoveUserButton.Location = new System.Drawing.Point(128, 11);
             this.RemoveUserButton.Name = "RemoveUserButton";
-            this.RemoveUserButton.Size = new System.Drawing.Size(76, 50);
+            this.RemoveUserButton.Size = new System.Drawing.Size(100, 50);
             this.RemoveUserButton.TabIndex = 2;
             this.RemoveUserButton.Text = "Remove";
             this.RemoveUserButton.UseVisualStyleBackColor = true;
@@ -82,9 +80,9 @@ namespace ObjectOrientedPractics
             // 
             this.AddUserButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AddUserButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddUserButton.Location = new System.Drawing.Point(4, 11);
+            this.AddUserButton.Location = new System.Drawing.Point(5, 11);
             this.AddUserButton.Name = "AddUserButton";
-            this.AddUserButton.Size = new System.Drawing.Size(76, 50);
+            this.AddUserButton.Size = new System.Drawing.Size(100, 50);
             this.AddUserButton.TabIndex = 1;
             this.AddUserButton.Text = "Add";
             this.AddUserButton.UseVisualStyleBackColor = true;
@@ -130,6 +128,7 @@ namespace ObjectOrientedPractics
             this.NameTextBox.Size = new System.Drawing.Size(265, 20);
             this.NameTextBox.TabIndex = 13;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            this.NameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
             // 
             // IDLabel
             // 
@@ -151,48 +150,25 @@ namespace ObjectOrientedPractics
             this.FullNameLabel.TabIndex = 15;
             this.FullNameLabel.Text = "Full Name: ";
             // 
-            // AddressLabel
+            // FormAddressControl
             // 
-            this.AddressLabel.AutoSize = true;
-            this.AddressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AddressLabel.Location = new System.Drawing.Point(250, 106);
-            this.AddressLabel.Name = "AddressLabel";
-            this.AddressLabel.Size = new System.Drawing.Size(64, 16);
-            this.AddressLabel.TabIndex = 16;
-            this.AddressLabel.Text = "Address: ";
+            this.FormAddressControl.Location = new System.Drawing.Point(237, 101);
+            this.FormAddressControl.Name = "FormAddressControl";
+            this.FormAddressControl.Size = new System.Drawing.Size(352, 168);
+            this.FormAddressControl.TabIndex = 16;
             // 
-            // AddressTextBox
+            // addressControl1
             // 
-            this.AddressTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddressTextBox.Location = new System.Drawing.Point(321, 106);
-            this.AddressTextBox.MaximumSize = new System.Drawing.Size(956, 80);
-            this.AddressTextBox.MinimumSize = new System.Drawing.Size(265, 80);
-            this.AddressTextBox.Multiline = true;
-            this.AddressTextBox.Name = "AddressTextBox";
-            this.AddressTextBox.Size = new System.Drawing.Size(265, 80);
-            this.AddressTextBox.TabIndex = 17;
-            this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
-            // 
-            // EditButton
-            // 
-            this.EditButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.EditButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.EditButton.Location = new System.Drawing.Point(86, 11);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new System.Drawing.Size(60, 50);
-            this.EditButton.TabIndex = 3;
-            this.EditButton.Text = "Edit";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
+            this.addressControl1.Location = new System.Drawing.Point(237, 101);
+            this.addressControl1.Name = "addressControl1";
+            this.addressControl1.Size = new System.Drawing.Size(352, 147);
+            this.addressControl1.TabIndex = 16;
             // 
             // UsersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.AddressTextBox);
-            this.Controls.Add(this.AddressLabel);
+            this.Controls.Add(this.FormAddressControl);
             this.Controls.Add(this.FullNameLabel);
             this.Controls.Add(this.IDLabel);
             this.Controls.Add(this.NameTextBox);
@@ -222,8 +198,7 @@ namespace ObjectOrientedPractics
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Label IDLabel;
         private System.Windows.Forms.Label FullNameLabel;
-        private System.Windows.Forms.Label AddressLabel;
-        private System.Windows.Forms.TextBox AddressTextBox;
-        private System.Windows.Forms.Button EditButton;
+        private AddressControl FormAddressControl;
+        private AddressControl addressControl1;
     }
 }

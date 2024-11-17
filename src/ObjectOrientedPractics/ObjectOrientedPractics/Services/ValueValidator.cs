@@ -36,7 +36,22 @@ namespace ObjectOrientedPractics
         {
             if (value > max || value < min)
             {
-                throw new ArgumentException($"{ propertyName } out of range.");
+                throw new ArgumentException($"{propertyName} out of range.");
+            }
+        }
+
+        /// <summary>
+        /// Проверяет значение вещественного числа и выбросывает исключение при недопустимом.
+        /// </summary>
+        /// <param name="value">Проверяемое число</param>
+        /// <param name="min">Минимальная граница</param>
+        /// <param name="max">Максимальная граница</param>
+        /// <param name="propertyName">Название свойства</param>
+        public static void AssertIntValue(int value, int min, int max, string propertyName)
+        {
+            if (value > max || value < min)
+            {
+                throw new ArgumentException($"{propertyName} out of range.");
             }
         }
     }
