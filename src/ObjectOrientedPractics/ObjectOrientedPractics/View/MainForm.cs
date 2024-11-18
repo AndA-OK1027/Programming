@@ -14,11 +14,19 @@ namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
     {
+
+        /// <summary>
+        /// Инициализирует элементы главного окна.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
+            ItemsTab.Items = _store.Items;
+            UsersTab.Customers = _store.Customers;
         }
 
+        Store _store = new Store();
+        
     }
 }
 

@@ -29,17 +29,17 @@ namespace ObjectOrientedPractics
         /// </summary>
         private void InitializeComponent()
         {
+            ObjectOrientedPractics.Address address1 = new ObjectOrientedPractics.Address();
             this.CustomersListBox = new System.Windows.Forms.ListBox();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.RemoveUserButton = new System.Windows.Forms.Button();
             this.AddUserButton = new System.Windows.Forms.Button();
+            this.RemoveUserButton = new System.Windows.Forms.Button();
             this.UsersLabel = new System.Windows.Forms.Label();
             this.SelectedUserLabel = new System.Windows.Forms.Label();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.IDLabel = new System.Windows.Forms.Label();
             this.FullNameLabel = new System.Windows.Forms.Label();
-            this.FormAddressControl = new ObjectOrientedPractics.AddressControl();
             this.addressControl1 = new ObjectOrientedPractics.AddressControl();
             this.ButtonsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -57,36 +57,36 @@ namespace ObjectOrientedPractics
             // ButtonsPanel
             // 
             this.ButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonsPanel.Controls.Add(this.RemoveUserButton);
             this.ButtonsPanel.Controls.Add(this.AddUserButton);
+            this.ButtonsPanel.Controls.Add(this.RemoveUserButton);
             this.ButtonsPanel.Location = new System.Drawing.Point(3, 428);
             this.ButtonsPanel.Name = "ButtonsPanel";
             this.ButtonsPanel.Size = new System.Drawing.Size(231, 72);
             this.ButtonsPanel.TabIndex = 4;
             // 
-            // RemoveUserButton
-            // 
-            this.RemoveUserButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RemoveUserButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RemoveUserButton.Location = new System.Drawing.Point(128, 11);
-            this.RemoveUserButton.Name = "RemoveUserButton";
-            this.RemoveUserButton.Size = new System.Drawing.Size(100, 50);
-            this.RemoveUserButton.TabIndex = 2;
-            this.RemoveUserButton.Text = "Remove";
-            this.RemoveUserButton.UseVisualStyleBackColor = true;
-            this.RemoveUserButton.Click += new System.EventHandler(this.RemoveUserButton_Click);
-            // 
             // AddUserButton
             // 
             this.AddUserButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AddUserButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddUserButton.Location = new System.Drawing.Point(5, 11);
+            this.AddUserButton.Location = new System.Drawing.Point(4, 11);
             this.AddUserButton.Name = "AddUserButton";
-            this.AddUserButton.Size = new System.Drawing.Size(100, 50);
+            this.AddUserButton.Size = new System.Drawing.Size(101, 50);
             this.AddUserButton.TabIndex = 1;
             this.AddUserButton.Text = "Add";
             this.AddUserButton.UseVisualStyleBackColor = true;
             this.AddUserButton.Click += new System.EventHandler(this.AddUserButton_Click);
+            // 
+            // RemoveUserButton
+            // 
+            this.RemoveUserButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RemoveUserButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RemoveUserButton.Location = new System.Drawing.Point(127, 11);
+            this.RemoveUserButton.Name = "RemoveUserButton";
+            this.RemoveUserButton.Size = new System.Drawing.Size(101, 50);
+            this.RemoveUserButton.TabIndex = 2;
+            this.RemoveUserButton.Text = "Remove";
+            this.RemoveUserButton.UseVisualStyleBackColor = true;
+            this.RemoveUserButton.Click += new System.EventHandler(this.RemoveUserButton_Click);
             // 
             // UsersLabel
             // 
@@ -128,7 +128,6 @@ namespace ObjectOrientedPractics
             this.NameTextBox.Size = new System.Drawing.Size(265, 20);
             this.NameTextBox.TabIndex = 13;
             this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
-            this.NameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
             // 
             // IDLabel
             // 
@@ -150,25 +149,24 @@ namespace ObjectOrientedPractics
             this.FullNameLabel.TabIndex = 15;
             this.FullNameLabel.Text = "Full Name: ";
             // 
-            // FormAddressControl
-            // 
-            this.FormAddressControl.Location = new System.Drawing.Point(237, 101);
-            this.FormAddressControl.Name = "FormAddressControl";
-            this.FormAddressControl.Size = new System.Drawing.Size(352, 168);
-            this.FormAddressControl.TabIndex = 16;
-            // 
             // addressControl1
             // 
-            this.addressControl1.Location = new System.Drawing.Point(237, 101);
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 100001;
+            address1.Street = "";
+            this.addressControl1.Location = new System.Drawing.Point(243, 114);
             this.addressControl1.Name = "addressControl1";
-            this.addressControl1.Size = new System.Drawing.Size(352, 147);
+            this.addressControl1.Size = new System.Drawing.Size(349, 170);
             this.addressControl1.TabIndex = 16;
             // 
             // UsersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.FormAddressControl);
+            this.Controls.Add(this.addressControl1);
             this.Controls.Add(this.FullNameLabel);
             this.Controls.Add(this.IDLabel);
             this.Controls.Add(this.NameTextBox);
@@ -198,7 +196,6 @@ namespace ObjectOrientedPractics
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Label IDLabel;
         private System.Windows.Forms.Label FullNameLabel;
-        private AddressControl FormAddressControl;
         private AddressControl addressControl1;
     }
 }

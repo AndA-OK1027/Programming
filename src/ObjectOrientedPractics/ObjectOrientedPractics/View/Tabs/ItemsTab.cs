@@ -6,6 +6,9 @@ namespace ObjectOrientedPractics
 {
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Инициализирует компоненты элемента управления.
+        /// </summary>
         public ItemsTab()
         {
             _items = new List<Item>();
@@ -15,9 +18,11 @@ namespace ObjectOrientedPractics
         }
 
         private List<Item> _items;
-
         Item _currentItem = new Item();
 
+        /// <summary>
+        /// Возвращает и задает список товаров
+        /// </summary>
         public List<Item> Items
         {
             get
@@ -32,7 +37,7 @@ namespace ObjectOrientedPractics
         }
 
         /// <summary>
-        /// Добавляет объект в список..
+        /// Добавляет объект в список.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -51,17 +56,24 @@ namespace ObjectOrientedPractics
             //ItemsListBox.Items.Add(item.Name);
         }
 
+        /// <summary>
+        /// Удаляет объект из списка.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedItem != null)
             {
-                Items.Remove((Item)ItemsListBox.SelectedItem);
-                ItemsListBox.Items.Remove(ItemsListBox.SelectedItem);
+                Items.RemoveAt(ItemsListBox.SelectedIndex);
+                UpdateListBox();
                 ClearTextBoxes();
             }
         }
 
-        
+        /// <summary>
+        /// Очищает текстовые поля
+        /// </summary>
         private void ClearTextBoxes()
         {
             IdTextBox.Text = String.Empty;
@@ -70,6 +82,9 @@ namespace ObjectOrientedPractics
             InfoTextBox.Text = String.Empty;
         }
 
+        /// <summary>
+        /// Выводит актуальный список в элемент ListBox
+        /// </summary>
         private void UpdateListBox()
         {
             ItemsListBox.Items.Clear(); // Очищаем предыдущие элементы
@@ -80,6 +95,10 @@ namespace ObjectOrientedPractics
             }
         }
 
+        /// <summary>
+        /// Отображает информацию в текстовых полях.
+        /// </summary>
+        /// <param name="item"></param>
         private void DisplayItemInfo(Item item)
         {
             IdTextBox.Text = item.Id.ToString();
@@ -89,6 +108,11 @@ namespace ObjectOrientedPractics
             CategoryComboBox.SelectedItem = item.Category;
         }
 
+        /// <summary>
+        /// Отображает информацию о выбранном в списке объекте.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var index = ItemsListBox.SelectedIndex;
@@ -103,6 +127,11 @@ namespace ObjectOrientedPractics
             }
         }
 
+        /// <summary>
+        /// Сохраняет в объекте пользователя значение поля цены и обрабатывает исключение подсвечивая поле красным
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -112,15 +141,18 @@ namespace ObjectOrientedPractics
                     _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
                     CostTextBox.BackColor = System.Drawing.Color.White;
                 }
-                catch(Exception ex)
+                catch
                 {
                     CostTextBox.BackColor = System.Drawing.Color.LightPink;
-                    ToolTip toolTip = new ToolTip();
-                    toolTip.SetToolTip(CostTextBox, ex.Message);
                 }
             }
         }
 
+        /// <summary>
+        /// Сохраняет в объекте пользователя значение поля названия и обрабатывает исключение подсвечивая поле красным
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -138,6 +170,11 @@ namespace ObjectOrientedPractics
 
         }
 
+        /// <summary>
+        /// Сохраняет в объекте пользователя значение поля информации и обрабатывает исключение подсвечивая поле красным
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -159,11 +196,23 @@ namespace ObjectOrientedPractics
         {
             if (ItemsListBox.SelectedIndex != -1)
             {
-                Items[ItemsListBox.SelectedIndex] = _currentItem;
-                ItemsListBox.Items[ItemsListBox.SelectedIndex] = _currentItem.Name;
+                try 
+                {
+                    Items[ItemsListBox.SelectedIndex] = _currentItem;
+                    ItemsListBox.Items[ItemsListBox.SelectedIndex] = _currentItem.Name;
+                }
+                catch 
+                {
+                    MessageBox.Show("Ошибка");
+                }
             }
         }
 
+        /// <summary>
+        /// Сохраняет в объекте пользователя значение перечисления категории и обраюатывает исключение подсвечивая поле красным
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CategoryComboBox.SelectedIndex != -1)
@@ -179,21 +228,41 @@ namespace ObjectOrientedPractics
             }
         }
 
+        /// <summary>
+        /// При выходе из текстового поля сохраняет измененные данные о пользователе
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CostTextBox_Leave(object sender, EventArgs e)
         {
             EditItem();
         }
 
+        /// <summary>
+        /// При выходе из текстового поля сохраняет измененные данные о пользователе
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CategoryComboBox_Leave(object sender, EventArgs e)
         {
             EditItem();
         }
 
+        /// <summary>
+        /// При выходе из текстового поля сохраняет измененные данные о пользователе
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_Leave(object sender, EventArgs e)
         {
             EditItem();
         }
 
+        /// <summary>
+        /// При выходе из текстового поля сохраняет измененные данные о пользователе
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InfoTextBox_Leave(object sender, EventArgs e)
         {
             EditItem();

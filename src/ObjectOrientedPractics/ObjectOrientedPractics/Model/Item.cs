@@ -18,6 +18,9 @@ namespace ObjectOrientedPractics
         private string _info;
         private double _cost;
 
+        /// <summary>
+        /// Возвращает идентификатор товара.
+        /// </summary>
         public int Id
         {
             get { return _id; }
@@ -85,6 +88,13 @@ namespace ObjectOrientedPractics
             _id = _itemsCount;
         }
 
-        public Item() { }
+        /// <summary>
+        /// Создает объект класса Товар по умолчанию.
+        /// </summary>
+        public Item()
+        {
+            ++_itemsCount;
+            _id = _itemsCount;
+        }
     }
 }

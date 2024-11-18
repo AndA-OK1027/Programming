@@ -19,16 +19,7 @@ namespace ObjectOrientedPractics
         private List<Customer> _customers;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Store"/> class.
-        /// </summary>
-        public Store()
-        {
-            _items = new List<Item>();
-            _customers = new List<Customer>();
-        }
-
-        /// <summary>
-        /// Получает или задает список товаров в магазине.
+        /// Возвращает или задает список товаров в магазине.
         /// </summary>
         public List<Item> Items
         {
@@ -37,12 +28,21 @@ namespace ObjectOrientedPractics
         }
 
         /// <summary>
-        /// Получает или задает список покупателей магазина.
+        /// Возвращает или задает список покупателей магазина.
         /// </summary>
         public List<Customer> Customers
         {
             get { return _customers; }
             set { _customers = value ?? new List<Customer>(); }
+        }
+
+        /// <summary>
+        /// Создает экземпляр <see cref="Store"/> класса.
+        /// </summary>
+        public Store()
+        {
+            Items = new List<Item>();
+            Customers = new List<Customer>();
         }
     }
 }

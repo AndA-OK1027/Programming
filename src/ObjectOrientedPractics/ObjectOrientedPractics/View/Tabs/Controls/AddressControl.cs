@@ -10,123 +10,158 @@ using System.Windows.Forms;
 
 namespace ObjectOrientedPractics
 {
+    /// <summary>
+    /// Отвечает за работу с классом адреса
+    /// </summary>
     public partial class AddressControl : UserControl
     {
+        /// <summary>
+        /// Инициализирует компоненты элемента управления
+        /// </summary>
         public AddressControl()
         {
             InitializeComponent();
+            _address = new Address();
         }
 
-        private Address _address = new Address();
-        public Address CurrentAddress = new Address();
-
+        private Address _address;
+        
+        /// <summary>
+        /// Задает и возвращает новый объект типа Address
+        /// </summary>
         public Address Address
         {
-            get
+            get 
             {
-                return _address;
+                return new Address(Convert.ToInt32(IndexTextBox.Text), CountryTextBox.Text, CityTextBox.Text, StreetTextBox.Text, BuildingTextBox.Text, ApartmentTextBox.Text); 
+                
             }
             set
             {
-                _address = new Address(Convert.ToInt32(IndexTextBox.Text), CountryTextBox.Text, CityTextBox.Text,
-                     StreetTextBox.Text, BuildingTextBox.Text, ApartmentTextBox.Text); ;
+                _address = value ?? new Address();
             }
         }
 
-        public void DisplayAddress(Address address) 
+        /// <summary>
+        /// Отображает данные о выбранном объекте в текстовых полях.
+        /// </summary>
+        /// <param name="address">адрес</param>
+        public void DisplayAddress(Address address)
         {
-            if (_address == null) 
-            {
-                return;
-            }
-            else 
-            {
-                IndexTextBox.Text = address.Index.ToString();
-                CountryTextBox.Text = address.Country;
-                CityTextBox.Text = address.City;
-                StreetTextBox.Text = address.Street;
-                BuildingTextBox.Text = address.Building;
-                ApartmentTextBox.Text = address.Apartment;
-            }
+            IndexTextBox.Text = address.Index.ToString();
+            CountryTextBox.Text = address.Country;
+            CityTextBox.Text = address.City;
+            StreetTextBox.Text = address.Street;
+            BuildingTextBox.Text = address.Building;
+            ApartmentTextBox.Text = address.Apartment;
         }
 
+        /// <summary>
+        /// Событие при изменения текста в поле почтового индекса
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void IndexTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                CurrentAddress.Index = Convert.ToInt32(IndexTextBox.Text);
-                IndexTextBox.BackColor = System.Drawing.Color.White;
+                _address.Index = Convert.ToInt32(IndexTextBox.Text);
+                IndexTextBox.BackColor = Color.White;
             }
             catch
             {
-                IndexTextBox.BackColor = System.Drawing.Color.LightPink;
+                IndexTextBox.BackColor = Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Событие при изменения текста в поле страны
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                CurrentAddress.Country = CountryTextBox.Text;
-                CountryTextBox.BackColor = System.Drawing.Color.White;
+                _address.Country = CountryTextBox.Text;
+                CountryTextBox.BackColor = Color.White;
             }
             catch
             {
-                CountryTextBox.BackColor = System.Drawing.Color.LightPink;
+                CountryTextBox.BackColor = Color.LightPink;
             }
         }
 
-        private void StreetTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CurrentAddress.Street = StreetTextBox.Text;
-                StreetTextBox.BackColor = System.Drawing.Color.White;
-            }
-            catch
-            {
-                StreetTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        private void BuildingTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CurrentAddress.Building = BuildingTextBox.Text;
-                BuildingTextBox.BackColor = System.Drawing.Color.White;
-            }
-            catch
-            {
-                BuildingTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
+        /// <summary>
+        /// Событие при изменения текста в поле города
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                CurrentAddress.City = CityTextBox.Text;
-                CityTextBox.BackColor = System.Drawing.Color.White;
+                _address.City = CityTextBox.Text;
+                CityTextBox.BackColor = Color.White;
             }
             catch
             {
-                CityTextBox.BackColor = System.Drawing.Color.LightPink;
+                CityTextBox.BackColor = Color.LightPink;
             }
         }
 
+        /// <summary>
+        /// Событие при изменения текста в поле улицы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StreetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _address.Street = StreetTextBox.Text;
+                StreetTextBox.BackColor = Color.White;
+            }
+            catch
+            {
+                StreetTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// Событие при изменения текста в поле номера здания
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BuildingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _address.Building = BuildingTextBox.Text;
+                BuildingTextBox.BackColor = Color.White;
+            }
+            catch
+            {
+                BuildingTextBox.BackColor = Color.LightPink;
+            }
+        }
+
+        /// <summary>
+        /// Событие при изменения текста в поле номера квартиры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                CurrentAddress.Apartment = ApartmentTextBox.Text;
-                ApartmentTextBox.BackColor = System.Drawing.Color.White;
+                _address.Apartment = ApartmentTextBox.Text;
+                ApartmentTextBox.BackColor = Color.White;
             }
             catch
             {
-                ApartmentTextBox.BackColor = System.Drawing.Color.LightPink;
+                ApartmentTextBox.BackColor = Color.LightPink;
             }
         }
-
     }
 }

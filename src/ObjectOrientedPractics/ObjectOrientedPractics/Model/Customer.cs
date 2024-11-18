@@ -11,7 +11,7 @@ namespace ObjectOrientedPractics
     /// </summary>
     public class Customer
     {
-        private static int usersCount = 0;
+        private static int _usersCount = 0;
         private readonly int _id;
         private string _fullname;
 
@@ -46,16 +46,20 @@ namespace ObjectOrientedPractics
         /// </summary>
         /// <param name="fullname">Полное имя пользователя, до 200 символов.</param>
         /// <param name="address">Адрес доставки, до 500 символов.</param>
-        public Customer(string fullname, Address address)
+        public Customer(string fullname)
         {
-            ++usersCount;
+            ++_usersCount;
             Fullname = fullname;
-            Address = address;
-            _id = usersCount;
+            _id = _usersCount;
         }
 
+        /// <summary>
+        /// Создает объект класса Пользователь по умолчанию.
+        /// </summary>
         public Customer() 
         {
+            ++_usersCount;
+            _id = _usersCount;
             Fullname = " ";
             Address = new Address();
         }

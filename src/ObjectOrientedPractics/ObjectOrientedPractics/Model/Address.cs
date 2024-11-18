@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ObjectOrientedPractics
 {
+    /// <summary>
+    /// Хранит информацию об адресе пользователя
+    /// </summary>
     public class Address
     {
         private int _index;
