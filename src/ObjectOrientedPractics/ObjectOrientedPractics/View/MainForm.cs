@@ -22,25 +22,38 @@ namespace ObjectOrientedPractics
 
             ItemsTab.Items = _store.Items;
             CustomersTab.Customers = _store.Customers;
-            
+
             CartsTab.Items = _store.Items;
             CartsTab.Customers = _store.Customers;
 
             OrdersTab.Customers = _store.Customers;
             PriorityOrdersTab.Items = _store.Items;
+
+            ItemsTab.ItemsChanged += RefreshTabsData;
         }
 
-        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        //private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    switch (MainTabControl.SelectedIndex)
+        //    {
+        //        case 2:
+        //            CartsTab.RefreshData();
+        //            break;
+        //        case 3:
+        //            OrdersTab.RefreshData();
+        //            break;
+        //    }
+        //}
+
+        /// <summary>
+        /// Обновляет данные на вкладках "Корзины" и "Заказы".
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Аргументы события.</param>
+        void RefreshTabsData(object sender, EventArgs e)
         {
-            switch (MainTabControl.SelectedIndex)
-            {
-                case 2:
-                    CartsTab.RefreshData();
-                    break;
-                case 3:
-                    OrdersTab.RefreshData();
-                    break;
-            }
+            CartsTab.RefreshData();
+            OrdersTab.RefreshData();
         }
     }
 }

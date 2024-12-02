@@ -8,6 +8,21 @@ namespace ObjectOrientedPractics
     public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
+        /// Событие для изменения названия товара.
+        /// </summary>
+        public event EventHandler NameChanged;
+
+        /// <summary>
+        /// Событие для изменения цены товара.
+        /// </summary>
+        public event EventHandler CostChanged;
+
+        /// <summary>
+        /// Событие для изменения информации товара.
+        /// </summary>
+        public event EventHandler InfoChanged;
+
+        /// <summary>
         /// Уникальный идентификатор товара.
         /// </summary>
         private readonly int _id;
@@ -46,7 +61,11 @@ namespace ObjectOrientedPractics
             set
             {
                 ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
-                _name = value;
+                if (_name != value)
+                {
+                    NameChanged?.Invoke(this, EventArgs.Empty);
+                    _name = value;
+                }
             }
         }
 
@@ -59,7 +78,11 @@ namespace ObjectOrientedPractics
             set 
             {
                 ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
-                _info = value;
+                if (_info != value)
+                {
+                    InfoChanged?.Invoke(this, EventArgs.Empty);
+                    _info = value;
+                }
             }
         }
 
@@ -72,8 +95,11 @@ namespace ObjectOrientedPractics
             set
             { 
                 ValueValidator.CheckNumberInRange(value, 0, 100000, nameof(Cost));
-                //ValueValidator.CheckNumberOnLetter(value, nameof(Cost));
-                _cost = value;
+                if (_cost != value)
+                {
+                    CostChanged?.Invoke(this, EventArgs.Empty);
+                    _cost = value;
+                }
             }
         }
 

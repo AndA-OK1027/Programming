@@ -109,7 +109,7 @@ namespace ObjectOrientedPractics.View.Tabs
             dataTable.Columns.Add("Address", typeof(string));
             dataTable.Columns.Add("Amount", typeof(double));
             dataTable.Columns.Add("Status", typeof(OrderStatus));
-            dataTable.Columns.Add("Total",typeof(double));
+            dataTable.Columns.Add("Total", typeof(double));
 
             foreach (var customer in _customers)
             {

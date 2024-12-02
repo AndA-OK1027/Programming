@@ -6,6 +6,11 @@
     public class Address : ICloneable, IEquatable<Address>
     {
         /// <summary>
+        /// Событие для изменения адреса
+        /// </summary>
+        public event EventHandler AddressChanged;
+
+        /// <summary>
         /// Почтовый индекс.
         /// </summary>
         private int _index;
@@ -45,7 +50,11 @@
             {
                 ValueValidator.CheckNumberInRange(value, 100000, 999999, nameof(Index));
                 ValueValidator.CheckNumberOnLetter(value, nameof(Index));
-                _index = value;
+                if (_index != value)
+                {
+                    _index = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -59,7 +68,11 @@
             {
                 ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
                 ValueValidator.CheckWordOnDigit(value, nameof(Country));
-                _country = value;
+                if (_country != value)
+                {
+                    _country = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -73,7 +86,11 @@
             {
                 ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
                 ValueValidator.CheckWordOnDigit(value, nameof(Country));
-                _city = value;
+                if (_city != value)
+                {
+                    _city = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -86,7 +103,11 @@
             set
             {
                 ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
-                _street = value;
+                if (_street != value)
+                {
+                    _street = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -99,7 +120,11 @@
             set
             {
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
-                _building = value;
+                if (_building != value)
+                {
+                    _building = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
@@ -112,7 +137,11 @@
             set
             {
                 ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
-                _apartment = value;
+                if (_apartment != value)
+                {
+                    _apartment = value;
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
             }
         }
 
