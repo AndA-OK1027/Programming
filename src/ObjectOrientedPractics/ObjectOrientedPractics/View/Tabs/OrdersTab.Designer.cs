@@ -62,7 +62,7 @@
             addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             addressControl1.Enabled = false;
-            addressControl1.Location = new Point(578, 158);
+            addressControl1.Location = new Point(346, 158);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(609, 163);
             addressControl1.TabIndex = 41;
@@ -70,7 +70,7 @@
             // IdTextBox
             // 
             IdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            IdTextBox.Location = new Point(664, 36);
+            IdTextBox.Location = new Point(432, 36);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(179, 23);
@@ -79,7 +79,7 @@
             // DateTextBox
             // 
             DateTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            DateTextBox.Location = new Point(664, 65);
+            DateTextBox.Location = new Point(432, 65);
             DateTextBox.Name = "DateTextBox";
             DateTextBox.ReadOnly = true;
             DateTextBox.Size = new Size(179, 23);
@@ -90,7 +90,7 @@
             StatusComboBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             StatusComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             StatusComboBox.FormattingEnabled = true;
-            StatusComboBox.Location = new Point(664, 94);
+            StatusComboBox.Location = new Point(432, 94);
             StatusComboBox.Name = "StatusComboBox";
             StatusComboBox.Size = new Size(179, 23);
             StatusComboBox.TabIndex = 38;
@@ -106,7 +106,7 @@
             OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.Name = "OrdersDataGridView";
             OrdersDataGridView.ReadOnly = true;
-            OrdersDataGridView.Size = new Size(563, 623);
+            OrdersDataGridView.Size = new Size(331, 617);
             OrdersDataGridView.TabIndex = 37;
             OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
             // 
@@ -115,9 +115,9 @@
             OrderItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             OrderItemsListBox.FormattingEnabled = true;
             OrderItemsListBox.ItemHeight = 15;
-            OrderItemsListBox.Location = new Point(573, 371);
+            OrderItemsListBox.Location = new Point(341, 371);
             OrderItemsListBox.Name = "OrderItemsListBox";
-            OrderItemsListBox.Size = new Size(635, 184);
+            OrderItemsListBox.Size = new Size(635, 169);
             OrderItemsListBox.TabIndex = 36;
             // 
             // label6
@@ -125,7 +125,7 @@
             label6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label6.Location = new Point(580, 334);
+            label6.Location = new Point(348, 334);
             label6.Name = "label6";
             label6.Size = new Size(81, 17);
             label6.TabIndex = 35;
@@ -136,7 +136,7 @@
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label7.Location = new Point(569, 582);
+            label7.Location = new Point(352, 552);
             label7.Name = "label7";
             label7.Size = new Size(62, 17);
             label7.TabIndex = 34;
@@ -147,7 +147,7 @@
             AmountLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(570, 612);
+            AmountLabel.Location = new Point(353, 582);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(43, 30);
             AmountLabel.TabIndex = 33;
@@ -157,7 +157,7 @@
             // 
             label5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label5.AutoSize = true;
-            label5.Location = new Point(584, 97);
+            label5.Location = new Point(352, 97);
             label5.Name = "label5";
             label5.Size = new Size(42, 15);
             label5.TabIndex = 32;
@@ -167,7 +167,7 @@
             // 
             label4.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(584, 68);
+            label4.Location = new Point(352, 68);
             label4.Name = "label4";
             label4.Size = new Size(51, 15);
             label4.TabIndex = 31;
@@ -177,7 +177,7 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(584, 41);
+            label3.Location = new Point(352, 41);
             label3.Name = "label3";
             label3.Size = new Size(21, 15);
             label3.TabIndex = 30;
@@ -188,7 +188,7 @@
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(578, 5);
+            label2.Location = new Point(346, 5);
             label2.Name = "label2";
             label2.Size = new Size(98, 17);
             label2.TabIndex = 29;
@@ -231,7 +231,7 @@
             PriorityOptionsPanel.Controls.Add(DeliveryTimeComboBox);
             PriorityOptionsPanel.Controls.Add(label8);
             PriorityOptionsPanel.Controls.Add(label9);
-            PriorityOptionsPanel.Location = new Point(849, 0);
+            PriorityOptionsPanel.Location = new Point(617, 0);
             PriorityOptionsPanel.Name = "PriorityOptionsPanel";
             PriorityOptionsPanel.Size = new Size(237, 117);
             PriorityOptionsPanel.TabIndex = 44;
@@ -267,7 +267,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "OrdersTab";
-            Size = new Size(1211, 667);
+            Size = new Size(979, 661);
             Load += OrdersTab_Load;
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
             PriorityOptionsPanel.ResumeLayout(false);

@@ -5,7 +5,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит информацию о процентах на скидку.
     /// </summary>
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         /// <summary>
         /// Скидка в процентах.
@@ -135,6 +135,18 @@ namespace ObjectOrientedPractics.Model.Discounts
         public override string ToString()
         {
             return Info;
+        }
+
+        /// <inheritdoc/>
+        public int CompareTo(PercentDiscount other)
+        {
+            if (other == null)
+                return 1;
+            if (Percent < other.Percent)
+                return -1;
+            if (Percent > other.Percent)
+                return 1;
+            return 0;
         }
     }
 }

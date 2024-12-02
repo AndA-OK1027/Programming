@@ -5,7 +5,7 @@ namespace ObjectOrientedPractics
     /// <summary>
     /// Хранит информацию о товаре.
     /// </summary>
-    public class Item
+    public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     {
         /// <summary>
         /// Уникальный идентификатор товара.
@@ -112,6 +112,46 @@ namespace ObjectOrientedPractics
         public override string ToString()
         {
             return Name;
+        }
+
+        /// <inheritdoc/>
+        public object Clone()
+        {
+            return new Item(this.Name, this.Info, this.Cost, this.Category);
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(Item other)
+        {
+            if (other == null)
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+            return Id == other.Id;
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            if (ReferenceEquals(this, other))
+                return true;
+            if (other.GetType() != this.GetType())
+                return false;
+            return Equals((Item)other);
+        }
+
+        /// <inheritdoc />
+        public int CompareTo(Item other)
+        {
+            if (other == null)
+                return 1;
+            if (Cost < other.Cost)
+                return -1;
+            if (Cost > other.Cost)
+                return 1;
+            return 0;
         }
     }
 }

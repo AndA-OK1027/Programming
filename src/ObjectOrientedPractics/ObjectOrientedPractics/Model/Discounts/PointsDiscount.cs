@@ -4,7 +4,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Хранит информацию о скидочных балах.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Количество баллов.
@@ -101,6 +101,18 @@ namespace ObjectOrientedPractics.Model.Discounts
         public override string ToString()
         {
             return Info;
+        }
+
+        /// <inheritdoc/>
+        public int CompareTo(PointsDiscount other)
+        {
+            if (other == null)
+                return 1;
+            if (Points < other.Points)
+                return -1;
+            if (Points > other.Points)
+                return 1;
+            return 0;
         }
     }
 }
