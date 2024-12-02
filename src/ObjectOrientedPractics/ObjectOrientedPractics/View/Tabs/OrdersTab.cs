@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -107,6 +109,7 @@ namespace ObjectOrientedPractics.View.Tabs
             dataTable.Columns.Add("Address", typeof(string));
             dataTable.Columns.Add("Amount", typeof(double));
             dataTable.Columns.Add("Status", typeof(OrderStatus));
+            dataTable.Columns.Add("Total",typeof(double));
 
             foreach (var customer in _customers)
             {
@@ -123,6 +126,7 @@ namespace ObjectOrientedPractics.View.Tabs
                         row["Address"] = customer.Address?.ToString() ?? string.Empty;
                         row["Amount"] = order.Cost;
                         row["Status"] = order.Status;
+                        row["Total"] = order.Total;
 
                         dataTable.Rows.Add(row);
                     }
@@ -143,7 +147,7 @@ namespace ObjectOrientedPractics.View.Tabs
             StatusComboBox.SelectedItem = order.Status;
             addressControl1.Address = order.Address;
             OrderItemsListBox.DataSource = order.Items;
-            AmountLabel.Text = order.Cost.ToString();
+            AmountLabel.Text = order.Total.ToString();
         }
 
         /// <summary>

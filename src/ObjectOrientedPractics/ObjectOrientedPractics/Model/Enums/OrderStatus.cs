@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.Model.Enums
 {
     /// <summary>
     /// Описывает состояние заказа.
@@ -12,7 +12,7 @@
         /// <summary>
         /// Обрабатывается.
         /// </summary>
-        Processing, 
+        Processing,
         /// <summary>
         /// Собирается на складе.
         /// </summary>

@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.Model.Enums
 {
     /// <summary>
     /// Хранит категории товаров.

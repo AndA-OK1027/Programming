@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics
+﻿using ObjectOrientedPractics.Model.Enums;
+
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Содержит информацию о заказе.
@@ -34,6 +36,22 @@
         /// Статус готовности заказа.
         /// </summary>
         private OrderStatus _status;
+
+        /// <summary>
+        /// Задает и возвраает сумму скидки.
+        /// </summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Задает и возвращает конечную стоимость заказа.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return Cost - DiscountAmount;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает статус готовности заказа.
@@ -77,33 +95,43 @@
         /// </summary>
         public double Cost
         {
-            get { return _cost; }
-            set { _cost = value; }
+            get
+            {
+                _cost = 0;
+                foreach (Item item in _items)
+                {
+                    _cost += item.Cost;
+                }
+                return _cost;
+            }
+            private set { _cost = value; }
         }
 
         /// <summary>
-        /// Создает экзмепляр класса <see cref="Cart"/>.
+        /// Создает экземпляр класса <see cref="Order"/>.
         /// </summary>
-        /// <param name="address">Адрес заказа.</param>
-        /// <param name="items">Список товаров в заказе.</param>
-        /// <param name="cost">Цена заказа.</param>
-        public Order(Address address, List<Item> items, double cost)
-        {
-            _id = IdGenerator.GetNextId();
-            _date = DateTime.Now;
-            Address = address;
-            Items = items;
-            Cost = cost;
-            Status = OrderStatus.New;
-        }
-
         public Order()
         {
             _id = IdGenerator.GetNextId();
             _date = DateTime.Now;
             Address = new Address();
             Items = new List<Item>();
-            Cost = 0;
+            Status = OrderStatus.New;
+        }
+
+        /// <summary>
+        /// Создает экзмепляр класса <see cref="Order"/>.
+        /// </summary>
+        /// <param name="address">Адрес заказа.</param>
+        /// <param name="items">Список товаров в заказе.</param>
+        /// <param name="cost">Цена заказа.</param>
+        public Order(Address address, List<Item> items, double discountAmount)
+        {
+            _id = IdGenerator.GetNextId();
+            _date = DateTime.Now;
+            Address = address;
+            Items = items;
+            DiscountAmount = discountAmount;
             Status = OrderStatus.New;
         }
     }

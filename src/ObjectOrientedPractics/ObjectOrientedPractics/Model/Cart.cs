@@ -9,6 +9,7 @@
         /// Список товаров.
         /// </summary>
         private List<Item> _items;
+
         /// <summary>
         /// Возвращает список товаров.
         /// </summary>

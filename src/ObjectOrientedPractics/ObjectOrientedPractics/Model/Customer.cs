@@ -1,4 +1,8 @@
-﻿namespace ObjectOrientedPractics
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Discounts;
+using ObjectOrientedPractics.Model.Orders;
+
+namespace ObjectOrientedPractics
 {
     /// <summary>
     /// Хранит данные о покупателе.
@@ -29,6 +33,11 @@
         /// Заказ покупателя.
         /// </summary>
         private List<Order> _orders;
+
+        /// <summary>
+        /// Хранит все скидки, имеющиеся у покупателя.
+        /// </summary>
+        public List<IDiscount> Discounts { get; private set; }
 
         /// <summary>
         /// Возвращает значение поля id.
@@ -94,6 +103,7 @@
             Address = new Address();
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount> { new PointsDiscount() };
         }
 
         /// <summary>
@@ -108,6 +118,7 @@
             Address = address;
             Cart = new Cart();
             Orders = new List<Order>();
+            Discounts = new List<IDiscount> { new PointsDiscount() };
         }
 
         /// <summary>

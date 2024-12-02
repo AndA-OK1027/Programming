@@ -1,4 +1,7 @@
-﻿namespace ObjectOrientedPractics.View.Tabs
+﻿using ObjectOrientedPractics.Model;
+using ObjectOrientedPractics.Model.Orders;
+
+namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
@@ -62,6 +65,8 @@
         {
             _currentCustomer = CustomerComboBox.SelectedItem as Customer;
             if (_currentCustomer is null) { return; }
+            DiscountsCheckedListBox.DataSource = null;
+            DiscountsCheckedListBox.DataSource = _currentCustomer.Discounts;
             UpdateCartData();
         }
 
@@ -115,17 +120,38 @@
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             if (CartListBox.Items.Count == 0) { return; }
+
+            double discountAmount = 0;
+            List<IDiscount> selectedDiscounts = new List<IDiscount>();
+
+            foreach (int index in DiscountsCheckedListBox.CheckedIndices)
+            {
+                var discount = _currentCustomer.Discounts[index];
+                discountAmount += discount.Apply(_currentCustomer.Cart.Items);
+                selectedDiscounts.Add(discount);
+            }
+
             if (_currentCustomer.IsPriority)
             {
+
                 PriorityOrder newOrder = new PriorityOrder(DateTime.Now.AddDays(1), PriorityOrder.DeliveryTimeRange[0],
-                    _currentCustomer.Address, _currentCustomer.Cart.Items, _currentCustomer.Cart.Amount);
+                    _currentCustomer.Address, _currentCustomer.Cart.Items, discountAmount);
+
                 _currentCustomer.Orders.Add(newOrder);
             }
             else
             {
-                Order newOrder = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items, _currentCustomer.Cart.Amount);
+                Order newOrder = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items, discountAmount);
                 _currentCustomer.Orders.Add(newOrder);
             }
+
+            foreach (var discount in _currentCustomer.Discounts)
+            {
+                discount.Update(_currentCustomer.Cart.Items);
+            }
+
+            DiscountsCheckedListBox.DataSource = null;
+            DiscountsCheckedListBox.DataSource = _currentCustomer.Discounts;
 
             _currentCustomer.Cart.Clear();
             UpdateCartData();
@@ -137,6 +163,12 @@
         private void UpdateCartData()
         {
             AmountLabel.Text = _currentCustomer.Cart.Amount.ToString();
+
+            double currentDiscount = CalculateDiscount();
+            DiscountAmountLabel.Text = currentDiscount.ToString();
+
+            double totalPrice = _currentCustomer.Cart.Amount - currentDiscount;
+            TotalPriceLabel.Text = totalPrice.ToString();
 
             CartListBox.DataSource = null;
             CartListBox.DataSource = _currentCustomer.Cart.Items;
@@ -152,6 +184,31 @@
 
             CustomerComboBox.DataSource = Customers;
             ItemsListBox.DataSource = Items;
+        }
+
+        /// <summary>
+        /// Высчитывает размер скидки
+        /// </summary>
+        /// <returns>Размер скидки</returns>
+        private double CalculateDiscount()
+        {
+            double discountAmount = 0;
+            foreach (int index in DiscountsCheckedListBox.CheckedIndices)
+            {
+                discountAmount += _currentCustomer.Discounts[index].Calculate(_currentCustomer.Cart.Items);
+            }
+
+            return discountAmount;
+        }
+
+        /// <summary>
+        /// Сохраняет пользовательский выбор в чекбоксе.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DiscountsCheckedListBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            UpdateCartData();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Класс хранит информацию об приоритетном заказе.
@@ -17,7 +17,7 @@
             "17:00 – 19:00",
             "19:00 – 21:00"
         };
-        
+
         /// <summary>
         /// Хрант дату прибытия заказа.
         /// </summary>
@@ -88,5 +88,6 @@
             DeliveryDate = deliveryDate;
             DeliveryTime = deliveryTime;
         }
+        
     }
 }

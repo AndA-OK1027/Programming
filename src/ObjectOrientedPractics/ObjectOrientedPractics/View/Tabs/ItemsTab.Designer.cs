@@ -132,6 +132,7 @@
             CategoryComboBox.Size = new Size(140, 23);
             CategoryComboBox.TabIndex = 10;
             CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
+            CategoryComboBox.Leave += CategoryComboBox_Leave;
             // 
             // NameTextBox
             // 
@@ -142,6 +143,7 @@
             NameTextBox.Size = new Size(284, 95);
             NameTextBox.TabIndex = 9;
             NameTextBox.TextChanged += NameTextBox_TextChanged;
+            NameTextBox.Leave += NameTextBox_Leave;
             // 
             // InfoTextBox
             // 
@@ -152,6 +154,7 @@
             InfoTextBox.Size = new Size(284, 145);
             InfoTextBox.TabIndex = 8;
             InfoTextBox.TextChanged += InfoTextBox_TextChanged;
+            InfoTextBox.Leave += InfoTextBox_Leave;
             // 
             // CostTextBox
             // 
@@ -160,6 +163,7 @@
             CostTextBox.Size = new Size(140, 23);
             CostTextBox.TabIndex = 7;
             CostTextBox.TextChanged += CostTextBox_TextChanged;
+            CostTextBox.Leave += CostTextBox_Leave;
             // 
             // IdTextBox
             // 

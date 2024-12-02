@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedPractics
+﻿using ObjectOrientedPractics.Model.Enums;
+
+namespace ObjectOrientedPractics
 {
     /// <summary>
     /// Хранит информацию о товаре.
