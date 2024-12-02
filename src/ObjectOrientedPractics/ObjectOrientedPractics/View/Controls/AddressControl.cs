@@ -6,152 +6,239 @@
     public partial class AddressControl : UserControl
     {
         /// <summary>
-        /// Инициализирует компоненты элемента управления
+        /// Хранит данные о корректности данных.
         /// </summary>
-        public AddressControl()
-        {
-            InitializeComponent();
-            _address = new Address();
-        }
-
-        private Address _address;
+        private bool _isAddressDataValid = true;
 
         /// <summary>
-        /// Задает и возвращает новый объект типа Address
+        /// Адрес покупателя.
+        /// </summary>
+        private Address _address = new();
+
+        /// <summary>
+        /// Возвращает и задает адрес объекта. В gettere возвращает <see cref="CheckIfAddressDataValid"/>. Через setter задает Textboxes.
         /// </summary>
         public Address Address
         {
             get
             {
-                return new Address(Convert.ToInt32(IndexTextBox.Text), CountryTextBox.Text, CityTextBox.Text, StreetTextBox.Text, BuildingTextBox.Text, ApartmentTextBox.Text);
-
+                CheckIfAddressDataValid();
+                return _address;
             }
             set
             {
-                _address = value ?? new Address();
+                _address = value;
+                ShowAddressInfo();
             }
         }
 
         /// <summary>
-        /// Отображает данные о выбранном объекте в текстовых полях.
+        /// Инициализирует компоненты класса.
         /// </summary>
-        /// <param name="address">адрес</param>
-        public void DisplayAddress(Address address)
+        public AddressControl()
         {
-            IndexTextBox.Text = address.Index.ToString();
-            CountryTextBox.Text = address.Country;
-            CityTextBox.Text = address.City;
-            StreetTextBox.Text = address.Street;
-            BuildingTextBox.Text = address.Building;
-            ApartmentTextBox.Text = address.Apartment;
+            InitializeComponent();
         }
 
         /// <summary>
-        /// Событие при изменения текста в поле почтового индекса
+        /// Вносит данные в <see cref="IndexTextBox"/> данные.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void IndexTextBox_TextChanged(object sender, EventArgs e)
         {
+            IndexTextBox.BackColor = Color.White;
+            _isAddressDataValid = true;
+
+            if (String.IsNullOrEmpty(IndexTextBox.Text))
+            {
+                _isAddressDataValid = false;
+                IndexTextBox.BackColor = Color.LightPink;
+                return;
+            }
             try
             {
-                _address.Index = Convert.ToInt32(IndexTextBox.Text);
-                IndexTextBox.BackColor = Color.White;
+                _address.Index = int.Parse(IndexTextBox.Text);
             }
-            catch
+            catch (Exception ex)
             {
+                _isAddressDataValid = false;
                 IndexTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            CheckIfAddressDataValid();
         }
 
         /// <summary>
-        /// Событие при изменения текста в поле страны
+        /// Вносит данные в <see cref="CountryTextBox"/> данные.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
+            CountryTextBox.BackColor = Color.White;
+            _isAddressDataValid = true;
+
+            if (String.IsNullOrEmpty(CountryTextBox.Text))
+            {
+                _isAddressDataValid = false;
+                CountryTextBox.BackColor = Color.LightPink;
+                return;
+            }
             try
             {
                 _address.Country = CountryTextBox.Text;
-                CountryTextBox.BackColor = Color.White;
             }
-            catch
+            catch (Exception ex)
             {
+                _isAddressDataValid = false;
                 CountryTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            CheckIfAddressDataValid();
         }
 
         /// <summary>
-        /// Событие при изменения текста в поле города
+        /// Вносит данные в <see cref="CityTextBox"/> данные.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
+            CityTextBox.BackColor = Color.White;
+            _isAddressDataValid = true;
+
+            if (String.IsNullOrEmpty(CityTextBox.Text))
+            {
+                _isAddressDataValid = false;
+                CityTextBox.BackColor = Color.LightPink;
+                return;
+            }
             try
             {
                 _address.City = CityTextBox.Text;
-                CityTextBox.BackColor = Color.White;
             }
-            catch
+            catch (Exception ex)
             {
+                _isAddressDataValid = false;
                 CityTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            CheckIfAddressDataValid();
         }
 
         /// <summary>
-        /// Событие при изменения текста в поле улицы
+        /// Вносит данные в <see cref="StreetTextBox"/> данные.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
+            StreetTextBox.BackColor = Color.White;
+            _isAddressDataValid = true;
+
+            if (String.IsNullOrEmpty(StreetTextBox.Text))
+            {
+                _isAddressDataValid = false;
+                StreetTextBox.BackColor = Color.LightPink;
+                return;
+            }
             try
             {
                 _address.Street = StreetTextBox.Text;
-                StreetTextBox.BackColor = Color.White;
             }
-            catch
+            catch (Exception ex)
             {
+                _isAddressDataValid = false;
                 StreetTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            CheckIfAddressDataValid();
         }
 
         /// <summary>
-        /// Событие при изменения текста в поле номера здания
+        /// Вносит данные в <see cref="BuildingTextBox"/> данные.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
+            BuildingTextBox.BackColor = Color.White;
+            _isAddressDataValid = true;
+
+            if (String.IsNullOrEmpty(BuildingTextBox.Text))
+            {
+                _isAddressDataValid = false;
+                BuildingTextBox.BackColor = Color.LightPink;
+                return;
+            }
             try
             {
                 _address.Building = BuildingTextBox.Text;
-                BuildingTextBox.BackColor = Color.White;
             }
-            catch
+            catch (Exception ex)
             {
+                _isAddressDataValid = false;
                 BuildingTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            CheckIfAddressDataValid();
         }
 
         /// <summary>
-        /// Событие при изменения текста в поле номера квартиры
+        /// Вносит данные в <see cref="ApartmentTextBox"/> данные.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
+            ApartmentTextBox.BackColor = Color.White;
+            _isAddressDataValid = true;
+
+            if (String.IsNullOrEmpty(ApartmentTextBox.Text))
+            {
+                _isAddressDataValid = false;
+                ApartmentTextBox.BackColor = Color.LightPink;
+                return;
+            }
             try
             {
                 _address.Apartment = ApartmentTextBox.Text;
-                ApartmentTextBox.BackColor = Color.White;
             }
-            catch
+            catch (Exception ex)
             {
+                _isAddressDataValid = false;
                 ApartmentTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            CheckIfAddressDataValid();
+        }
+
+        /// <summary>
+        /// Возвращает истинность валидности данных.
+        /// </summary>
+        /// <returns>True если данные корректны, иначе false.</returns>
+        public bool CheckIfAddressDataValid()
+        {
+            return _isAddressDataValid;
+        }
+
+        /// <summary>
+        /// Записывает в Textboxes данные из полей адреса.
+        /// </summary>
+        private void ShowAddressInfo()
+        {
+            IndexTextBox.Text = _address.Index.ToString();
+            ApartmentTextBox.Text = _address.Apartment.ToString();
+            BuildingTextBox.Text = _address.Building.ToString();
+            StreetTextBox.Text = _address.Street.ToString();
+            CountryTextBox.Text = _address.Country.ToString();
+            CityTextBox.Text = _address.City.ToString();
         }
     }
 }

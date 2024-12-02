@@ -115,8 +115,17 @@
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             if (CartListBox.Items.Count == 0) { return; }
-            Order newOrder = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items, _currentCustomer.Cart.Amount);
-            _currentCustomer.Orders.Add(newOrder);
+            if (_currentCustomer.IsPriority)
+            {
+                PriorityOrder newOrder = new PriorityOrder(DateTime.Now.AddDays(1), PriorityOrder.DeliveryTimeRange[0],
+                    _currentCustomer.Address, _currentCustomer.Cart.Items, _currentCustomer.Cart.Amount);
+                _currentCustomer.Orders.Add(newOrder);
+            }
+            else
+            {
+                Order newOrder = new Order(_currentCustomer.Address, _currentCustomer.Cart.Items, _currentCustomer.Cart.Amount);
+                _currentCustomer.Orders.Add(newOrder);
+            }
 
             _currentCustomer.Cart.Clear();
             UpdateCartData();

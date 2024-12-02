@@ -121,12 +121,12 @@
         /// </summary>
         public Address()
         {
-            Index = 100000;
+            Index = 634000;
             Country = "Russia";
             City = "Tomsk";
             Street = "Lenina";
-            Building = "59";
-            Apartment = "3";
+            Building = "40";
+            Apartment = "101";
         }
 
         /// <summary>

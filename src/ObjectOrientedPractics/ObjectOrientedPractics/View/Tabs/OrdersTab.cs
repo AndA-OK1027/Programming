@@ -23,7 +23,7 @@ namespace ObjectOrientedPractics.View.Tabs
             set
             {
                 _customers = value ?? new List<Customer>();
-                UpdateOrders();
+                RefreshData();
             }
         }
 
@@ -45,6 +45,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (OrdersDataGridView.CurrentRow == null) { return; }
             Order order = _orders[OrdersDataGridView.CurrentRow.Index];
             order.Status = (OrderStatus)StatusComboBox.SelectedItem;
+            OrdersDataGridView.CurrentRow.Cells[5].Value = order.Status;
         }
 
         /// <summary>
@@ -55,14 +56,28 @@ namespace ObjectOrientedPractics.View.Tabs
         private void OrdersDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             OrderItemsListBox.DataSource = null;
-
-            if (OrdersDataGridView.CurrentRow == null) return;
-
-            var currentIndex = OrdersDataGridView.CurrentRow.Index;
-            if (currentIndex < 0 || currentIndex >= _orders.Count) return;
-
-            Order order = _orders[currentIndex];
-            ShowOrderInfo(order);
+            if (OrdersDataGridView.SelectedCells.Count == 0)
+            {
+                IdTextBox.Text = string.Empty;
+                DateTextBox.Text = string.Empty;
+                StatusComboBox.Text = string.Empty;
+                addressControl1.Address = new Address();
+                AmountLabel.Text = string.Empty;
+            }
+            else
+            {
+                Order order = _orders[OrdersDataGridView.CurrentRow.Index];
+                if (order is PriorityOrder priorityOrder)
+                {
+                    PriorityOptionsPanel.Visible = true;
+                    DeliveryTimeComboBox.SelectedItem = priorityOrder.DeliveryTime;
+                }
+                else
+                {
+                    PriorityOptionsPanel.Visible = false;
+                }
+                ShowOrderInfo(order);
+            }
         }
 
         /// <summary>
@@ -72,15 +87,16 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <param name="e"></param>
         private void OrdersTab_Load(object sender, EventArgs e)
         {
-            UpdateOrders();
+            RefreshData();
             StatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
+            DeliveryTimeComboBox.DataSource = PriorityOrder.DeliveryTimeRange;
         }
 
 
         /// <summary>
         /// Обновляет данные в DataGridView.
         /// </summary>
-        public void UpdateOrders()
+        public void RefreshData()
         {
             _orders.Clear();
 
@@ -125,10 +141,24 @@ namespace ObjectOrientedPractics.View.Tabs
             IdTextBox.Text = order.Id.ToString();
             DateTextBox.Text = order.Date.ToString();
             StatusComboBox.SelectedItem = order.Status;
-            OrdersAddressControl.Address = order.Address;
+            addressControl1.Address = order.Address;
             OrderItemsListBox.DataSource = order.Items;
             AmountLabel.Text = order.Cost.ToString();
         }
 
+        /// <summary>
+        /// Хранит информацию о времени прибытия приоритетного заказа.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (OrdersDataGridView.CurrentRow == null) { return; }
+
+            if (_orders[OrdersDataGridView.CurrentRow.Index] is PriorityOrder priority)
+            {
+                priority.DeliveryTime = (string)DeliveryTimeComboBox.SelectedItem;
+            }
+        }
     }
 }

@@ -96,5 +96,15 @@
             Cost = cost;
             Status = OrderStatus.New;
         }
+
+        public Order()
+        {
+            _id = IdGenerator.GetNextId();
+            _date = DateTime.Now;
+            Address = new Address();
+            Items = new List<Item>();
+            Cost = 0;
+            Status = OrderStatus.New;
+        }
     }
 }

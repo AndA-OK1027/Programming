@@ -38,20 +38,24 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
+            Address address1 = new Address();
             AddCustomerButton = new Button();
             RemoveCustomerButton = new Button();
             CustomersListBox = new ListBox();
             CustomersPanel = new Panel();
             label1 = new Label();
             SelectedCustomerPanel = new Panel();
+            PriorityCheckBox = new CheckBox();
             CustomerFullNameTextBox = new TextBox();
             label4 = new Label();
             CustomerIdTextBox = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            DeliveryAddressPanel = new Panel();
             CustomerAddressControl = new Controls.AddressControl();
             CustomersPanel.SuspendLayout();
             SelectedCustomerPanel.SuspendLayout();
+            DeliveryAddressPanel.SuspendLayout();
             SuspendLayout();
             // 
             // AddCustomerButton
@@ -63,7 +67,7 @@ namespace ObjectOrientedPractics.View.Tabs
             AddCustomerButton.TabIndex = 0;
             AddCustomerButton.Text = "Add";
             AddCustomerButton.UseVisualStyleBackColor = true;
-            AddCustomerButton.Click += AddUserButton_Click;
+            AddCustomerButton.Click += AddCustomerButton_Click;
             // 
             // RemoveCustomerButton
             // 
@@ -74,7 +78,7 @@ namespace ObjectOrientedPractics.View.Tabs
             RemoveCustomerButton.TabIndex = 2;
             RemoveCustomerButton.Text = "Remove";
             RemoveCustomerButton.UseVisualStyleBackColor = true;
-            RemoveCustomerButton.Click += RemoveUserButton_Click;
+            RemoveCustomerButton.Click += RemoveCustomerButton_Click;
             // 
             // CustomersListBox
             // 
@@ -83,7 +87,7 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.ItemHeight = 15;
             CustomersListBox.Location = new Point(3, 25);
             CustomersListBox.Name = "CustomersListBox";
-            CustomersListBox.Size = new Size(279, 544);
+            CustomersListBox.Size = new Size(279, 559);
             CustomersListBox.TabIndex = 3;
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
@@ -113,6 +117,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // SelectedCustomerPanel
             // 
             SelectedCustomerPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedCustomerPanel.Controls.Add(PriorityCheckBox);
             SelectedCustomerPanel.Controls.Add(CustomerFullNameTextBox);
             SelectedCustomerPanel.Controls.Add(label4);
             SelectedCustomerPanel.Controls.Add(CustomerIdTextBox);
@@ -123,14 +128,25 @@ namespace ObjectOrientedPractics.View.Tabs
             SelectedCustomerPanel.Size = new Size(716, 85);
             SelectedCustomerPanel.TabIndex = 5;
             // 
+            // PriorityCheckBox
+            // 
+            PriorityCheckBox.AutoSize = true;
+            PriorityCheckBox.Location = new Point(284, 24);
+            PriorityCheckBox.Name = "PriorityCheckBox";
+            PriorityCheckBox.Size = new Size(64, 19);
+            PriorityCheckBox.TabIndex = 8;
+            PriorityCheckBox.Text = "Priority";
+            PriorityCheckBox.UseVisualStyleBackColor = true;
+            PriorityCheckBox.CheckedChanged += PriorityCheckBox_CheckedChanged;
+            // 
             // CustomerFullNameTextBox
             // 
             CustomerFullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomerFullNameTextBox.Location = new Point(77, 51);
             CustomerFullNameTextBox.Name = "CustomerFullNameTextBox";
-            CustomerFullNameTextBox.Size = new Size(636, 23);
+            CustomerFullNameTextBox.Size = new Size(793, 23);
             CustomerFullNameTextBox.TabIndex = 7;
-            CustomerFullNameTextBox.TextChanged += NameTextBox_TextChanged;
+            CustomerFullNameTextBox.TextChanged += CustomerFullNameTextBox_TextChanged;
             // 
             // label4
             // 
@@ -168,27 +184,46 @@ namespace ObjectOrientedPractics.View.Tabs
             label3.TabIndex = 6;
             label3.Text = "ID:";
             // 
+            // DeliveryAddressPanel
+            // 
+            DeliveryAddressPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            DeliveryAddressPanel.Controls.Add(CustomerAddressControl);
+            DeliveryAddressPanel.Location = new Point(295, 94);
+            DeliveryAddressPanel.Name = "DeliveryAddressPanel";
+            DeliveryAddressPanel.Size = new Size(710, 224);
+            DeliveryAddressPanel.TabIndex = 6;
+            // 
             // CustomerAddressControl
             // 
-            CustomerAddressControl.Location = new Point(291, 94);
+            address1.Apartment = "101";
+            address1.Building = "40";
+            address1.City = "Tomsk";
+            address1.Country = "Russia";
+            address1.Index = 634000;
+            address1.Street = "Lenina";
+            CustomerAddressControl.Address = address1;
+            CustomerAddressControl.Dock = DockStyle.Fill;
+            CustomerAddressControl.Location = new Point(0, 0);
             CustomerAddressControl.Name = "CustomerAddressControl";
-            CustomerAddressControl.Size = new Size(559, 177);
-            CustomerAddressControl.TabIndex = 6;
+            CustomerAddressControl.Size = new Size(710, 224);
+            CustomerAddressControl.TabIndex = 0;
             // 
             // CustomersTab
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(CustomerAddressControl);
+            Controls.Add(DeliveryAddressPanel);
             Controls.Add(SelectedCustomerPanel);
             Controls.Add(CustomersPanel);
             MinimumSize = new Size(589, 507);
             Name = "CustomersTab";
             Size = new Size(1011, 635);
+            Load += CustomersTab_Load;
             CustomersPanel.ResumeLayout(false);
             CustomersPanel.PerformLayout();
             SelectedCustomerPanel.ResumeLayout(false);
             SelectedCustomerPanel.PerformLayout();
+            DeliveryAddressPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -205,6 +240,8 @@ namespace ObjectOrientedPractics.View.Tabs
         private TextBox CustomerIdTextBox;
         private Label label2;
         private Label label3;
+        private CheckBox PriorityCheckBox;
+        private Panel DeliveryAddressPanel;
         private Controls.AddressControl CustomerAddressControl;
     }
 }

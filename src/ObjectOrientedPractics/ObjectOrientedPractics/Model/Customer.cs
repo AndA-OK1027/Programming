@@ -36,6 +36,11 @@
         public int Id { get { return _id; } }
 
         /// <summary>
+        /// Определяет, является ли покупатель приоритетным.
+        /// </summary>
+        public bool IsPriority { get; set; }
+
+        /// <summary>
         ///  Возвращает и задает ФИО покупателя. Не должно быть больше 200 символов или пустым.
         /// </summary>
         public string FullName
