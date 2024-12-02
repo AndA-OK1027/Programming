@@ -1,68 +1,117 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics
 {
     /// <summary>
-    /// Xранит информацию о покупателе.
+    /// Хранит данные о покупателе.
     /// </summary>
     public class Customer
     {
-        private static int _usersCount = 0;
+        /// <summary>
+        /// Уникальный идентификатор покупателя.
+        /// </summary>
         private readonly int _id;
-        private string _fullname;
 
         /// <summary>
-        /// Возвращает уникальный идентификатор товара.
+        /// ФИО покупателя.
         /// </summary>
-        public int Id
-        {
-            get { return _id; }
-        }
+        private string _fullName;
 
         /// <summary>
-        /// Возвращает и задает Название товара.
+        /// Адрес покупателя.
         /// </summary>
-        public string Fullname
+        private Address _address;
+
+        /// <summary>
+        /// Корзина покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Заказ покупателя.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
+        /// Возвращает значение поля id.
+        /// </summary>
+        public int Id { get { return _id; } }
+
+        /// <summary>
+        ///  Возвращает и задает ФИО покупателя. Не должно быть больше 200 символов или пустым.
+        /// </summary>
+        public string FullName
         {
-            get { return _fullname; }
+            get { return _fullName; }
             set
             {
-                ValueValidator.AssertStringLength(value, 200, nameof(Fullname));
-                _fullname = value;
+                ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
+                ValueValidator.CheckWordOnDigit(value, nameof(FullName));
+                _fullName = value;
             }
         }
 
         /// <summary>
-        /// Возвращает и задает Название товара.
+        /// Возвращает и задает адрес покупателя.
         /// </summary>
-        public Address Address { get; set; }
-
-        /// <summary>
-        /// Создает объект класса Пользователь.
-        /// </summary>
-        /// <param name="fullname">Полное имя пользователя, до 200 символов.</param>
-        /// <param name="address">Адрес доставки, до 500 символов.</param>
-        public Customer(string fullname)
+        public Address Address
         {
-            ++_usersCount;
-            Fullname = fullname;
-            _id = _usersCount;
+            get { return _address; }
+            set
+            {
+                _address = value;
+            }
         }
 
         /// <summary>
-        /// Создает объект класса Пользователь по умолчанию.
+        /// Возвращает и задает корзину покупателя.
         /// </summary>
-        public Customer() 
+        public Cart Cart
         {
-            ++_usersCount;
-            _id = _usersCount;
-            Fullname = " ";
+            get { return _cart; }
+            private set { _cart = value; }
+        }
+
+        /// <summary>
+        /// Возвращает и задает заказ покупателя.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get { return _orders; }
+            set { _orders = value; }
+        }
+
+        /// <summary>
+        /// Создает пустой экземпляр класса <see cref="Customer"/>.
+        /// </summary>
+        public Customer()
+        {
+            _id = IdGenerator.GetNextId();
+            FullName = "FullName";
             Address = new Address();
+            Cart = new Cart();
+            Orders = new List<Order>();
         }
 
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Customer"/>.
+        /// </summary>
+        /// <param name="fullName">ФИО покупателя.</param>
+        /// <param name="address">Адрес покупателя.</param>
+        public Customer(string fullName, Address address)
+        {
+            _id = IdGenerator.GetNextId();
+            FullName = fullName;
+            Address = address;
+            Cart = new Cart();
+            Orders = new List<Order>();
+        }
+
+        /// <summary>
+        /// Переопределяет метод <see cref="ToString()"/>.
+        /// </summary>
+        /// <returns>Возвращает <see cref="FullName"/>.</returns>
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }

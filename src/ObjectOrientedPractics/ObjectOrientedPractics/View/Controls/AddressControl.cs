@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.View.Controls
 {
     /// <summary>
     /// Отвечает за работу с классом адреса
@@ -25,16 +15,16 @@ namespace ObjectOrientedPractics
         }
 
         private Address _address;
-        
+
         /// <summary>
         /// Задает и возвращает новый объект типа Address
         /// </summary>
         public Address Address
         {
-            get 
+            get
             {
-                return new Address(Convert.ToInt32(IndexTextBox.Text), CountryTextBox.Text, CityTextBox.Text, StreetTextBox.Text, BuildingTextBox.Text, ApartmentTextBox.Text); 
-                
+                return new Address(Convert.ToInt32(IndexTextBox.Text), CountryTextBox.Text, CityTextBox.Text, StreetTextBox.Text, BuildingTextBox.Text, ApartmentTextBox.Text);
+
             }
             set
             {

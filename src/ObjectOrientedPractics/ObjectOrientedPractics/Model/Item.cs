@@ -1,100 +1,115 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics
 {
     /// <summary>
-    /// Xранит информацию о товаре.
+    /// Хранит информацию о товаре.
     /// </summary>
     public class Item
     {
-        private static int _itemsCount = 0;
+        /// <summary>
+        /// Уникальный идентификатор товара.
+        /// </summary>
         private readonly int _id;
+
+        /// <summary>
+        /// Название товара.
+        /// </summary>
         private string _name;
+
+        /// <summary>
+        /// Информация о товаре.
+        /// </summary>
         private string _info;
+
+        /// <summary>
+        /// Цена товара.
+        /// </summary>
         private double _cost;
 
         /// <summary>
-        /// Возвращает идентификатор товара.
+        /// Хранит и возвращает категорию товара.
         /// </summary>
-        public int Id
-        {
-            get { return _id; }
-        }
+        public Category Category { get; set; }
 
         /// <summary>
-        /// Возвращает и задает Название товара.
+        /// Возвращает Id товара.
+        /// </summary>
+        public int Id { get { return _id; } }
+
+        /// <summary>
+        /// Возвращает и задает название товара. Не должно быть пустым или содержать больше 200 символов.
         /// </summary>
         public string Name
         {
             get { return _name; }
             set
             {
-                ValueValidator.AssertStringLength(value, 200, nameof(Info));
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
             }
         }
 
         /// <summary>
-        /// Возвращает и задает информацию о товаре.
+        /// Возвращает и задает информацию о товаре. Не должно быть пустым или содержать больше 1000 символов.
         /// </summary>
         public string Info
         {
             get { return _info; }
-            set
+            set 
             {
-                ValueValidator.AssertStringLength(value, 1000, nameof(Info));
+                ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
                 _info = value;
             }
         }
 
         /// <summary>
-        /// Возвращает и задает стоимость товара в виде вещественного числа.
+        /// Возвращает и задает цену товара. Не должно быть меньше 0 или больше 100000.
         /// </summary>
         public double Cost
         {
             get { return _cost; }
             set
-            {
-                ValueValidator.AssertDoubleValue(value, 0, 100000, nameof(Cost));
+            { 
+                ValueValidator.CheckNumberInRange(value, 0, 100000, nameof(Cost));
+                //ValueValidator.CheckNumberOnLetter(value, nameof(Cost));
                 _cost = value;
             }
         }
 
         /// <summary>
-        /// Возвращает и задает категорию товара, выбор из соответствующего перечисления.
+        /// Создает экзмепляр класса <see cref="Item"/>.
         /// </summary>
-        public ItemCategory Category { get; set; }
+        public Item()
+        {
+            _id = IdGenerator.GetNextId();
+            Name = "Name";
+            Info = "Info";
+            Cost = 100.0;
+            Category = Category.Groceries;
+        }
 
         /// <summary>
-        /// Создает объект класса Товар
+        /// Создает экзмепляр класса <see cref="Item"/>.
         /// </summary>
-        /// <param name="name">Название, до 200 символов.</param>
-        /// <param name="info">Информация о товаре, до 1000 символов.</param>
-        /// <param name="cost">Стоимость, до 100000.</param>
-        /// <param name="category">Категория товара, перечисление ItemCategory.</param>
-
-        public Item(string name, string info, double cost, ItemCategory category)
+        /// <param name="name">Название продукта.</param>
+        /// <param name="info">Информация о продукте.</param>
+        /// <param name="cost">Цена продукта.</param>
+        /// <param name="category">Категория продукта.</param>
+        public Item(string name, string info, double cost, Category category)
         {
-            ++_itemsCount;
+            _id = IdGenerator.GetNextId();
             Name = name;
             Info = info;
             Cost = cost;
             Category = category;
-            _id = _itemsCount;
         }
 
         /// <summary>
-        /// Создает объект класса Товар по умолчанию.
+        /// Переопределяет метод <see cref="ToString()"/>.
         /// </summary>
-        public Item()
+        /// <returns>Возвращает <see cref="Name"/>.</returns>
+        public override string ToString()
         {
-            ++_itemsCount;
-            _id = _itemsCount;
+            return Name;
         }
     }
 }

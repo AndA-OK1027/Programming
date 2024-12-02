@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
@@ -13,7 +9,7 @@ namespace ObjectOrientedPractics
         {
             _items = new List<Item>();
             InitializeComponent();
-            CategoryComboBox.DataSource = Enum.GetValues(typeof(ItemCategory));
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
             UpdateListBox();
         }
 
@@ -50,7 +46,7 @@ namespace ObjectOrientedPractics
                 MessageBox.Show("3аполните все поля корректно.");
                 return;
             }
-            Item item = new Item(NameTextBox.Text, InfoTextBox.Text, cost, (ItemCategory)CategoryComboBox.SelectedItem);
+            Item item = new Item(NameTextBox.Text, InfoTextBox.Text, cost, (Category)CategoryComboBox.SelectedItem);
             Items.Add(item);
             UpdateListBox();
             //ItemsListBox.Items.Add(item.Name);
@@ -196,12 +192,12 @@ namespace ObjectOrientedPractics
         {
             if (ItemsListBox.SelectedIndex != -1)
             {
-                try 
+                try
                 {
                     Items[ItemsListBox.SelectedIndex] = _currentItem;
                     ItemsListBox.Items[ItemsListBox.SelectedIndex] = _currentItem.Name;
                 }
-                catch 
+                catch
                 {
                     MessageBox.Show("Ошибка");
                 }
@@ -219,7 +215,7 @@ namespace ObjectOrientedPractics
             {
                 try
                 {
-                    _currentItem.Category = (ItemCategory)CategoryComboBox.SelectedItem;
+                    _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
                 }
                 catch (Exception ex)
                 {

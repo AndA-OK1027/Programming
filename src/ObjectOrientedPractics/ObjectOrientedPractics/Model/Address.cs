@@ -1,110 +1,143 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics
 {
     /// <summary>
-    /// Хранит информацию об адресе пользователя
+    /// Хранит информацию об адрессе покупателя.
     /// </summary>
     public class Address
     {
+        /// <summary>
+        /// Почтовый индекс.
+        /// </summary>
         private int _index;
+
+        /// <summary>
+        /// Страна/регион.
+        /// </summary>
         private string _country;
+
+        /// <summary>
+        /// Город (населенный пункт).
+        /// </summary>
         private string _city;
+
+        /// <summary>
+        /// Улица.
+        /// </summary>
         private string _street;
+
+        /// <summary>
+        /// Номер дома.
+        /// </summary>
         private string _building;
+
+        /// <summary>
+        /// Номер квартиры/помещения.
+        /// </summary>
         private string _apartment;
 
         /// <summary>
-        /// Почтовый индекс 6 цифр
+        /// Возвращает и задает Почтовый индекс. Должно быть целым шестизначным числом.
         /// </summary>
         public int Index
         {
             get { return _index; }
             set
             {
-                ValueValidator.AssertIntValue(value, 100000, 999999, nameof(Index));
+                ValueValidator.CheckNumberInRange(value, 100000, 999999, nameof(Index));
+                ValueValidator.CheckNumberOnLetter(value, nameof(Index));
                 _index = value;
             }
         }
 
         /// <summary>
-        /// Страна, до 50 символов
+        /// Возвращает и задает Страну/регион. Не должно превышать 50 символов.
         /// </summary>
         public string Country
         {
             get { return _country; }
             set
             {
-                ValueValidator.AssertStringLength(value, 50, nameof(Country));
+                ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
+                ValueValidator.CheckWordOnDigit(value, nameof(Country));
                 _country = value;
             }
         }
 
         /// <summary>
-        /// Город, до 50 символов
+        /// Возвращает и задает Город (населенный пункт). Не должно превышать 50 символов.
         /// </summary>
         public string City
         {
             get { return _city; }
             set
             {
-                ValueValidator.AssertStringLength(value, 50, nameof(City));
+                ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
+                ValueValidator.CheckWordOnDigit(value, nameof(Country));
                 _city = value;
             }
         }
 
         /// <summary>
-        /// Улица, до 100 символов
+        /// Возвращает и задает Улицу. Не должно превышать 100 символов.
         /// </summary>
         public string Street
         {
             get { return _street; }
             set
             {
-                ValueValidator.AssertStringLength(value, 100, nameof(Street));
+                ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
                 _street = value;
             }
         }
 
         /// <summary>
-        /// Номер дома, до 10 символов
+        /// Возвращает и задает Номер дома. Не должно превышать 10 символов.
         /// </summary>
         public string Building
         {
             get { return _building; }
             set
             {
-                ValueValidator.AssertStringLength(value, 10, nameof(Building));
+                ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
                 _building = value;
             }
         }
 
         /// <summary>
-        /// Номер квартиры или помещения, до 10 символов
+        /// Возвращает и задает Номер квартиры/помещения. Не должно превышать 10 символов.
         /// </summary>
         public string Apartment
         {
             get { return _apartment; }
             set
             {
-                ValueValidator.AssertStringLength(value, 10, nameof(Apartment));
+                ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
                 _apartment = value;
             }
         }
 
         /// <summary>
-        /// Создает объект объект класса адрес.
+        /// Создает пустой экземпляр класса <see cref="Address"/>.
         /// </summary>
-        /// <param name="index">Почтовый индекс 6 цифр</param>
-        /// <param name="country">Страна, до 50 символов</param>
-        /// <param name="city">Город, до 50 символов</param>
-        /// <param name="street">Улица, до 100 символов</param>
-        /// <param name="building">Номер дома, до 10 символов</param>
-        /// <param name="apartment">Номер квартиры или помещения, до 10 символов</param>
+        public Address()
+        {
+            Index = 100000;
+            Country = "Russia";
+            City = "Tomsk";
+            Street = "Lenina";
+            Building = "59";
+            Apartment = "3";
+        }
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="Address"/>.
+        /// </summary>
+        /// <param name="index">Почтовый индекс.</param>
+        /// <param name="country">Страна/регион.</param>
+        /// <param name="city">Город (населенный пункт).</param>
+        /// <param name="street">Улица.</param>
+        /// <param name="building">Номер дома.</param>
+        /// <param name="apartment">Номер квартиры/помещения.</param>
         public Address(int index, string country, string city, string street, string building, string apartment)
         {
             Index = index;
@@ -116,17 +149,12 @@ namespace ObjectOrientedPractics
         }
 
         /// <summary>
-        /// Создает объект объект класса адрес по умолчанию.
+        /// Переопределяет метод <see cref="ToString()"/>.
         /// </summary>
-        public Address()
+        /// <returns>Возвращает <see cref="Name"/>.</returns>
+        public override string ToString()
         {
-            Index = 100001;
-            Country = string.Empty;
-            City = string.Empty;
-            Street = string.Empty;
-            Building = string.Empty;
-            Apartment = string.Empty;
+            return $"{Index} {Country} {City} {Street} {Building} {Apartment}";
         }
-
     }
 }

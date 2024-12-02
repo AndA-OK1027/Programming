@@ -1,29 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ObjectOrientedPractics.View.Controls;
 
-namespace ObjectOrientedPractics
+namespace ObjectOrientedPractics.View.Tabs
 {
-    /// <summary>
-    /// Отвечает за работу со списком пользователей
-    /// </summary>
-    public partial class UsersTab : UserControl
+    public partial class CustomersTab : UserControl
     {
         /// <summary>
         /// Инициализирует компоненты элемента управления
         /// </summary>
-        public UsersTab()
+        public CustomersTab()
         {
             _customers = new List<Customer>();
             InitializeComponent();
-            
+
         }
 
         private List<Customer> _customers;
@@ -52,10 +40,10 @@ namespace ObjectOrientedPractics
         /// <param name="e"></param>
         private void AddUserButton_Click(object sender, EventArgs e)
         {
-            Address address = addressControl1.Address;
+            Address address = CustomerAddressControl.Address;
             try
             {
-                Customer user = new Customer(NameTextBox.Text);
+                Customer user = new Customer(CustomerFullNameTextBox.Text, address);
                 user.Address = address;
                 Customers.Add(user);
                 UpdateListBox();
@@ -90,14 +78,14 @@ namespace ObjectOrientedPractics
         {
             try
             {
-                _currentCustomer.Fullname = NameTextBox.Text;
-                NameTextBox.BackColor = System.Drawing.Color.White;
+                _currentCustomer.FullName = CustomerFullNameTextBox.Text;
+                CustomerFullNameTextBox.BackColor = System.Drawing.Color.White;
             }
             catch
             {
-                NameTextBox.BackColor = System.Drawing.Color.LightPink;
+                CustomerFullNameTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-            
+
         }
 
         /// <summary>
@@ -124,7 +112,7 @@ namespace ObjectOrientedPractics
 
             foreach (var user in Customers)
             {
-                CustomersListBox.Items.Add(user.Fullname); // Добавляем название каждого товара
+                CustomersListBox.Items.Add(user.FullName); // Добавляем название каждого товара
             }
         }
 
@@ -134,10 +122,11 @@ namespace ObjectOrientedPractics
         /// <param name="user"></param>
         private void DisplayUserInfo(Customer user)
         {
-            IdTextBox.Text = user.Id.ToString();
-            NameTextBox.Text = user.Fullname;
-            addressControl1.DisplayAddress(user.Address);
+            CustomerIdTextBox.Text = user.Id.ToString();
+            CustomerFullNameTextBox.Text = user.FullName;
+            CustomerAddressControl.DisplayAddress(user.Address);
         }
+
 
     }
 }

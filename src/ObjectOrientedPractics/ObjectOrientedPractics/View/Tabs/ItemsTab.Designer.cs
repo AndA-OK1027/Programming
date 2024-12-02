@@ -1,17 +1,16 @@
-﻿
-namespace ObjectOrientedPractics
+﻿namespace ObjectOrientedPractics.View.Tabs
 {
     partial class ItemsTab
     {
         /// <summary> 
-        /// Required designer variable.
+        /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        /// Clean up any resources being used.
+        /// Освободить все используемые ресурсы.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -21,248 +20,244 @@ namespace ObjectOrientedPractics
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Код, автоматически созданный конструктором компонентов
 
         /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
-            this.ItemsListBox = new System.Windows.Forms.ListBox();
-            this.AddItemButton = new System.Windows.Forms.Button();
-            this.RemoveItemButton = new System.Windows.Forms.Button();
-            this.ButtonsPanel = new System.Windows.Forms.Panel();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.CostTextBox = new System.Windows.Forms.TextBox();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.InfoTextBox = new System.Windows.Forms.TextBox();
-            this.SelectedItemLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.IDLabel = new System.Windows.Forms.Label();
-            this.CostLabel = new System.Windows.Forms.Label();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.InfoLabel = new System.Windows.Forms.Label();
-            this.CategoryComboBox = new System.Windows.Forms.ComboBox();
-            this.CategoryLabel = new System.Windows.Forms.Label();
-            this.ButtonsPanel.SuspendLayout();
-            this.SuspendLayout();
+            ItemsPanel = new Panel();
+            RemoveItemButton = new Button();
+            AddItemButton = new Button();
+            ItemsListBox = new ListBox();
+            label2 = new Label();
+            SelectedItemPanel = new Panel();
+            CategoryComboBox = new ComboBox();
+            NameTextBox = new TextBox();
+            InfoTextBox = new TextBox();
+            CostTextBox = new TextBox();
+            IdTextBox = new TextBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label1 = new Label();
+            ItemsPanel.SuspendLayout();
+            SelectedItemPanel.SuspendLayout();
+            SuspendLayout();
             // 
-            // ItemsListBox
+            // ItemsPanel
             // 
-            this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 28);
-            this.ItemsListBox.MinimumSize = new System.Drawing.Size(187, 316);
-            this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(231, 394);
-            this.ItemsListBox.TabIndex = 0;
-            this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
-            // 
-            // AddItemButton
-            // 
-            this.AddItemButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.AddItemButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.AddItemButton.Location = new System.Drawing.Point(4, 11);
-            this.AddItemButton.Name = "AddItemButton";
-            this.AddItemButton.Size = new System.Drawing.Size(97, 50);
-            this.AddItemButton.TabIndex = 1;
-            this.AddItemButton.Text = "Add";
-            this.AddItemButton.UseVisualStyleBackColor = true;
-            this.AddItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
+            ItemsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsPanel.Controls.Add(RemoveItemButton);
+            ItemsPanel.Controls.Add(AddItemButton);
+            ItemsPanel.Controls.Add(ItemsListBox);
+            ItemsPanel.Controls.Add(label2);
+            ItemsPanel.Location = new Point(3, 3);
+            ItemsPanel.Name = "ItemsPanel";
+            ItemsPanel.Size = new Size(287, 501);
+            ItemsPanel.TabIndex = 0;
             // 
             // RemoveItemButton
             // 
-            this.RemoveItemButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.RemoveItemButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RemoveItemButton.Location = new System.Drawing.Point(131, 11);
-            this.RemoveItemButton.Name = "RemoveItemButton";
-            this.RemoveItemButton.Size = new System.Drawing.Size(97, 50);
-            this.RemoveItemButton.TabIndex = 2;
-            this.RemoveItemButton.Text = "Remove";
-            this.RemoveItemButton.UseVisualStyleBackColor = true;
-            this.RemoveItemButton.Click += new System.EventHandler(this.RemoveItemButton_Click);
+            RemoveItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            RemoveItemButton.Location = new Point(103, 461);
+            RemoveItemButton.Name = "RemoveItemButton";
+            RemoveItemButton.Size = new Size(94, 37);
+            RemoveItemButton.TabIndex = 4;
+            RemoveItemButton.Text = "Remove";
+            RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
-            // ButtonsPanel
+            // AddItemButton
             // 
-            this.ButtonsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ButtonsPanel.Controls.Add(this.RemoveItemButton);
-            this.ButtonsPanel.Controls.Add(this.AddItemButton);
-            this.ButtonsPanel.Location = new System.Drawing.Point(3, 428);
-            this.ButtonsPanel.Name = "ButtonsPanel";
-            this.ButtonsPanel.Size = new System.Drawing.Size(231, 72);
-            this.ButtonsPanel.TabIndex = 3;
+            AddItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AddItemButton.Location = new Point(3, 461);
+            AddItemButton.Name = "AddItemButton";
+            AddItemButton.Size = new Size(94, 37);
+            AddItemButton.TabIndex = 3;
+            AddItemButton.Text = "Add";
+            AddItemButton.UseVisualStyleBackColor = true;
+            AddItemButton.Click += AddItemButton_Click;
             // 
-            // IdTextBox
+            // ItemsListBox
             // 
-            this.IdTextBox.Location = new System.Drawing.Point(304, 36);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.ReadOnly = true;
-            this.IdTextBox.Size = new System.Drawing.Size(138, 20);
-            this.IdTextBox.TabIndex = 4;
-            // 
-            // CostTextBox
-            // 
-            this.CostTextBox.Location = new System.Drawing.Point(304, 62);
-            this.CostTextBox.Name = "CostTextBox";
-            this.CostTextBox.Size = new System.Drawing.Size(138, 20);
-            this.CostTextBox.TabIndex = 5;
-            this.CostTextBox.TextChanged += new System.EventHandler(this.CostTextBox_TextChanged);
-            this.CostTextBox.Leave += new System.EventHandler(this.CostTextBox_Leave);
-            // 
-            // NameTextBox
-            // 
-            this.NameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.NameTextBox.Location = new System.Drawing.Point(240, 132);
-            this.NameTextBox.MaximumSize = new System.Drawing.Size(956, 80);
-            this.NameTextBox.MinimumSize = new System.Drawing.Size(346, 80);
-            this.NameTextBox.Multiline = true;
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(346, 80);
-            this.NameTextBox.TabIndex = 6;
-            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
-            this.NameTextBox.Leave += new System.EventHandler(this.NameTextBox_Leave);
-            // 
-            // InfoTextBox
-            // 
-            this.InfoTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.InfoTextBox.Location = new System.Drawing.Point(240, 246);
-            this.InfoTextBox.MaximumSize = new System.Drawing.Size(956, 335);
-            this.InfoTextBox.MinimumSize = new System.Drawing.Size(346, 176);
-            this.InfoTextBox.Multiline = true;
-            this.InfoTextBox.Name = "InfoTextBox";
-            this.InfoTextBox.Size = new System.Drawing.Size(346, 176);
-            this.InfoTextBox.TabIndex = 7;
-            this.InfoTextBox.TextChanged += new System.EventHandler(this.InfoTextBox_TextChanged);
-            this.InfoTextBox.Leave += new System.EventHandler(this.InfoTextBox_Leave);
-            // 
-            // SelectedItemLabel
-            // 
-            this.SelectedItemLabel.AutoSize = true;
-            this.SelectedItemLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SelectedItemLabel.Location = new System.Drawing.Point(236, 5);
-            this.SelectedItemLabel.Name = "SelectedItemLabel";
-            this.SelectedItemLabel.Size = new System.Drawing.Size(126, 20);
-            this.SelectedItemLabel.TabIndex = 8;
-            this.SelectedItemLabel.Text = "Selected Item:";
+            ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsListBox.FormattingEnabled = true;
+            ItemsListBox.ItemHeight = 15;
+            ItemsListBox.Location = new Point(5, 24);
+            ItemsListBox.Name = "ItemsListBox";
+            ItemsListBox.Size = new Size(279, 424);
+            ItemsListBox.TabIndex = 2;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(3, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 20);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Items: ";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label2.Location = new Point(5, 4);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 17);
+            label2.TabIndex = 1;
+            label2.Text = "Items";
             // 
-            // IDLabel
+            // SelectedItemPanel
             // 
-            this.IDLabel.AutoSize = true;
-            this.IDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.IDLabel.Location = new System.Drawing.Point(240, 36);
-            this.IDLabel.Name = "IDLabel";
-            this.IDLabel.Size = new System.Drawing.Size(24, 16);
-            this.IDLabel.TabIndex = 10;
-            this.IDLabel.Text = "Id: ";
-            // 
-            // CostLabel
-            // 
-            this.CostLabel.AutoSize = true;
-            this.CostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CostLabel.Location = new System.Drawing.Point(240, 62);
-            this.CostLabel.Name = "CostLabel";
-            this.CostLabel.Size = new System.Drawing.Size(40, 16);
-            this.CostLabel.TabIndex = 11;
-            this.CostLabel.Text = "Cost: ";
-            // 
-            // NameLabel
-            // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NameLabel.Location = new System.Drawing.Point(240, 113);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(50, 16);
-            this.NameLabel.TabIndex = 12;
-            this.NameLabel.Text = "Name: ";
-            // 
-            // InfoLabel
-            // 
-            this.InfoLabel.AutoSize = true;
-            this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.InfoLabel.Location = new System.Drawing.Point(240, 227);
-            this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(81, 16);
-            this.InfoLabel.TabIndex = 13;
-            this.InfoLabel.Text = "Description: ";
+            SelectedItemPanel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedItemPanel.Controls.Add(CategoryComboBox);
+            SelectedItemPanel.Controls.Add(NameTextBox);
+            SelectedItemPanel.Controls.Add(InfoTextBox);
+            SelectedItemPanel.Controls.Add(CostTextBox);
+            SelectedItemPanel.Controls.Add(IdTextBox);
+            SelectedItemPanel.Controls.Add(label7);
+            SelectedItemPanel.Controls.Add(label6);
+            SelectedItemPanel.Controls.Add(label5);
+            SelectedItemPanel.Controls.Add(label4);
+            SelectedItemPanel.Controls.Add(label3);
+            SelectedItemPanel.Controls.Add(label1);
+            SelectedItemPanel.Location = new Point(296, 3);
+            SelectedItemPanel.Name = "SelectedItemPanel";
+            SelectedItemPanel.Size = new Size(290, 464);
+            SelectedItemPanel.TabIndex = 1;
             // 
             // CategoryComboBox
             // 
-            this.CategoryComboBox.FormattingEnabled = true;
-            this.CategoryComboBox.Location = new System.Drawing.Point(321, 88);
-            this.CategoryComboBox.Name = "CategoryComboBox";
-            this.CategoryComboBox.Size = new System.Drawing.Size(121, 21);
-            this.CategoryComboBox.TabIndex = 14;
-            this.CategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.CategoryComboBox_SelectedIndexChanged);
-            this.CategoryComboBox.Leave += new System.EventHandler(this.CategoryComboBox_Leave);
+            CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(72, 89);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(140, 23);
+            CategoryComboBox.TabIndex = 10;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
             // 
-            // CategoryLabel
+            // NameTextBox
             // 
-            this.CategoryLabel.AutoSize = true;
-            this.CategoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CategoryLabel.Location = new System.Drawing.Point(240, 88);
-            this.CategoryLabel.Name = "CategoryLabel";
-            this.CategoryLabel.Size = new System.Drawing.Size(65, 16);
-            this.CategoryLabel.TabIndex = 15;
-            this.CategoryLabel.Text = "Category:";
+            NameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            NameTextBox.Location = new Point(3, 147);
+            NameTextBox.Multiline = true;
+            NameTextBox.Name = "NameTextBox";
+            NameTextBox.Size = new Size(284, 95);
+            NameTextBox.TabIndex = 9;
+            NameTextBox.TextChanged += NameTextBox_TextChanged;
+            // 
+            // InfoTextBox
+            // 
+            InfoTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            InfoTextBox.Location = new Point(4, 274);
+            InfoTextBox.Multiline = true;
+            InfoTextBox.Name = "InfoTextBox";
+            InfoTextBox.Size = new Size(284, 145);
+            InfoTextBox.TabIndex = 8;
+            InfoTextBox.TextChanged += InfoTextBox_TextChanged;
+            // 
+            // CostTextBox
+            // 
+            CostTextBox.Location = new Point(72, 57);
+            CostTextBox.Name = "CostTextBox";
+            CostTextBox.Size = new Size(140, 23);
+            CostTextBox.TabIndex = 7;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
+            // 
+            // IdTextBox
+            // 
+            IdTextBox.Location = new Point(72, 24);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
+            IdTextBox.Size = new Size(140, 23);
+            IdTextBox.TabIndex = 6;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(3, 255);
+            label7.Name = "label7";
+            label7.Size = new Size(70, 15);
+            label7.TabIndex = 5;
+            label7.Text = "Description:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(3, 129);
+            label6.Name = "label6";
+            label6.Size = new Size(42, 15);
+            label6.TabIndex = 4;
+            label6.Text = "Name:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(3, 92);
+            label5.Name = "label5";
+            label5.Size = new Size(58, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Category:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 60);
+            label4.Name = "label4";
+            label4.Size = new Size(34, 15);
+            label4.TabIndex = 2;
+            label4.Text = "Cost:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 24);
+            label3.Name = "label3";
+            label3.Size = new Size(21, 15);
+            label3.TabIndex = 1;
+            label3.Text = "ID:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label1.Location = new Point(3, 4);
+            label1.Name = "label1";
+            label1.Size = new Size(91, 17);
+            label1.TabIndex = 0;
+            label1.Text = "Selected Item";
             // 
             // ItemsTab
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.CategoryLabel);
-            this.Controls.Add(this.CategoryComboBox);
-            this.Controls.Add(this.InfoLabel);
-            this.Controls.Add(this.NameLabel);
-            this.Controls.Add(this.CostLabel);
-            this.Controls.Add(this.IDLabel);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.SelectedItemLabel);
-            this.Controls.Add(this.InfoTextBox);
-            this.Controls.Add(this.NameTextBox);
-            this.Controls.Add(this.CostTextBox);
-            this.Controls.Add(this.IdTextBox);
-            this.Controls.Add(this.ButtonsPanel);
-            this.Controls.Add(this.ItemsListBox);
-            this.MinimumSize = new System.Drawing.Size(589, 507);
-            this.Name = "ItemsTab";
-            this.Size = new System.Drawing.Size(589, 507);
-            this.ButtonsPanel.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(SelectedItemPanel);
+            Controls.Add(ItemsPanel);
+            MinimumSize = new Size(589, 507);
+            Name = "ItemsTab";
+            Size = new Size(589, 507);
+            ItemsPanel.ResumeLayout(false);
+            ItemsPanel.PerformLayout();
+            SelectedItemPanel.ResumeLayout(false);
+            SelectedItemPanel.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
 
-        private System.Windows.Forms.ListBox ItemsListBox;
-        private System.Windows.Forms.Button AddItemButton;
-        private System.Windows.Forms.Button RemoveItemButton;
-        private System.Windows.Forms.Panel ButtonsPanel;
-        private System.Windows.Forms.TextBox IdTextBox;
-        private System.Windows.Forms.TextBox CostTextBox;
-        private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.TextBox InfoTextBox;
-        private System.Windows.Forms.Label SelectedItemLabel;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label IDLabel;
-        private System.Windows.Forms.Label CostLabel;
-        private System.Windows.Forms.Label NameLabel;
-        private System.Windows.Forms.Label InfoLabel;
-        private System.Windows.Forms.ComboBox CategoryComboBox;
-        private System.Windows.Forms.Label CategoryLabel;
+        private Panel ItemsPanel;
+        private Button RemoveItemButton;
+        private Button AddItemButton;
+        private ListBox ItemsListBox;
+        private Label label2;
+        private Panel SelectedItemPanel;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label label1;
+        private ComboBox CategoryComboBox;
+        private TextBox NameTextBox;
+        private TextBox InfoTextBox;
+        private TextBox CostTextBox;
+        private TextBox IdTextBox;
     }
 }
