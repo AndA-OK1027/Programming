@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             ItemsPanel = new Panel();
+            label9 = new Label();
+            SortComboBox = new ComboBox();
+            label8 = new Label();
+            SearchTextBox = new TextBox();
             RemoveItemButton = new Button();
             AddItemButton = new Button();
             ItemsListBox = new ListBox();
@@ -52,21 +56,64 @@
             // ItemsPanel
             // 
             ItemsPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ItemsPanel.Controls.Add(label9);
+            ItemsPanel.Controls.Add(SortComboBox);
+            ItemsPanel.Controls.Add(label8);
+            ItemsPanel.Controls.Add(SearchTextBox);
             ItemsPanel.Controls.Add(RemoveItemButton);
             ItemsPanel.Controls.Add(AddItemButton);
             ItemsPanel.Controls.Add(ItemsListBox);
             ItemsPanel.Controls.Add(label2);
             ItemsPanel.Location = new Point(3, 3);
             ItemsPanel.Name = "ItemsPanel";
-            ItemsPanel.Size = new Size(287, 501);
+            ItemsPanel.Size = new Size(287, 596);
             ItemsPanel.TabIndex = 0;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Bottom;
+            label9.AutoSize = true;
+            label9.Location = new Point(5, 518);
+            label9.Name = "label9";
+            label9.Size = new Size(56, 15);
+            label9.TabIndex = 12;
+            label9.Text = "Order By:";
+            // 
+            // SortComboBox
+            // 
+            SortComboBox.Anchor = AnchorStyles.Bottom;
+            SortComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SortComboBox.FormattingEnabled = true;
+            SortComboBox.Location = new Point(64, 515);
+            SortComboBox.Name = "SortComboBox";
+            SortComboBox.Size = new Size(133, 23);
+            SortComboBox.TabIndex = 11;
+            SortComboBox.SelectedIndexChanged += SortComboBox_SelectedIndexChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(64, 27);
+            label8.Name = "label8";
+            label8.Size = new Size(33, 15);
+            label8.TabIndex = 9;
+            label8.Text = "Find:";
+            // 
+            // SearchTextBox
+            // 
+            SearchTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            SearchTextBox.Location = new Point(103, 25);
+            SearchTextBox.Name = "SearchTextBox";
+            SearchTextBox.Size = new Size(181, 23);
+            SearchTextBox.TabIndex = 8;
+            SearchTextBox.TextChanged += SearchTextBox_TextChanged;
             // 
             // RemoveItemButton
             // 
             RemoveItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            RemoveItemButton.Location = new Point(103, 461);
+            RemoveItemButton.Location = new Point(103, 548);
             RemoveItemButton.Name = "RemoveItemButton";
-            RemoveItemButton.Size = new Size(94, 37);
+            RemoveItemButton.Size = new Size(94, 45);
             RemoveItemButton.TabIndex = 4;
             RemoveItemButton.Text = "Remove";
             RemoveItemButton.UseVisualStyleBackColor = true;
@@ -75,9 +122,9 @@
             // AddItemButton
             // 
             AddItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            AddItemButton.Location = new Point(3, 461);
+            AddItemButton.Location = new Point(3, 548);
             AddItemButton.Name = "AddItemButton";
-            AddItemButton.Size = new Size(94, 37);
+            AddItemButton.Size = new Size(94, 45);
             AddItemButton.TabIndex = 3;
             AddItemButton.Text = "Add";
             AddItemButton.UseVisualStyleBackColor = true;
@@ -88,9 +135,9 @@
             ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.ItemHeight = 15;
-            ItemsListBox.Location = new Point(5, 24);
+            ItemsListBox.Location = new Point(5, 54);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(279, 424);
+            ItemsListBox.Size = new Size(279, 454);
             ItemsListBox.TabIndex = 2;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
@@ -120,7 +167,7 @@
             SelectedItemPanel.Controls.Add(label1);
             SelectedItemPanel.Location = new Point(296, 3);
             SelectedItemPanel.Name = "SelectedItemPanel";
-            SelectedItemPanel.Size = new Size(290, 464);
+            SelectedItemPanel.Size = new Size(430, 464);
             SelectedItemPanel.TabIndex = 1;
             // 
             // CategoryComboBox
@@ -132,7 +179,6 @@
             CategoryComboBox.Size = new Size(140, 23);
             CategoryComboBox.TabIndex = 10;
             CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
-            CategoryComboBox.Leave += CategoryComboBox_Leave;
             // 
             // NameTextBox
             // 
@@ -140,10 +186,9 @@
             NameTextBox.Location = new Point(3, 147);
             NameTextBox.Multiline = true;
             NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(284, 95);
+            NameTextBox.Size = new Size(424, 95);
             NameTextBox.TabIndex = 9;
             NameTextBox.TextChanged += NameTextBox_TextChanged;
-            NameTextBox.Leave += NameTextBox_Leave;
             // 
             // InfoTextBox
             // 
@@ -151,10 +196,9 @@
             InfoTextBox.Location = new Point(4, 274);
             InfoTextBox.Multiline = true;
             InfoTextBox.Name = "InfoTextBox";
-            InfoTextBox.Size = new Size(284, 145);
+            InfoTextBox.Size = new Size(424, 145);
             InfoTextBox.TabIndex = 8;
             InfoTextBox.TextChanged += InfoTextBox_TextChanged;
-            InfoTextBox.Leave += InfoTextBox_Leave;
             // 
             // CostTextBox
             // 
@@ -163,7 +207,6 @@
             CostTextBox.Size = new Size(140, 23);
             CostTextBox.TabIndex = 7;
             CostTextBox.TextChanged += CostTextBox_TextChanged;
-            CostTextBox.Leave += CostTextBox_Leave;
             // 
             // IdTextBox
             // 
@@ -212,7 +255,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(3, 24);
+            label3.Location = new Point(4, 27);
             label3.Name = "label3";
             label3.Size = new Size(21, 15);
             label3.TabIndex = 1;
@@ -236,7 +279,8 @@
             Controls.Add(ItemsPanel);
             MinimumSize = new Size(589, 507);
             Name = "ItemsTab";
-            Size = new Size(589, 507);
+            Size = new Size(729, 602);
+            Load += ItemsTab_Load;
             ItemsPanel.ResumeLayout(false);
             ItemsPanel.PerformLayout();
             SelectedItemPanel.ResumeLayout(false);
@@ -263,5 +307,9 @@
         private TextBox InfoTextBox;
         private TextBox CostTextBox;
         private TextBox IdTextBox;
+        private Label label9;
+        private ComboBox SortComboBox;
+        private Label label8;
+        private TextBox SearchTextBox;
     }
 }
