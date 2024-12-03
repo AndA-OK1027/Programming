@@ -30,20 +30,9 @@ namespace ObjectOrientedPractics
             PriorityOrdersTab.Items = _store.Items;
 
             ItemsTab.ItemsChanged += RefreshTabsData;
+            CustomersTab.CustomersChanged += RefreshTabsData;
+            CartsTab.OrdersChanged += RefreshTabsData;
         }
-
-        //private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    switch (MainTabControl.SelectedIndex)
-        //    {
-        //        case 2:
-        //            CartsTab.RefreshData();
-        //            break;
-        //        case 3:
-        //            OrdersTab.RefreshData();
-        //            break;
-        //    }
-        //}
 
         /// <summary>
         /// Обновляет данные на вкладках "Корзины" и "Заказы".

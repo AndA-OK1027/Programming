@@ -8,6 +8,11 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class CustomersTab : UserControl
     {
         /// <summary>
+        /// Событие для изменения информации о товарах.
+        /// </summary>
+        public event EventHandler CustomersChanged;
+
+        /// <summary>
         /// True, если данные в полях корректны, иначе false.
         /// </summary>
         bool _isDataValid = true;
@@ -70,6 +75,8 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.SelectedIndex = _customers.Count - 1;
 
             ValueValidator.CheckDataForClear(_customers, SelectedCustomerPanel, DeliveryAddressPanel);
+
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -85,6 +92,8 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersListBox.SelectedIndex = _customers.Count - 1;
 
             ValueValidator.CheckDataForClear(_customers, SelectedCustomerPanel, DeliveryAddressPanel);
+
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -134,6 +143,8 @@ namespace ObjectOrientedPractics.View.Tabs
             try
             {
                 _currentCustomer.FullName = CustomerFullNameTextBox.Text;
+
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {

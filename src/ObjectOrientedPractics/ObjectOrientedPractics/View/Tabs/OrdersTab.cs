@@ -6,6 +6,7 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class OrdersTab : UserControl
     {
+    
         /// <summary>
         /// Список покупателей.
         /// </summary>

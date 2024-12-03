@@ -6,6 +6,10 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class CartsTab : UserControl
     {
         /// <summary>
+        /// Событие для изменения информации о товарах.
+        /// </summary>
+        public event EventHandler OrdersChanged;
+        /// <summary>
         /// Список товаров.
         /// </summary>
         private List<Item> _items;
@@ -23,20 +27,12 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Возвращает и задает список товаров.
         /// </summary>
-        public List<Item> Items
-        {
-            get { return _items; }
-            set { _items = value; }
-        }
+        public List<Item> Items { get; set; }
 
         /// <summary>
         /// Возвращает и задает список покупателей.
         /// </summary>
-        public List<Customer> Customers
-        {
-            get { return _customers; }
-            set { _customers = value; }
-        }
+        public List<Customer> Customers {  get; set; }
 
         /// <summary>
         /// Инициализирует компоненты класса.
@@ -155,6 +151,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _currentCustomer.Cart.Clear();
             UpdateCartData();
+            OrdersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
