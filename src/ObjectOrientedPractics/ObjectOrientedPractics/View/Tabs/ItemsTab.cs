@@ -1,141 +1,305 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-
-namespace ObjectOrientedPractics
+﻿using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Services;
+namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Событие для изменения информации о товарах.
+        /// </summary>
+        public event EventHandler ItemsChanged;
+
+        /// <summary>
+        /// Хранит данные о корректности данных.
+        /// </summary>
+        private bool _isDataValid = true;
+
+        /// <summary>
+        /// Содержит информацию, изменилось ли имя товара.
+        /// </summary>
+        private bool _isItemNameChanged = false;
+
+        /// <summary>
+        /// Список, хранящий все товары и информацию о них.
+        /// </summary>
+        private List<Item> _items = new();
+
+        /// <summary>
+        /// Хранит список отображаемых отфильтрованных товаров.
+        /// </summary>
+        private List<Item> _displayedItems;
+
+        /// <summary>
+        /// Текущий выбранный товар.
+        /// </summary>
+        private Item _currentItem;
+
+        /// <summary>
+        /// Возвращает и задает список класса <see cref="Item"/>.
+        /// </summary>
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException($"{nameof(Items)} не должно быть null.");
+                }
+                _items = value;
+            }
+        }
+
+        /// <summary>
+        /// Инициализирует компоненты класса.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
         }
 
-        private List<Item> _items = new List<Item>();
-        private Item _currentItem;
+        /// <summary>
+        /// При запуске приложения загружает в ListBox <see cref="ItemsListBox"/> список типа <see cref="Item"/>.
+        /// А также загружает Combobox типа <see cref="Category"/>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+            _displayedItems = DataTools.Filter(_items, item => item.Name.Contains(SearchTextBox.Text));
+            SortComboBox.DataSource = Enum.GetValues(typeof(SortOption));
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+            SortComboBox.SelectedIndex = 0;
+            ItemsListBox.DataSource = _displayedItems;
+        }
 
         /// <summary>
-        /// Добавляет объект в список..
+        /// Добавляет в список экземпляр класса <see cref="Item"/>.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AddItemButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(NameTextBox.Text) ||
-                string.IsNullOrWhiteSpace(InfoTextBox.Text) ||
-                !double.TryParse(CostTextBox.Text, out double cost))
-            {
-                MessageBox.Show("3аполните все поля корректно.");
-                return;
-            }
-            Item item = new Item(NameTextBox.Text, InfoTextBox.Text, cost);
+            Item item = new Item();
             _items.Add(item);
-            ItemsListBox.Items.Add($"{item.Name} / {item.Cost}:C");
+            _displayedItems = DataTools.Filter(_items, item => item.Name.Contains(SearchTextBox.Text));
+            FilterItems();
+
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Удаляет из списка экземпляр класса <see cref="Item"/>.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
-            int index = ItemsListBox.SelectedIndex;
-            if (index != -1)
-            {
-                var deleted = _items[index];
-                _items.Remove(deleted);
-                ItemsListBox.Items.Remove(ItemsListBox.SelectedItem);
-            }
+            _items.Remove(_currentItem);
+            _displayedItems = DataTools.Filter(_items, item => item.Name.Contains(SearchTextBox.Text));
+
+            UpdateListBoxData();
+
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
-        {
-            var index = ItemsListBox.SelectedIndex;
-            if (index != -1)
-            {
-                _items.RemoveAt(index);
-                _items.Insert(index, _currentItem);
-                ItemsListBox.Items.RemoveAt(index);
-                ItemsListBox.Items.Insert(index, $"{_currentItem.Name} / {_currentItem.Cost}:C");
-            }
-        }
-
-        private void ClearTextBoxes()
-        {
-            IdTextBox.Text = String.Empty;
-            CostTextBox.Text = String.Empty;
-            NameTextBox.Text = String.Empty;
-            InfoTextBox.Text = String.Empty;
-        }
-
-        private void DisplayItemInfo(Item item)
-        {
-            IdTextBox.Text = item.Id.ToString();
-            CostTextBox.Text = item.Cost.ToString();
-            NameTextBox.Text = item.Name;
-            InfoTextBox.Text = item.Info;
-        }
-
+        /// <summary>
+        /// Меняет отображение списка при добавлении/удалении элемента. Также загружает в Textboxes данные из полей текущего элемента списка.
+        /// Если данные некорректны, невозможно покинуть текущий элемент списка, пока данные не станут корректными.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var index = ItemsListBox.SelectedIndex;
-            if (index != -1)
+            if (ItemsListBox.SelectedItem == null) return;
+
+            if (!_isDataValid)
             {
-                _currentItem = _items[index];
-                DisplayItemInfo(_currentItem);
+                ItemsListBox.SelectedItem = _currentItem;
+                return;
             }
-            else
+
+            if (_isItemNameChanged)
             {
-                ClearTextBoxes();
+                FilterItems();
+                _isItemNameChanged = false;
             }
+
+            _currentItem = ItemsListBox.SelectedItem as Item;
+
+            IdTextBox.Text = _currentItem.Id.ToString();
+            CostTextBox.Text = _currentItem.Cost.ToString();
+            NameTextBox.Text = _currentItem.Name;
+            InfoTextBox.Text = _currentItem.Info;
+            CategoryComboBox.SelectedItem = _currentItem.Category;
         }
 
+        /// <summary>
+        /// Меняет состояние свойства Cost через валидацию вводимых данных.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex != -1)
+            _isDataValid = true;
+            CostTextBox.BackColor = Color.White;
+
+            if (String.IsNullOrEmpty(CostTextBox.Text))
             {
-                try
-                {
-                    _currentItem.Cost = Convert.ToDouble(CostTextBox.Text);
-                    CostTextBox.BackColor = System.Drawing.Color.White;
-                }
-                catch
-                {
-                    CostTextBox.BackColor = System.Drawing.Color.LightPink;
-                }
+                _isDataValid = false;
+                CostTextBox.BackColor = Color.LightPink;
+                return;
+            }
+            try
+            {
+                double cost = double.Parse(CostTextBox.Text);
+                _currentItem.Cost = cost;
+
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                _isDataValid = false;
+                CostTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        /// <summary>
+        /// Меняет состояние свойства Name через валидацию вводимых данных.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex != -1)
-            {
-                try
-                {
-                    _currentItem.Name = NameTextBox.Text;
-                    NameTextBox.BackColor = System.Drawing.Color.White;
-                }
-                catch
-                {
-                    NameTextBox.BackColor = System.Drawing.Color.LightPink;
-                }
-            }
+            _isDataValid = true;
+            NameTextBox.BackColor = Color.White;
 
+            if (String.IsNullOrEmpty(NameTextBox.Text))
+            {
+                _isDataValid = false;
+                NameTextBox.BackColor = Color.LightPink;
+                return;
+            }
+            try
+            {
+                if (NameTextBox.Text != _currentItem.Name)
+                {
+                    _isItemNameChanged = true;
+                }
+                _currentItem.Name = NameTextBox.Text;
+
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                _isDataValid = false;
+                NameTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        /// <summary>
+        /// Меняет состояние свойства Info через валидацию вводимых данных.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.SelectedIndex != -1)
-            {
-                try
-                {
-                    _currentItem.Info = InfoTextBox.Text;
-                    InfoTextBox.BackColor = System.Drawing.Color.White;
-                }
-                catch
-                {
-                    InfoTextBox.BackColor = System.Drawing.Color.LightPink;
-                }
-            }
+            _isDataValid = true;
+            InfoTextBox.BackColor = Color.White;
 
+            if (String.IsNullOrEmpty(InfoTextBox.Text))
+            {
+                _isDataValid = false;
+                InfoTextBox.BackColor = Color.LightPink;
+                return;
+            }
+            try
+            {
+                _currentItem.Info = InfoTextBox.Text;
+
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                _isDataValid = false;
+                InfoTextBox.BackColor = Color.LightPink;
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
+        /// <summary>
+        /// Меняет состояние свойства Category через валидацию вводимых данных.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentItem == null) { return; }
+            _currentItem.Category = (Category)CategoryComboBox.SelectedItem;
 
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Отвечает за сортировку списка товаров.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterItems();
+        }
+
+        /// <summary>
+        /// Меняет порядок товаров в ListBox при вводе нового значения.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _displayedItems = DataTools.Filter(_items, item => item.Name.Contains(SearchTextBox.Text));
+            UpdateListBoxData();
+        }
+
+        /// <summary>
+        /// Загружает в список отображаемых товаров новый список, а также применяет к нему сортировку.
+        /// </summary>
+        void FilterItems()
+        {
+            if (_items == null) return;
+
+            _displayedItems = DataTools.Filter(_items, item => item.Name.Contains(SearchTextBox.Text));
+
+            switch ((SortOption)SortComboBox.SelectedItem)
+            {
+                case SortOption.Name:
+                    _displayedItems = DataTools.Sort(_displayedItems, DataTools.CompareByName);
+                    break;
+
+                case SortOption.CostAscending:
+                    _displayedItems = DataTools.Sort(_displayedItems, DataTools.CompareByCostAscending);
+                    break;
+
+                case SortOption.CostDescending:
+                    _displayedItems = DataTools.Sort(_displayedItems, DataTools.CompareByCostDescending);
+                    break;
+            }
+
+            UpdateListBoxData();
+        }
+
+        /// <summary>
+        /// Отображает изменения в Листбоксе.
+        /// </summary>
+        void UpdateListBoxData()
+        {
+            ItemsListBox.DataSource = null;
+            ItemsListBox.DataSource = _displayedItems;
+        }
     }
 }

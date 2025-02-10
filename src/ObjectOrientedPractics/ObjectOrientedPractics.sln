@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.9.34607.119
+VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectOrientedPractics", "ObjectOrientedPractics\ObjectOrientedPractics.csproj", "{30AAED18-2CEC-4561-9BA1-D73A352F845B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectOrientedPractics", "ObjectOrientedPractics\ObjectOrientedPractics.csproj", "{EE94C9D0-B4F3-4767-96FD-55ED9D3991BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{30AAED18-2CEC-4561-9BA1-D73A352F845B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{30AAED18-2CEC-4561-9BA1-D73A352F845B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{30AAED18-2CEC-4561-9BA1-D73A352F845B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{30AAED18-2CEC-4561-9BA1-D73A352F845B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE94C9D0-B4F3-4767-96FD-55ED9D3991BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE94C9D0-B4F3-4767-96FD-55ED9D3991BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE94C9D0-B4F3-4767-96FD-55ED9D3991BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE94C9D0-B4F3-4767-96FD-55ED9D3991BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {1F4BF745-539C-493F-9138-55CF58DD8991}
+		SolutionGuid = {A89976F0-FDE7-4817-AAD6-77495342D3DA}
 	EndGlobalSection
 EndGlobal
