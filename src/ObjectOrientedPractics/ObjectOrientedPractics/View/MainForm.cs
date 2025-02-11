@@ -44,5 +44,10 @@ namespace ObjectOrientedPractics
             CartsTab.RefreshData();
             OrdersTab.RefreshData();
         }
+
+        private void MainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
