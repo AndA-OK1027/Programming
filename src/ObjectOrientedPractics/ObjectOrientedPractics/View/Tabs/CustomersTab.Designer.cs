@@ -57,9 +57,9 @@
             // AddCustomerButton
             // 
             AddCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            AddCustomerButton.Location = new Point(3, 432);
+            AddCustomerButton.Location = new Point(3, 500);
             AddCustomerButton.Name = "AddCustomerButton";
-            AddCustomerButton.Size = new Size(94, 37);
+            AddCustomerButton.Size = new Size(94, 44);
             AddCustomerButton.TabIndex = 0;
             AddCustomerButton.Text = "Add";
             AddCustomerButton.UseVisualStyleBackColor = true;
@@ -68,9 +68,9 @@
             // RemoveCustomerButton
             // 
             RemoveCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            RemoveCustomerButton.Location = new Point(103, 432);
+            RemoveCustomerButton.Location = new Point(103, 500);
             RemoveCustomerButton.Name = "RemoveCustomerButton";
-            RemoveCustomerButton.Size = new Size(94, 37);
+            RemoveCustomerButton.Size = new Size(94, 44);
             RemoveCustomerButton.TabIndex = 2;
             RemoveCustomerButton.Text = "Remove";
             RemoveCustomerButton.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@
             CustomersListBox.ItemHeight = 15;
             CustomersListBox.Location = new Point(3, 25);
             CustomersListBox.Name = "CustomersListBox";
-            CustomersListBox.Size = new Size(279, 394);
+            CustomersListBox.Size = new Size(279, 469);
             CustomersListBox.TabIndex = 3;
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
@@ -97,7 +97,7 @@
             CustomersPanel.Location = new Point(3, 3);
             CustomersPanel.Name = "CustomersPanel";
             CustomersPanel.RightToLeft = RightToLeft.No;
-            CustomersPanel.Size = new Size(286, 472);
+            CustomersPanel.Size = new Size(286, 547);
             CustomersPanel.TabIndex = 4;
             // 
             // label1
@@ -121,7 +121,7 @@
             SelectedCustomerPanel.Controls.Add(label3);
             SelectedCustomerPanel.Location = new Point(292, 3);
             SelectedCustomerPanel.Name = "SelectedCustomerPanel";
-            SelectedCustomerPanel.Size = new Size(547, 85);
+            SelectedCustomerPanel.Size = new Size(498, 85);
             SelectedCustomerPanel.TabIndex = 5;
             // 
             // PriorityCheckBox
@@ -140,7 +140,7 @@
             CustomerFullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomerFullNameTextBox.Location = new Point(77, 51);
             CustomerFullNameTextBox.Name = "CustomerFullNameTextBox";
-            CustomerFullNameTextBox.Size = new Size(467, 23);
+            CustomerFullNameTextBox.Size = new Size(418, 23);
             CustomerFullNameTextBox.TabIndex = 7;
             CustomerFullNameTextBox.TextChanged += CustomerFullNameTextBox_TextChanged;
             // 
@@ -186,7 +186,7 @@
             DeliveryAddressPanel.Controls.Add(CustomerAddressControl);
             DeliveryAddressPanel.Location = new Point(291, 94);
             DeliveryAddressPanel.Name = "DeliveryAddressPanel";
-            DeliveryAddressPanel.Size = new Size(548, 200);
+            DeliveryAddressPanel.Size = new Size(499, 200);
             DeliveryAddressPanel.TabIndex = 7;
             // 
             // CustomerAddressControl
@@ -201,7 +201,7 @@
             CustomerAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CustomerAddressControl.Location = new Point(1, 3);
             CustomerAddressControl.Name = "CustomerAddressControl";
-            CustomerAddressControl.Size = new Size(544, 194);
+            CustomerAddressControl.Size = new Size(495, 194);
             CustomerAddressControl.TabIndex = 7;
             // 
             // CustomersDiscountsPanel
@@ -213,7 +213,7 @@
             CustomersDiscountsPanel.Controls.Add(AddDiscountButton);
             CustomersDiscountsPanel.Location = new Point(291, 300);
             CustomersDiscountsPanel.Name = "CustomersDiscountsPanel";
-            CustomersDiscountsPanel.Size = new Size(548, 175);
+            CustomersDiscountsPanel.Size = new Size(496, 250);
             CustomersDiscountsPanel.TabIndex = 12;
             // 
             // CustomersDiscountsListBox
@@ -223,15 +223,14 @@
             CustomersDiscountsListBox.ItemHeight = 15;
             CustomersDiscountsListBox.Location = new Point(6, 28);
             CustomersDiscountsListBox.Name = "CustomersDiscountsListBox";
-            CustomersDiscountsListBox.Size = new Size(294, 94);
+            CustomersDiscountsListBox.Size = new Size(242, 169);
             CustomersDiscountsListBox.TabIndex = 15;
             // 
             // RemoveDiscountButton
             // 
-            RemoveDiscountButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            RemoveDiscountButton.Location = new Point(306, 81);
+            RemoveDiscountButton.Location = new Point(101, 203);
             RemoveDiscountButton.Name = "RemoveDiscountButton";
-            RemoveDiscountButton.Size = new Size(89, 41);
+            RemoveDiscountButton.Size = new Size(89, 44);
             RemoveDiscountButton.TabIndex = 14;
             RemoveDiscountButton.Text = "Remove";
             RemoveDiscountButton.UseVisualStyleBackColor = true;
@@ -249,10 +248,9 @@
             // 
             // AddDiscountButton
             // 
-            AddDiscountButton.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            AddDiscountButton.Location = new Point(306, 28);
+            AddDiscountButton.Location = new Point(6, 203);
             AddDiscountButton.Name = "AddDiscountButton";
-            AddDiscountButton.Size = new Size(89, 41);
+            AddDiscountButton.Size = new Size(89, 44);
             AddDiscountButton.TabIndex = 13;
             AddDiscountButton.Text = "Add";
             AddDiscountButton.UseVisualStyleBackColor = true;
@@ -267,7 +265,7 @@
             Controls.Add(SelectedCustomerPanel);
             Controls.Add(CustomersPanel);
             Name = "CustomersTab";
-            Size = new Size(842, 478);
+            Size = new Size(793, 553);
             Load += CustomersTab_Load;
             CustomersPanel.ResumeLayout(false);
             CustomersPanel.PerformLayout();
