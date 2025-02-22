@@ -22,9 +22,15 @@ namespace Contacts
         /// </summary>
         public string Name
         {
-            get;
+            get
+            {
+                return _name;
+            }
 
-            set;
+            set
+            {
+                _name = value;
+            }
         }
 
         /// <summary>
@@ -32,9 +38,15 @@ namespace Contacts
         /// </summary>
         public string Mail
         {
-            get;
+            get
+            {
+                return _mail;
+            }
 
-            set;
+            set
+            {
+                _mail = value;
+            }
         }
 
         /// <summary>
@@ -42,9 +54,15 @@ namespace Contacts
         /// </summary>
         public string PhoneNumber
         {
-            get;
+            get
+            {
+                return _phoneNumber;
+            }
 
-            set;
+            set
+            {
+                _phoneNumber = value;
+            }
         }
 
         /// <summary>
