@@ -13,13 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Contacts
+namespace View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Главное окно.
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Инициализация компонентов.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();

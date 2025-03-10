@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contacts
+namespace View.Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    class Contact
+    public class Contact
     {
         private string _name;
 
-        private string _mail;
+        private string _email;
 
         private string _phoneNumber;
 
@@ -36,16 +36,16 @@ namespace Contacts
         /// <summary>
         /// Почта контакта.
         /// </summary>
-        public string Mail
+        public string Email
         {
             get
             {
-                return _mail;
+                return _email;
             }
 
             set
             {
-                _mail = value;
+                _email = value;
             }
         }
 
@@ -72,17 +72,17 @@ namespace Contacts
         {
             Name = " ";
             PhoneNumber = "+7 (999) 77 88";
-            Mail = "aaaaaaaa@mail.a";
+            Email = "aaaaaaaa@mail.a";
         }
 
         /// <summary>
-        /// 
+        /// Конструктор.
         /// </summary>
         public Contact(string name, string number, string mail)
         {
             Name = name;
             PhoneNumber = number;
-            Mail = mail;
+            Email = mail;
         }
     }
 }
