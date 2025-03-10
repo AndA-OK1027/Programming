@@ -12,40 +12,35 @@
         <vm:MainVM/>
     </Window.DataContext>
 
-    <DockPanel Margin="15">
-        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="Save" Width="75" Height="25" Margin="3" Command="{Binding SaveCommand}"/>
-            <Button Content="Load" Width="75" Height="25" Margin="3" Command="{Binding LoadCommand}"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GridSplitter HorizontalAlignment="Center" Width="3"/>
+
+        <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Label Content="Find: " />
+            <TextBox Text="WIP" />
         </StackPanel>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
+            <Button Content="Add" Width="75" Height="25" Margin="3" Command="{Binding SaveCommand}"/>
+            <Button Content="Edit" Width="75" Height="25" Margin="3" Command="{Binding LoadCommand}"/>
+            <Button Content="Remove" Width="75" Height="25" Margin="3" Command="{Binding LoadCommand}"/>
+        </StackPanel>
 
-            <GroupBox Header="Edit Contact" Grid.Column="0" Margin="3">
-                <StackPanel Margin="3">
-                    <Label Content="Name:"/>
-                    <TextBox Text="{Binding Name, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="3"/>
-                    <Label Content="Phone Number:"/>
-                    <TextBox Text="{Binding PhoneNumber, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="3"/>
-                    <Label Content="Email:"/>
-                    <TextBox Text="{Binding Email, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="3"/>
-                </StackPanel>
-            </GroupBox>
+        <StackPanel Grid.Column="1" Margin="3">
+            <Label Content="Name:"/>
+            <TextBox Text="{Binding Name, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="3"/>
+            <Label Content="Phone Number:"/>
+            <TextBox Text="{Binding PhoneNumber, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="3"/>
+            <Label Content="Email:"/>
+            <TextBox Text="{Binding Email, Mode = TwoWay, UpdateSourceTrigger = PropertyChanged}" Margin="3"/>
+        </StackPanel>
 
-            <GroupBox Header="Read Contact" Grid.Column="1" Margin="3">
-                <StackPanel>
-                    <Label Content="Name:"/>
-                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="3"/>
-                    <Label Content="Phone Number:"/>
-                    <TextBlock Text="{Binding PhoneNumber}" FontWeight="Bold" Margin="3"/>
-                    <Label Content="Email:"/>
-                    <TextBlock Text="{Binding Email}" FontWeight="Bold" Margin="3"/>
-                </StackPanel>
-            </GroupBox>
-        </Grid>
-    </DockPanel>
+        
+    </Grid>
 
 </Window>
