@@ -34,15 +34,17 @@ namespace View.Model.Services
         /// </summary>
         /// <returns> объект полученный из файла</returns>
         public Contact Load() 
-        { 
-            if (File.Exists(_path)) 
+        {
+            try
             {
                 string json = File.ReadAllText(_path);
 
                 return JsonConvert.DeserializeObject<Contact>(json);
             }
-
-            return new Contact();
+            catch
+            {
+                return new Contact();
+            }
         }
 
         /// <summary>
