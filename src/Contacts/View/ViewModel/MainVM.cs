@@ -17,40 +17,52 @@ namespace View.ViewModel
     /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Обработчик события.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Событие изменения свойства.
+        /// </summary>
+        /// <param name="prop">Название свойства.</param>
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-            if (PropertyChanged != null) 
-            { 
+            if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
             }
         }
+
+        /// <summary>
+        /// Внутренний объект контакта.
+        /// </summary>
         private Contact _contact;
 
         /// <summary>
-        /// 
+        /// Команда сохранения.
         /// </summary>
         public SaveCommand SaveCommand { get; }
 
         /// <summary>
-        /// 
+        /// Команда загрузки.
         /// </summary>
         public LoadCommand LoadCommand { get; }
 
         /// <summary>
-        /// Свойство для работы с именем контакта.
+        /// Возвращает и задаёт имя контакта.
         /// </summary>
         public string Name
         {
-            get 
-            { 
-                return _contact.Name; 
+            get
+            {
+                return _contact.Name;
             }
 
-            set 
-            { 
-                if (_contact.Name != value) 
-                { 
+            set
+            {
+                if (_contact.Name != value)
+                {
                     _contact.Name = value;
                     OnPropertyChanged("Name");
                 }
@@ -59,7 +71,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Свойство для работы с номером контакта.
+        /// Возвращает и задает номер контакта.
         /// </summary>
         public string PhoneNumber
         {
@@ -80,7 +92,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Свойство для работы с почтой контакта.
+        /// Возвращает и задает почту контакта.
         /// </summary>
         public string Email
         {
@@ -101,7 +113,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// 
+        /// Возвращает и задаёт объект контакта на обработке.
         /// </summary>
         public Contact Contact
         {
@@ -111,8 +123,8 @@ namespace View.ViewModel
             }
             set
             {
-                if (_contact != value) 
-                { 
+                if (_contact != value)
+                {
                     _contact = value;
                     OnPropertyChanged("Contact");
                     OnPropertyChanged("Name");
@@ -123,7 +135,7 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// 
+        /// Конструктор ViewModel, в котором инициализируются команды взаимодействия.
         /// </summary>
         public MainVM()
         {
@@ -131,8 +143,6 @@ namespace View.ViewModel
             Contact = _serializer.Load();
             SaveCommand = new SaveCommand(_serializer, this);
             LoadCommand = new LoadCommand(_serializer, this);
-
         }
-
     }
 }
