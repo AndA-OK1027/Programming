@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:View.ViewModel"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="800" MinHeight="550" MinWidth="650" Icon="/icon.ico">
 
     <Window.DataContext>
         <vm:MainVM/>
@@ -35,7 +35,7 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <ListBox x:Name="ContactsListBox" Margin="8"/>
+                    <ListBox x:Name="ContactsListBox" ItemsSource="{Binding Contacts}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" Margin="8"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -45,9 +45,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" x:Name="AddButton" Content="Add" Margin="8,0,3,0"/>
-                    <Button Grid.Column="1" x:Name="EditButton" Content="Edit" Margin="3,0,3,0"/>
-                    <Button Grid.Column="2" x:Name="RemoveButton" Content="Remove" Margin="3,0,8,0"/>
+                    <Button Grid.Column="0" x:Name="AddButton" Content="Add" Command="{Binding AddCommand}" Margin="8,0,3,0"/>
+                    <Button Grid.Column="1" x:Name="EditButton" Content="Edit" Command="{Binding EditCommand}" Margin="3,0,3,0"/>
+                    <Button Grid.Column="2" x:Name="RemoveButton" Content="Remove" Command="{Binding RemoveCommand}" Margin="3,0,8,0"/>
 
                 </Grid>
             </Grid>
@@ -64,20 +64,23 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Frame Grid.Column="0" Width="100" Height="100" Background="LightGray" Margin="8" VerticalAlignment="Top"/>
+            <StackPanel Grid.Column="0">
+                <Label Name="Placeholder" Content=" " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
+                <Frame Width="100" Height="100" Background="#FF9BD0FF" Margin="3,0,3,0"/>
+            </StackPanel>
+
 
             <StackPanel Grid.Column="1">
-
                 <Label Grid.Column="1" Name="NameLabel" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
-                <TextBox x:Name="NameTextBox" Margin="3"/>
+                <TextBox x:Name="NameTextBox" Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"/>
 
                 <Label Grid.Column="1" Name="PhoneNumberLabel" Content="Phone Number: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
-                <TextBox x:Name="PhoneNumberTextBox"  Margin="3"/>
+                <TextBox x:Name="PhoneNumberTextBox" Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"/>
 
                 <Label Grid.Column="1" Name="EmailLabel" Content="Email: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3"/>
-                <TextBox x:Name="EmailTextBox"  Margin="3"/>
+                <TextBox x:Name="EmailTextBox" Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"/>
 
-                <Button Grid.Column="1" Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="3,50,0,0"/>
+                <Button Grid.Column="1" Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="3,50,0,0" Command="{Binding ApplyCommand}" Visibility="{Binding ApplyButtonVisibility}"/>
             </StackPanel>
         </Grid>
 

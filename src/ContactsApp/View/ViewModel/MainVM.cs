@@ -9,6 +9,9 @@ using System.Runtime.CompilerServices;
 using View.ViewModel;
 using View.Model;
 using View.Model.Services;
+using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace View.ViewModel
 {
@@ -17,10 +20,99 @@ namespace View.ViewModel
     /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        private ObservableCollection<Contact> _contacts;
+        private Contact _selectedContact;
+        private int _selectedIndex;
+        private ContactSerializer _serializer = new ContactSerializer();
+
+        private bool _isEditing = false;
+        private bool _isAddingNew;
+
         /// <summary>
-        /// Обработчик события.
+        /// Событие при изменении значения свойства.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Получает или задаёт значение, указывающее, находится ли приложение в режиме редактирования.
+        /// </summary>
+        public bool IsEditing
+        {
+            get => _isEditing;
+            set
+            {
+                _isEditing = value;
+                OnPropertyChanged(nameof(IsEditing));
+                OnPropertyChanged(nameof(IsReadOnly));
+                OnPropertyChanged(nameof(ApplyButtonVisibility));
+            }
+        }
+
+        /// <summary>
+        /// Устанавливает режим "только для чтения" для редактирования контакта.
+        /// </summary>
+        public bool IsReadOnly => !IsEditing;
+
+        /// <summary>
+        /// Возвращает видимость кнопки "Apply" при необходимости.
+        /// </summary>
+        public Visibility ApplyButtonVisibility => _isEditing ? Visibility.Visible : Visibility.Collapsed;
+
+        /// <summary>
+        /// Получает или задает коллекцию объектов класса "Contact".
+        /// </summary>
+        public ObservableCollection<Contact> Contacts
+        {
+            get => _contacts;
+            set
+            {
+                _contacts = value;
+                OnPropertyChanged(nameof(Contacts));
+            }
+        }
+
+        /// <summary>
+        /// Получает или задаёт выбранный контакт из списка.
+        /// </summary>
+        public Contact SelectedContact
+        {
+            get => _selectedContact;
+            set
+            {
+                if (_selectedContact != value)
+                {
+                    IsEditing = false;
+
+                    _selectedContact = value;
+                    OnPropertyChanged(nameof(SelectedContact));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Получает команду для добавления нового контакта.
+        /// </summary>
+        public ICommand AddCommand { get; }
+
+        /// <summary>
+        /// Получает команду для редактирования существующего контакта.
+        /// </summary>
+        public ICommand EditCommand { get; }
+
+        /// <summary>
+        /// Получает команду для удаления контакта.
+        /// </summary>
+        public ICommand RemoveCommand { get; }
+
+        /// <summary>
+        /// Получает команду для применения изменений к контакту.
+        /// </summary>
+        public ICommand ApplyCommand { get; }
+
+        public bool CanEditOrRemoveContact(object parameter)
+        {
+            return SelectedContact != null;
+        }
 
         /// <summary>
         /// Событие изменения свойства.
@@ -35,103 +127,93 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Внутренний объект контакта.
+        /// Добавляет контакт в список.
         /// </summary>
-        private Contact _contact;
-
-        /// <summary>
-        /// Команда сохранения.
-        /// </summary>
-        public SaveCommand SaveCommand { get; }
-
-        /// <summary>
-        /// Команда загрузки.
-        /// </summary>
-        public LoadCommand LoadCommand { get; }
-
-        /// <summary>
-        /// Возвращает и задаёт имя контакта.
-        /// </summary>
-        public string Name
+        /// <param name="parameter"></param>
+        public void AddContact(object parameter)
         {
-            get
-            {
-                return _contact.Name;
-            }
-
-            set
-            {
-                if (_contact.Name != value)
-                {
-                    _contact.Name = value;
-                    OnPropertyChanged("Name");
-                }
-            }
-
+            _isAddingNew = true;
+            SelectedContact = null;
+            var newContact = new Contact();
+            SelectedContact = newContact;
+            IsEditing = true;
         }
 
         /// <summary>
-        /// Возвращает и задает номер контакта.
+        /// Открывает режим редактирования контакта.
         /// </summary>
-        public string PhoneNumber
+        /// <param name="parameter"></param>
+        public void EditContact(object parameter)
         {
-            get
+            if(SelectedContact != null)
             {
-                return _contact.PhoneNumber;
-            }
+                var _selectedIndex = Contacts.IndexOf(SelectedContact);
 
-            set
-            {
-                if (_contact.PhoneNumber != value)
+                var _clonedContact = new Contact
                 {
-                    _contact.PhoneNumber = value;
-                    OnPropertyChanged("PhoneNumber");
-                }
-            }
+                    Name = SelectedContact.Name,
+                    PhoneNumber = SelectedContact.PhoneNumber,
+                    Email = SelectedContact.Email
+                };
 
+                SelectedContact = _clonedContact;
+            }
+            IsEditing = true;
         }
 
         /// <summary>
-        /// Возвращает и задает почту контакта.
+        /// Удаляет контакт из списка, выбранный или последний.
         /// </summary>
-        public string Email
+        /// <param name="parameter"></param>
+        public void RemoveContact(object parameter)
         {
-            get
+            if (SelectedContact != null)
             {
-                return _contact.Email;
-            }
+                int index = Contacts.IndexOf(SelectedContact);
+                Contacts.Remove(SelectedContact);
+                _serializer.Save(Contacts);
 
-            set
-            {
-                if (_contact.Email != value)
+                if (Contacts.Count > 0)
                 {
-                    _contact.Email = value;
-                    OnPropertyChanged("Email");
+                    if (index < Contacts.Count)
+                    {
+                        SelectedContact = Contacts[index];
+                    }
+
+                    else
+                    {
+                        SelectedContact = Contacts[Contacts.Count - 1];
+                    }
+                }
+
+                else
+                {
+                    SelectedContact = null;
                 }
             }
-
         }
 
         /// <summary>
-        /// Возвращает и задаёт объект контакта на обработке.
+        /// Сохраняет изменения в объекте контакта.
         /// </summary>
-        public Contact Contact
+        /// <param name="parameter"></param>
+        public void Apply(object parameter)
         {
-            get
+            if (_isAddingNew)
             {
-                return _contact;
+                Contacts.Add(SelectedContact);
             }
-            set
+            else
             {
-                if (_contact != value)
-                {
-                    _contact = value;
-                    OnPropertyChanged("Contact");
-                    OnPropertyChanged("Name");
-                    OnPropertyChanged("Email");
-                    OnPropertyChanged("PhoneNumber");
-                }
+                Contacts[_selectedIndex] = SelectedContact;
+
+                _isEditing = false;
             }
+
+            _isAddingNew = false;
+            _isEditing = false;
+
+            _serializer.Save(Contacts);
         }
 
         /// <summary>
@@ -139,10 +221,12 @@ namespace View.ViewModel
         /// </summary>
         public MainVM()
         {
-            ContactSerializer _serializer = new ContactSerializer();
-            Contact = _serializer.Load();
-            SaveCommand = new SaveCommand(_serializer, this);
-            LoadCommand = new LoadCommand(_serializer, this);
+            Contacts = new ObservableCollection<Contact>(_serializer.Load());
+
+            AddCommand = new RelayCommand(AddContact);
+            EditCommand = new RelayCommand(EditContact, CanEditOrRemoveContact);
+            RemoveCommand = new RelayCommand(RemoveContact, CanEditOrRemoveContact);
+            ApplyCommand = new RelayCommand(Apply);
         }
     }
 }

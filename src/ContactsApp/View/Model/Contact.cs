@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    public class Contact
+    public class Contact : INotifyPropertyChanged
     {
         private string _name;
-
         private string _email;
-
         private string _phoneNumber;
-
+        
         /// <summary>
         /// Имя контакта.
         /// </summary>
@@ -29,7 +23,11 @@ namespace View.Model
 
             set
             {
-                _name = value;
+                if (_name != value) 
+                {
+                    _name = value;
+                    OnPropertyChanged(nameof(Name));
+                }
             }
         }
 
@@ -45,7 +43,11 @@ namespace View.Model
 
             set
             {
-                _email = value;
+                if (_email != value)
+                {
+                    _email = value;
+                    OnPropertyChanged(nameof(Email));
+                }
             }
         }
 
@@ -61,8 +63,23 @@ namespace View.Model
 
             set
             {
-                _phoneNumber = value;
+                if (_phoneNumber != value)
+                {
+                    _phoneNumber = value;
+                    OnPropertyChanged(nameof(PhoneNumber));
+                }
             }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        /// <summary>
+        /// Обработка события при изменении свойства.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); 
         }
 
         /// <summary>
@@ -70,14 +87,17 @@ namespace View.Model
         /// </summary>
         public Contact()
         {
-            Name = " ";
+            Name = "no name";
             PhoneNumber = "+7 (999) 77 88";
-            Email = "aaaaaaaa@mail.a";
+            Email = "nomail@mail.com";
         }
 
         /// <summary>
         /// Конструктор.
         /// </summary>
+        /// <param name="mail"> Почта. </param>
+        /// <param name="name"> Имя.</param>
+        /// <param name="number"> Номер телефона.</param>
         public Contact(string name, string number, string mail)
         {
             Name = name;
