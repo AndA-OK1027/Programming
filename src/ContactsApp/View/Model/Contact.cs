@@ -7,8 +7,17 @@ namespace View.Model
     /// </summary>
     public class Contact : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Имя контакта.
+        /// </summary>
         private string _name;
+        /// <summary>
+        /// Электронная почта контакта.
+        /// </summary>
         private string _email;
+        /// <summary>
+        /// Номер телефона контакта.
+        /// </summary>
         private string _phoneNumber;
         
         /// <summary>

@@ -20,12 +20,30 @@ namespace View.ViewModel
     /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Коллекция объектов контактов.
+        /// </summary>
         private ObservableCollection<Contact> _contacts;
+        /// <summary>
+        /// Выбранный объект в списке.
+        /// </summary>
         private Contact _selectedContact;
+        /// <summary>
+        /// Выбранный индекс в списке.
+        /// </summary>
         private int _selectedIndex;
+        /// <summary>
+        /// Объект служебного класса <see cref="ContactSerializer"/>, для сохранения и загрузки объектов.
+        /// </summary>
         private ContactSerializer _serializer = new ContactSerializer();
 
+        /// <summary>
+        /// Флаг, указывающий на редактирование  в данный момент контакта.
+        /// </summary>
         private bool _isEditing = false;
+        /// <summary>
+        /// Флаг, указывающий на добавление в данный момент нового контакта.
+        /// </summary>
         private bool _isAddingNew;
 
         /// <summary>
@@ -109,6 +127,11 @@ namespace View.ViewModel
         /// </summary>
         public ICommand ApplyCommand { get; }
 
+        /// <summary>
+        /// Возвращает возможность редактирования и удаления для комманд.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns>True, если возможно редактирование и удаление, иначе false.</returns>
         public bool CanEditOrRemoveContact(object parameter)
         {
             return SelectedContact != null;

@@ -14,9 +14,18 @@ namespace View.ViewModel
     /// </summary>
     public class RelayCommand : ICommand
     {
+        /// <summary>
+        /// Делегат действия команды.
+        /// </summary>
         private Action<object> _execute;
+        /// <summary>
+        /// Делегат возможности выполнения команды.
+        /// </summary>
         private Predicate<object> _canExecute;
 
+        /// <summary>
+        /// Обработчик события изменения возможности выполнения команды.
+        /// </summary>
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
