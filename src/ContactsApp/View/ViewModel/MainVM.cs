@@ -240,6 +240,16 @@ namespace View.ViewModel
         }
 
         /// <summary>
+        /// Проверка валидности всех полей.
+        /// </summary>
+        /// <param name="contact"></param>
+        /// <returns></returns>
+        public bool CanApply(object parameter)
+        {
+            return SelectedContact != null && SelectedContact.HasError == false;
+        }
+
+        /// <summary>
         /// Конструктор ViewModel, в котором инициализируются команды взаимодействия.
         /// </summary>
         public MainVM()
@@ -249,7 +259,7 @@ namespace View.ViewModel
             AddCommand = new RelayCommand(AddContact);
             EditCommand = new RelayCommand(EditContact, CanEditOrRemoveContact);
             RemoveCommand = new RelayCommand(RemoveContact, CanEditOrRemoveContact);
-            ApplyCommand = new RelayCommand(Apply);
+            ApplyCommand = new RelayCommand(Apply, CanApply);
         }
     }
 }

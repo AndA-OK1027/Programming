@@ -4,13 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:View.ViewModel"
-        xmlns:local="clr-namespace:View"
+        xmlns:controls="clr-namespace:View.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800" MinHeight="550" MinWidth="650" Icon="/icon.ico">
+        Title="MainWindow" Height="600" Width="800" MinHeight="550" MinWidth="650" Icon="/Resources/icon.ico">
 
     <Window.DataContext>
         <vm:MainVM/>
     </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate x:Key="contactTemplate">
+            <StackPanel Orientation="Horizontal" Margin="3">
+                <Image Width="40" Height="40" Source="/Resources/photoplaceholder.png" Margin="0,0,8,0"/>
+
+                <StackPanel>
+                    <TextBlock
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Text="{Binding Name}"/>
+                    <TextBlock 
+                        FontSize="10" 
+                        Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                    <Setter Property="Background" Value="LightPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +64,7 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <ListBox x:Name="ContactsListBox" ItemsSource="{Binding Contacts}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedContact, Mode=TwoWay}" Margin="8"/>
+                    <ListBox x:Name="ContactsListBox" ItemTemplate="{StaticResource contactTemplate}" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact,Mode=TwoWay}" Margin="8"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -54,36 +83,10 @@
         </Grid>
 
         <Grid Grid.Column="2" Margin="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <StackPanel Grid.Column="0">
-                <Label Name="Placeholder" Content=" " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
-                <Frame Width="100" Height="100" Background="#FF9BD0FF" Margin="3,0,3,0"/>
-            </StackPanel>
-
-
-            <StackPanel Grid.Column="1">
-                <Label Grid.Column="1" Name="NameLabel" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
-                <TextBox x:Name="NameTextBox" Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"/>
-
-                <Label Grid.Column="1" Name="PhoneNumberLabel" Content="Phone Number: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
-                <TextBox x:Name="PhoneNumberTextBox" Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"/>
-
-                <Label Grid.Column="1" Name="EmailLabel" Content="Email: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3"/>
-                <TextBox x:Name="EmailTextBox" Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}"/>
-
-                <Button Grid.Column="1" Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="3,50,0,0" Command="{Binding ApplyCommand}" Visibility="{Binding ApplyButtonVisibility}"/>
-            </StackPanel>
+            <controls:ContactControl VerticalAlignment="Top"/>
+            <Button Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="0,50,0,0" Command="{Binding ApplyCommand}" Visibility="{Binding ApplyButtonVisibility}" IsEnabled="{Binding IsValid}"/>
         </Grid>
-
+        
     </Grid>
 
 </Window>
