@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
@@ -90,6 +91,17 @@ namespace View.Model
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public bool HasError
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(error);
+            }
+        }
+
+        /// <summary>
         /// Регулярное выражение для маски ввода номера телефона.
         /// </summary>
         public static Regex PhoneNumberRegex = new Regex(@"^[0-9+() -]*$");
@@ -117,8 +129,8 @@ namespace View.Model
                             {
                                 error = "Имя не должно превышать 100 символов.";
                             }
+                            break;
                         }
-                        break;
                     case "Email":
                         {
                             if (string.IsNullOrWhiteSpace(Email))
@@ -133,8 +145,8 @@ namespace View.Model
                             {
                                 error = "Почта должна содержать символ \"@\".";
                             }
+                            break;
                         }
-                        break;
                     case "PhoneNumber":
                         {
                             if (string.IsNullOrWhiteSpace(PhoneNumber))
@@ -152,8 +164,8 @@ namespace View.Model
                                     error = "Номер телефона не должен превышать 100 символов.";
                                 }
                             }
+                            break;
                         }
-                        break;
                 }
                 return error;
             }

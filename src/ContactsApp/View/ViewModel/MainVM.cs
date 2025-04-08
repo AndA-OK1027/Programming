@@ -246,10 +246,7 @@ namespace View.ViewModel
         /// <returns></returns>
         public bool CanApply(object parameter)
         {
-            return SelectedContact != null &&
-                   string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Name)]) &&
-                   string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.PhoneNumber)]) &&
-                   string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Email)]);
+            return SelectedContact != null && SelectedContact.HasError == false;
         }
 
         /// <summary>
