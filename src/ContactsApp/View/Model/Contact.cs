@@ -91,7 +91,7 @@ namespace View.Model
         }
 
         /// <summary>
-        /// 
+        /// Проверяет есть ли ошибка в свойстве.
         /// </summary>
         public bool HasError
         {
