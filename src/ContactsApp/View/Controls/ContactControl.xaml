@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="View.Controls.ContactControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="168" Width="460">
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Label Name="Placeholder" Content=" " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
+            <Image Name="PhotoPlaceHolder" Width="100" Height="100" Source="/Resources/photoplaceholder.png" Margin="3"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Margin="8">
+            <Label Grid.Column="1" Name="NameLabel" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
+            <TextBox x:Name="NameTextBox" Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}" Validation.Error="TextBox_Error"/>
+
+            <Label Grid.Column="1" Name="PhoneNumberLabel" Content="Phone Number: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
+            <TextBox x:Name="PhoneNumberTextBox" Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="3,0,0,0" IsReadOnly="{Binding IsReadOnly , Mode=OneWay}" Validation.Error="TextBox_Error"
+                     PreviewTextInput="PhoneNumber_PreviewTextInput"
+                     DataObject.Pasting="PhoneNumber_Pasting"/>
+
+            <Label Grid.Column="1" Name="EmailLabel" Content="Email: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3"/>
+            <TextBox x:Name="EmailTextBox" Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" Margin="3,0,0,0" IsReadOnly="{Binding IsContactReadOnly, Mode=OneWay}" Validation.Error="TextBox_Error"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
