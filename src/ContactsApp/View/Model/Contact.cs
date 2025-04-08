@@ -103,14 +103,20 @@ namespace View.Model
         {
             get
             {
+                error = null;
+
                 switch (propertyName)
                 {
                     case "Name":
                         {
                             if (string.IsNullOrWhiteSpace(Name))
+                            {
                                 error = "Имя не может быть пустым.";
+                            }
                             else if (Name.Length > 100)
+                            {
                                 error = "Имя не должно превышать 100 символов.";
+                            }
                         }
                         break;
                     case "Email":
