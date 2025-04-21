@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ namespace View.Model
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, IDataErrorInfo
+    public class Contact : ObservableObject, IDataErrorInfo
     {
         /// <summary>
         /// Имя контакта.

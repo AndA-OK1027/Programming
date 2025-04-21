@@ -12,21 +12,25 @@ using View.Model.Services;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// ViewModel для работы
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Коллекция объектов контактов.
         /// </summary>
+        [ObservableProperty]
         private ObservableCollection<Contact> _contacts;
         /// <summary>
         /// Выбранный объект в списке.
         /// </summary>
+        [ObservableProperty]
         private Contact _selectedContact;
         /// <summary>
         /// Выбранный индекс в списке.
@@ -40,16 +44,13 @@ namespace View.ViewModel
         /// <summary>
         /// Флаг, указывающий на редактирование  в данный момент контакта.
         /// </summary>
+        [ObservableProperty]
         private bool _isEditing = false;
         /// <summary>
         /// Флаг, указывающий на добавление в данный момент нового контакта.
         /// </summary>
+        [ObservableProperty]
         private bool _isAddingNew;
-
-        /// <summary>
-        /// Событие при изменении значения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         /// Получает или задаёт значение, указывающее, находится ли приложение в режиме редактирования.
@@ -108,26 +109,6 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Получает команду для добавления нового контакта.
-        /// </summary>
-        public ICommand AddCommand { get; }
-
-        /// <summary>
-        /// Получает команду для редактирования существующего контакта.
-        /// </summary>
-        public ICommand EditCommand { get; }
-
-        /// <summary>
-        /// Получает команду для удаления контакта.
-        /// </summary>
-        public ICommand RemoveCommand { get; }
-
-        /// <summary>
-        /// Получает команду для применения изменений к контакту.
-        /// </summary>
-        public ICommand ApplyCommand { get; }
-
-        /// <summary>
         /// Возвращает возможность редактирования и удаления для комманд.
         /// </summary>
         /// <param name="parameter"></param>
@@ -135,18 +116,6 @@ namespace View.ViewModel
         public bool CanEditOrRemoveContact(object parameter)
         {
             return SelectedContact != null;
-        }
-
-        /// <summary>
-        /// Событие изменения свойства.
-        /// </summary>
-        /// <param name="prop">Название свойства.</param>
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-            }
         }
 
         /// <summary>
@@ -188,6 +157,7 @@ namespace View.ViewModel
         /// Удаляет контакт из списка, выбранный или последний.
         /// </summary>
         /// <param name="parameter"></param>
+        [RelayCommand]
         public void RemoveContact(object parameter)
         {
             if (SelectedContact != null)
@@ -220,6 +190,7 @@ namespace View.ViewModel
         /// Сохраняет изменения в объекте контакта.
         /// </summary>
         /// <param name="parameter"></param>
+        [RelayCommand]
         public void Apply(object parameter)
         {
             if (_isAddingNew)
@@ -255,11 +226,6 @@ namespace View.ViewModel
         public MainVM()
         {
             Contacts = new ObservableCollection<Contact>(_serializer.Load());
-
-            AddCommand = new RelayCommand(AddContact);
-            EditCommand = new RelayCommand(EditContact, CanEditOrRemoveContact);
-            RemoveCommand = new RelayCommand(RemoveContact, CanEditOrRemoveContact);
-            ApplyCommand = new RelayCommand(Apply, CanApply);
         }
     }
 }
