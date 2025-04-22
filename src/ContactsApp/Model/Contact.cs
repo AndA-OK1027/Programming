@@ -33,7 +33,6 @@ namespace Model
         /// <summary>
         /// Сообщение об ошибке.
         /// </summary>
-        [ObservableProperty]
         private string error = string.Empty;
 
         /// <summary>
@@ -46,6 +45,8 @@ namespace Model
                 return !string.IsNullOrEmpty(error);
             }
         }
+
+        public string Error => null;
 
         /// <summary>
         /// Регулярное выражение для маски ввода номера телефона.
