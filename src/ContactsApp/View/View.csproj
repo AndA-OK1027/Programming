@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\icon.ico" />
     <Resource Include="Resources\photoplaceholder.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

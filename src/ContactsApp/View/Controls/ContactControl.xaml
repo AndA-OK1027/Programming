@@ -17,15 +17,15 @@
 
         <StackPanel Grid.Column="1" Margin="8">
             <Label Grid.Column="1" Name="NameLabel" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3"/>
-            <TextBox x:Name="NameTextBox" Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" IsReadOnly="{Binding IsReadOnly, Mode=OneWay}" Validation.Error="TextBox_Error"/>
+            <TextBox x:Name="NameTextBox" Text="{Binding SelectedContact.Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=Window}}" Validation.Error="TextBox_Error"/>
 
             <Label Grid.Column="1" Name="PhoneNumberLabel" Content="Phone Number: " HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3"/>
-            <TextBox x:Name="PhoneNumberTextBox" Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"  IsReadOnly="{Binding IsReadOnly , Mode=OneWay}" Validation.Error="TextBox_Error"
+            <TextBox x:Name="PhoneNumberTextBox" Text="{Binding SelectedContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"  IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=Window}}" Validation.Error="TextBox_Error"
                      PreviewTextInput="PhoneNumber_PreviewTextInput"
                      DataObject.Pasting="PhoneNumber_Pasting"/>
 
             <Label Grid.Column="1" Name="EmailLabel" Content="Email: " HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="3"/>
-            <TextBox x:Name="EmailTextBox" Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" IsReadOnly="{Binding IsContactReadOnly, Mode=OneWay}" Validation.Error="TextBox_Error"/>
+            <TextBox x:Name="EmailTextBox" Text="{Binding SelectedContact.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=Window}}" Validation.Error="TextBox_Error"/>
         </StackPanel>
     </Grid>
 </UserControl>

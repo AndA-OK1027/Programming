@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:View.ViewModel"
+        xmlns:vm="clr-namespace:ViewModel"
         xmlns:controls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" MinHeight="550" MinWidth="650" Icon="/Resources/icon.ico">
@@ -74,9 +74,9 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0" x:Name="AddButton" Content="Add" Command="{Binding AddCommand}" Margin="8,0,3,0"/>
-                    <Button Grid.Column="1" x:Name="EditButton" Content="Edit" Command="{Binding EditCommand}" Margin="3,0,3,0"/>
-                    <Button Grid.Column="2" x:Name="RemoveButton" Content="Remove" Command="{Binding RemoveCommand}" Margin="3,0,8,0"/>
+                    <Button Grid.Column="0" x:Name="AddButton" Content="Add" Command="{Binding AddContactCommand}" Margin="8,0,3,0"/>
+                    <Button Grid.Column="1" x:Name="EditButton" Content="Edit" Command="{Binding EditContactCommand}" Margin="3,0,3,0"/>
+                    <Button Grid.Column="2" x:Name="RemoveButton" Content="Remove" Command="{Binding RemoveContactCommand}" Margin="3,0,8,0"/>
 
                 </Grid>
             </Grid>
@@ -84,7 +84,7 @@
 
         <Grid Grid.Column="2" Margin="8">
             <controls:ContactControl VerticalAlignment="Top"/>
-            <Button Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="0,50,0,0" Command="{Binding ApplyCommand}" Visibility="{Binding ApplyButtonVisibility}" IsEnabled="{Binding IsValid}"/>
+            <Button Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="0,50,0,0" Command="{Binding ApplyCommand}" Visibility="{Binding ApplyButtonVisibility}"/>
         </Grid>
         
     </Grid>

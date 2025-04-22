@@ -6,36 +6,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.CompilerServices;
-using View.ViewModel;
-using View.Model;
-using View.Model.Services;
+using Model;
+using Model.Services;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace View.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// ViewModel для работы
     /// </summary>
-    partial class MainVM : ObservableObject
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
         /// Коллекция объектов контактов.
         /// </summary>
         [ObservableProperty]
         private ObservableCollection<Contact> _contacts;
+
         /// <summary>
         /// Выбранный объект в списке.
         /// </summary>
-        [ObservableProperty]
         private Contact _selectedContact;
+
         /// <summary>
         /// Выбранный индекс в списке.
         /// </summary>
         private int _selectedIndex;
+
         /// <summary>
         /// Объект служебного класса <see cref="ContactSerializer"/>, для сохранения и загрузки объектов.
         /// </summary>
@@ -44,51 +45,22 @@ namespace View.ViewModel
         /// <summary>
         /// Флаг, указывающий на редактирование  в данный момент контакта.
         /// </summary>
-        [ObservableProperty]
         private bool _isEditing = false;
+
         /// <summary>
         /// Флаг, указывающий на добавление в данный момент нового контакта.
         /// </summary>
-        [ObservableProperty]
         private bool _isAddingNew;
-
-        /// <summary>
-        /// Получает или задаёт значение, указывающее, находится ли приложение в режиме редактирования.
-        /// </summary>
-        public bool IsEditing
-        {
-            get => _isEditing;
-            set
-            {
-                _isEditing = value;
-                OnPropertyChanged(nameof(IsEditing));
-                OnPropertyChanged(nameof(IsReadOnly));
-                OnPropertyChanged(nameof(ApplyButtonVisibility));
-            }
-        }
 
         /// <summary>
         /// Устанавливает режим "только для чтения" для редактирования контакта.
         /// </summary>
-        public bool IsReadOnly => !IsEditing;
+        public bool IsReadOnly => !_isEditing;
 
         /// <summary>
         /// Возвращает видимость кнопки "Apply" при необходимости.
         /// </summary>
         public Visibility ApplyButtonVisibility => _isEditing ? Visibility.Visible : Visibility.Collapsed;
-
-        /// <summary>
-        /// Получает или задает коллекцию объектов класса "Contact".
-        /// </summary>
-        public ObservableCollection<Contact> Contacts
-        {
-            get => _contacts;
-            set
-            {
-                _contacts = value;
-                OnPropertyChanged(nameof(Contacts));
-            }
-        }
 
         /// <summary>
         /// Получает или задаёт выбранный контакт из списка.
@@ -100,7 +72,7 @@ namespace View.ViewModel
             {
                 if (_selectedContact != value)
                 {
-                    IsEditing = false;
+                    _isEditing = false;
 
                     _selectedContact = value;
                     OnPropertyChanged(nameof(SelectedContact));
@@ -122,22 +94,24 @@ namespace View.ViewModel
         /// Добавляет контакт в список.
         /// </summary>
         /// <param name="parameter"></param>
+        [RelayCommand]
         public void AddContact(object parameter)
         {
             _isAddingNew = true;
             SelectedContact = null;
             var newContact = new Contact();
             SelectedContact = newContact;
-            IsEditing = true;
+            _isEditing = true;
         }
 
         /// <summary>
         /// Открывает режим редактирования контакта.
         /// </summary>
         /// <param name="parameter"></param>
+        [RelayCommand(CanExecute = nameof(CanEditOrRemoveContact))]
         public void EditContact(object parameter)
         {
-            if(SelectedContact != null)
+            if (SelectedContact != null)
             {
                 var _selectedIndex = Contacts.IndexOf(SelectedContact);
 
@@ -150,14 +124,14 @@ namespace View.ViewModel
 
                 SelectedContact = _clonedContact;
             }
-            IsEditing = true;
+            _isEditing = true;
         }
 
         /// <summary>
         /// Удаляет контакт из списка, выбранный или последний.
         /// </summary>
         /// <param name="parameter"></param>
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanEditOrRemoveContact))]
         public void RemoveContact(object parameter)
         {
             if (SelectedContact != null)
@@ -190,7 +164,7 @@ namespace View.ViewModel
         /// Сохраняет изменения в объекте контакта.
         /// </summary>
         /// <param name="parameter"></param>
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanApply))]
         public void Apply(object parameter)
         {
             if (_isAddingNew)

@@ -5,91 +5,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    public class Contact : ObservableObject, IDataErrorInfo
+    public partial class Contact : ObservableObject, IDataErrorInfo
     {
         /// <summary>
         /// Имя контакта.
         /// </summary>
+        [ObservableProperty]
         private string _name;
+
         /// <summary>
         /// Электронная почта контакта.
         /// </summary>
+        [ObservableProperty]
         private string _email;
+
         /// <summary>
         /// Номер телефона контакта.
         /// </summary>
+        [ObservableProperty]
         private string _phoneNumber;
 
         /// <summary>
         /// Сообщение об ошибке.
         /// </summary>
-        private string error = String.Empty;
-
-        /// <summary>
-        /// Имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                if (_name != value) 
-                {
-                    
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Почта контакта.
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-
-            set
-            {
-                if (_email != value)
-                {
-                    _email = value;
-                    OnPropertyChanged(nameof(Email));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Номер телефона контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-
-            set
-            {
-                if (_phoneNumber != value)
-                {
-                    _phoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-            }
-        }
+        [ObservableProperty]
+        private string error = string.Empty;
 
         /// <summary>
         /// Проверяет есть ли ошибка в свойстве.
@@ -170,25 +115,6 @@ namespace View.Model
                 }
                 return error;
             }
-        }
-
-        /// <summary>
-        /// Возвращает сообщение об ошибке для всего объекта.
-        /// </summary>
-        public string Error => null;
-
-        /// <summary>
-        /// Событие изменения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        /// <summary>
-        /// Вызов события при изменении свойства.
-        /// </summary>
-        /// <param name="propertyName"></param>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); 
         }
 
         /// <summary>
