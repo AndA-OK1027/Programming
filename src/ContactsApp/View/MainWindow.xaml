@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
+        xmlns:converters="clr-namespace:View.Converters"
         xmlns:controls="clr-namespace:View.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800" MinHeight="550" MinWidth="650" Icon="/Resources/icon.ico">
@@ -11,8 +12,9 @@
     <Window.DataContext>
         <vm:MainVM/>
     </Window.DataContext>
-    
+
     <Window.Resources>
+        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="contactTemplate">
             <StackPanel Orientation="Horizontal" Margin="3">
                 <Image Width="40" Height="40" Source="/Resources/photoplaceholder.png" Margin="0,0,8,0"/>
@@ -84,7 +86,9 @@
 
         <Grid Grid.Column="2" Margin="8">
             <controls:ContactControl VerticalAlignment="Top"/>
-            <Button Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="0,50,0,0" Command="{Binding ApplyCommand}" Visibility="{Binding ApplyButtonVisibility}"/>
+            <Button Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="0,50,0,0" Command="{Binding ApplyCommand}" 
+                    Visibility="{Binding IsApplyButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    />
         </Grid>
         
     </Grid>

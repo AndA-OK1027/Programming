@@ -46,6 +46,9 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Возвращает ошибки для всего объекта.
+        /// </summary>
         public string Error => null;
 
         /// <summary>
@@ -114,6 +117,8 @@ namespace Model
                             break;
                         }
                 }
+
+                OnPropertyChanged();
                 return error;
             }
         }

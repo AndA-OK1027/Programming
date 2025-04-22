@@ -45,6 +45,9 @@ namespace ViewModel
         /// <summary>
         /// Флаг, указывающий на редактирование  в данный момент контакта.
         /// </summary>
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(IsApplyButtonVisible))]
+        [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
         private bool _isEditing = false;
 
         /// <summary>
@@ -55,12 +58,12 @@ namespace ViewModel
         /// <summary>
         /// Устанавливает режим "только для чтения" для редактирования контакта.
         /// </summary>
-        public bool IsReadOnly => !_isEditing;
+        private bool IsReadOnly => !IsEditing;
 
         /// <summary>
         /// Возвращает видимость кнопки "Apply" при необходимости.
         /// </summary>
-        public Visibility ApplyButtonVisibility => _isEditing ? Visibility.Visible : Visibility.Collapsed;
+        public bool IsApplyButtonVisible => IsEditing;
 
         /// <summary>
         /// Получает или задаёт выбранный контакт из списка.
@@ -72,12 +75,34 @@ namespace ViewModel
             {
                 if (_selectedContact != value)
                 {
-                    _isEditing = false;
+                    if (_selectedContact != null)
+                    {
+                        _selectedContact.PropertyChanged -= OnSelectedContactPropertyChanged;
+                    }
+
+                    IsEditing = false;
 
                     _selectedContact = value;
+                    if (_selectedContact != null)
+                    {
+                        _selectedContact.PropertyChanged += OnSelectedContactPropertyChanged;
+                    }
+
                     OnPropertyChanged(nameof(SelectedContact));
+                    RemoveContactCommand.NotifyCanExecuteChanged();
+                    EditContactCommand.NotifyCanExecuteChanged();
                 }
             }
+        }
+
+        /// <summary>
+        /// Событие при изменении выбранного контакта.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSelectedContactPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            ApplyCommand.NotifyCanExecuteChanged();
         }
 
         /// <summary>
@@ -85,7 +110,7 @@ namespace ViewModel
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns>True, если возможно редактирование и удаление, иначе false.</returns>
-        public bool CanEditOrRemoveContact(object parameter)
+        public bool CanEditOrRemoveContact()
         {
             return SelectedContact != null;
         }
@@ -95,13 +120,13 @@ namespace ViewModel
         /// </summary>
         /// <param name="parameter"></param>
         [RelayCommand]
-        public void AddContact(object parameter)
+        private void AddContact()
         {
             _isAddingNew = true;
             SelectedContact = null;
             var newContact = new Contact();
             SelectedContact = newContact;
-            _isEditing = true;
+            IsEditing = true;
         }
 
         /// <summary>
@@ -109,11 +134,11 @@ namespace ViewModel
         /// </summary>
         /// <param name="parameter"></param>
         [RelayCommand(CanExecute = nameof(CanEditOrRemoveContact))]
-        public void EditContact(object parameter)
+        private void EditContact()
         {
             if (SelectedContact != null)
             {
-                var _selectedIndex = Contacts.IndexOf(SelectedContact);
+                _selectedIndex = Contacts.IndexOf(SelectedContact);
 
                 var _clonedContact = new Contact
                 {
@@ -124,7 +149,9 @@ namespace ViewModel
 
                 SelectedContact = _clonedContact;
             }
-            _isEditing = true;
+            IsEditing = true;
+            RemoveContactCommand.NotifyCanExecuteChanged();
+            ApplyCommand.NotifyCanExecuteChanged();
         }
 
         /// <summary>
@@ -132,7 +159,7 @@ namespace ViewModel
         /// </summary>
         /// <param name="parameter"></param>
         [RelayCommand(CanExecute = nameof(CanEditOrRemoveContact))]
-        public void RemoveContact(object parameter)
+        private void RemoveContact()
         {
             if (SelectedContact != null)
             {
@@ -165,21 +192,21 @@ namespace ViewModel
         /// </summary>
         /// <param name="parameter"></param>
         [RelayCommand(CanExecute = nameof(CanApply))]
-        public void Apply(object parameter)
+        private void Apply()
         {
             if (_isAddingNew)
             {
                 Contacts.Add(SelectedContact);
             }
-            else
+            else if (IsEditing)
             {
                 Contacts[_selectedIndex] = SelectedContact;
 
-                _isEditing = false;
+                IsEditing = false;
             }
 
             _isAddingNew = false;
-            _isEditing = false;
+            IsEditing = false;
 
             _serializer.Save(Contacts);
         }
@@ -189,9 +216,9 @@ namespace ViewModel
         /// </summary>
         /// <param name="contact"></param>
         /// <returns></returns>
-        public bool CanApply(object parameter)
+        public bool CanApply()
         {
-            return SelectedContact != null && SelectedContact.HasError == false;
+            return SelectedContact != null && !SelectedContact.HasError;
         }
 
         /// <summary>
