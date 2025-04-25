@@ -87,8 +87,7 @@
         <Grid Grid.Column="2" Margin="8">
             <controls:ContactControl VerticalAlignment="Top"/>
             <Button Content="Apply" HorizontalAlignment="Left" Width="75" Height="25" Margin="0,50,0,0" Command="{Binding ApplyCommand}" 
-                    Visibility="{Binding IsApplyButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                    />
+                    Visibility="{Binding IsApplyButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
         
     </Grid>

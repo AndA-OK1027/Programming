@@ -18,7 +18,7 @@ namespace View.Converters
         /// Преобразует значение Boolean в Visibility
         /// </summary>
         /// <param name="value">Значение Boolean, которое нужно преобразовать.</param>
-        /// <returns></returns>
+        /// <returns> значение  Visibility.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is bool boolValue)
@@ -32,7 +32,7 @@ namespace View.Converters
         /// Преобразует значение Visibility обратно в Boolean.
         /// </summary>
         /// <param name="value">Значение Visibility, которое нужно преобразовать.</param>
-        /// <returns></returns>
+        /// <returns> значение Boolean. </returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is Visibility visibilityValue) 

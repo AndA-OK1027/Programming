@@ -47,6 +47,7 @@ namespace ViewModel
         /// </summary>
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsApplyButtonVisible))]
+        [NotifyPropertyChangedFor(nameof(IsReadOnly))]
         [NotifyCanExecuteChangedFor(nameof(ApplyCommand))]
         private bool _isEditing = false;
 
@@ -58,7 +59,7 @@ namespace ViewModel
         /// <summary>
         /// Устанавливает режим "только для чтения" для редактирования контакта.
         /// </summary>
-        private bool IsReadOnly => !IsEditing;
+        public bool IsReadOnly => !IsEditing;
 
         /// <summary>
         /// Возвращает видимость кнопки "Apply" при необходимости.
@@ -108,7 +109,6 @@ namespace ViewModel
         /// <summary>
         /// Возвращает возможность редактирования и удаления для комманд.
         /// </summary>
-        /// <param name="parameter"></param>
         /// <returns>True, если возможно редактирование и удаление, иначе false.</returns>
         public bool CanEditOrRemoveContact()
         {
@@ -118,7 +118,6 @@ namespace ViewModel
         /// <summary>
         /// Добавляет контакт в список.
         /// </summary>
-        /// <param name="parameter"></param>
         [RelayCommand]
         private void AddContact()
         {
@@ -132,7 +131,6 @@ namespace ViewModel
         /// <summary>
         /// Открывает режим редактирования контакта.
         /// </summary>
-        /// <param name="parameter"></param>
         [RelayCommand(CanExecute = nameof(CanEditOrRemoveContact))]
         private void EditContact()
         {
@@ -157,7 +155,6 @@ namespace ViewModel
         /// <summary>
         /// Удаляет контакт из списка, выбранный или последний.
         /// </summary>
-        /// <param name="parameter"></param>
         [RelayCommand(CanExecute = nameof(CanEditOrRemoveContact))]
         private void RemoveContact()
         {
@@ -190,7 +187,6 @@ namespace ViewModel
         /// <summary>
         /// Сохраняет изменения в объекте контакта.
         /// </summary>
-        /// <param name="parameter"></param>
         [RelayCommand(CanExecute = nameof(CanApply))]
         private void Apply()
         {
@@ -214,8 +210,7 @@ namespace ViewModel
         /// <summary>
         /// Проверка валидности всех полей.
         /// </summary>
-        /// <param name="contact"></param>
-        /// <returns></returns>
+        /// <returns>True, если возможно сохранение изменений, иначе false.</returns>
         public bool CanApply()
         {
             return SelectedContact != null && !SelectedContact.HasError;

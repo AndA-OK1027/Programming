@@ -33,23 +33,17 @@ namespace Model
         /// <summary>
         /// Сообщение об ошибке.
         /// </summary>
-        private string error = string.Empty;
+        private string _error = string.Empty;
 
         /// <summary>
         /// Проверяет есть ли ошибка в свойстве.
         /// </summary>
-        public bool HasError
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(error);
-            }
-        }
+        public bool HasError => !string.IsNullOrEmpty(_error);
 
         /// <summary>
         /// Возвращает ошибки для всего объекта.
         /// </summary>
-        public string Error => null;
+        public string Error => _error;
 
         /// <summary>
         /// Регулярное выражение для маски ввода номера телефона.
@@ -65,7 +59,7 @@ namespace Model
         {
             get
             {
-                error = null;
+                _error = null;
 
                 switch (propertyName)
                 {
@@ -73,11 +67,11 @@ namespace Model
                         {
                             if (string.IsNullOrWhiteSpace(Name))
                             {
-                                error = "Имя не может быть пустым.";
+                                _error = "Имя не может быть пустым.";
                             }
                             else if (Name.Length > 100)
                             {
-                                error = "Имя не должно превышать 100 символов.";
+                                _error = "Имя не должно превышать 100 символов.";
                             }
                             break;
                         }
@@ -85,15 +79,15 @@ namespace Model
                         {
                             if (string.IsNullOrWhiteSpace(Email))
                             {
-                                error = "Почта не может быть пустой.";
+                                _error = "Почта не может быть пустой.";
                             }
                             else if (Email.Length > 100)
                             {
-                                error = "Почта не должна превышать 100 символов.";
+                                _error = "Почта не должна превышать 100 символов.";
                             }
                             else if (!Email.Contains("@"))
                             {
-                                error = "Почта должна содержать символ \"@\".";
+                                _error = "Почта должна содержать символ \"@\".";
                             }
                             break;
                         }
@@ -101,17 +95,17 @@ namespace Model
                         {
                             if (string.IsNullOrWhiteSpace(PhoneNumber))
                             {
-                                error = "Почта не может быть пустой.";
+                                _error = "Почта не может быть пустой.";
                             }
                             else
                             {
                                 if (!PhoneNumberRegex.IsMatch(PhoneNumber))
                                 {
-                                    error = "Номер телефона содержит недопустимые символы.";
+                                    _error = "Номер телефона содержит недопустимые символы.";
                                 }
                                 else if (PhoneNumber.Length > 100)
                                 {
-                                    error = "Номер телефона не должен превышать 100 символов.";
+                                    _error = "Номер телефона не должен превышать 100 символов.";
                                 }
                             }
                             break;
@@ -119,7 +113,7 @@ namespace Model
                 }
 
                 OnPropertyChanged();
-                return error;
+                return _error;
             }
         }
 
