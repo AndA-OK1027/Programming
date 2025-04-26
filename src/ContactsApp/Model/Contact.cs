@@ -1,105 +1,49 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 
-namespace View.Model
+namespace Model
 {
     /// <summary>
     /// Хранит информацию о контакте.
     /// </summary>
-    public class Contact : INotifyPropertyChanged, IDataErrorInfo
+    public partial class Contact : ObservableObject, IDataErrorInfo
     {
         /// <summary>
         /// Имя контакта.
         /// </summary>
+        [ObservableProperty]
         private string _name;
+
         /// <summary>
         /// Электронная почта контакта.
         /// </summary>
+        [ObservableProperty]
         private string _email;
+
         /// <summary>
         /// Номер телефона контакта.
         /// </summary>
+        [ObservableProperty]
         private string _phoneNumber;
 
         /// <summary>
         /// Сообщение об ошибке.
         /// </summary>
-        private string error = String.Empty;
-
-        /// <summary>
-        /// Имя контакта.
-        /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-
-            set
-            {
-                if (_name != value) 
-                {
-                    
-                    _name = value;
-                    OnPropertyChanged(nameof(Name));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Почта контакта.
-        /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-
-            set
-            {
-                if (_email != value)
-                {
-                    _email = value;
-                    OnPropertyChanged(nameof(Email));
-                }
-            }
-        }
-
-        /// <summary>
-        /// Номер телефона контакта.
-        /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-
-            set
-            {
-                if (_phoneNumber != value)
-                {
-                    _phoneNumber = value;
-                    OnPropertyChanged(nameof(PhoneNumber));
-                }
-            }
-        }
+        private string _error = string.Empty;
 
         /// <summary>
         /// Проверяет есть ли ошибка в свойстве.
         /// </summary>
-        public bool HasError
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(error);
-            }
-        }
+        public bool HasError => !string.IsNullOrEmpty(_error);
+
+        /// <summary>
+        /// Возвращает ошибки для всего объекта.
+        /// </summary>
+        public string Error => _error;
 
         /// <summary>
         /// Регулярное выражение для маски ввода номера телефона.
@@ -115,7 +59,7 @@ namespace View.Model
         {
             get
             {
-                error = null;
+                _error = null;
 
                 switch (propertyName)
                 {
@@ -123,11 +67,11 @@ namespace View.Model
                         {
                             if (string.IsNullOrWhiteSpace(Name))
                             {
-                                error = "Имя не может быть пустым.";
+                                _error = "Имя не может быть пустым.";
                             }
                             else if (Name.Length > 100)
                             {
-                                error = "Имя не должно превышать 100 символов.";
+                                _error = "Имя не должно превышать 100 символов.";
                             }
                             break;
                         }
@@ -135,15 +79,15 @@ namespace View.Model
                         {
                             if (string.IsNullOrWhiteSpace(Email))
                             {
-                                error = "Почта не может быть пустой.";
+                                _error = "Почта не может быть пустой.";
                             }
                             else if (Email.Length > 100)
                             {
-                                error = "Почта не должна превышать 100 символов.";
+                                _error = "Почта не должна превышать 100 символов.";
                             }
                             else if (!Email.Contains("@"))
                             {
-                                error = "Почта должна содержать символ \"@\".";
+                                _error = "Почта должна содержать символ \"@\".";
                             }
                             break;
                         }
@@ -151,43 +95,26 @@ namespace View.Model
                         {
                             if (string.IsNullOrWhiteSpace(PhoneNumber))
                             {
-                                error = "Почта не может быть пустой.";
+                                _error = "Почта не может быть пустой.";
                             }
                             else
                             {
                                 if (!PhoneNumberRegex.IsMatch(PhoneNumber))
                                 {
-                                    error = "Номер телефона содержит недопустимые символы.";
+                                    _error = "Номер телефона содержит недопустимые символы.";
                                 }
                                 else if (PhoneNumber.Length > 100)
                                 {
-                                    error = "Номер телефона не должен превышать 100 символов.";
+                                    _error = "Номер телефона не должен превышать 100 символов.";
                                 }
                             }
                             break;
                         }
                 }
-                return error;
+
+                OnPropertyChanged();
+                return _error;
             }
-        }
-
-        /// <summary>
-        /// Возвращает сообщение об ошибке для всего объекта.
-        /// </summary>
-        public string Error => null;
-
-        /// <summary>
-        /// Событие изменения свойства.
-        /// </summary>
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        /// <summary>
-        /// Вызов события при изменении свойства.
-        /// </summary>
-        /// <param name="propertyName"></param>
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); 
         }
 
         /// <summary>

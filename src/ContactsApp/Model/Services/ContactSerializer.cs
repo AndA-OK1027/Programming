@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using System.Windows;
 using System.Collections.ObjectModel;
 
-namespace View.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Класс для сериализации объектов класса Contact.
@@ -41,7 +41,7 @@ namespace View.Model.Services
         /// Загружает данные из файла.
         /// </summary>
         /// <returns> объекты полученные из файла</returns>
-        public ObservableCollection<Contact> Load() 
+        public ObservableCollection<Contact> Load()
         {
             try
             {
@@ -64,7 +64,7 @@ namespace View.Model.Services
         /// <summary>
         /// Конструктор класса, в котором создается файл.
         /// </summary>
-        public ContactSerializer() 
+        public ContactSerializer()
         {
             if (!Directory.Exists(Path.GetDirectoryName(_path)))
             {
